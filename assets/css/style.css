@@ -1,0 +1,1522 @@
+/* ============================
+   🎨 1. Variables de Color
+   ============================ */
+
+:root {
+    /* 🎨 Colores base en tonos rosas y beige */
+    --primary-color: #e9a5aa;      /* Rosa suave armonioso */
+    --secondary-color: #d4b8aa;    /* Beige grisáceo elegante */
+    --success-color: #cc7d88;      /* Rosa viejo más vibrante */
+    --danger-color: #e26d6d;       /* Rojo rosado pastel */
+    --warning-color: #f2d3a2;      /* Amarillo beige suave */
+    --info-color: #f0bcd4;         /* Rosa claro tipo blush */
+    --light-color: #fcf8f5;        /* Beige casi blanco */
+    --dark-color: #4d3b3b;         /* Marrón oscuro cálido */
+
+    /* ✍️ Tipografía */
+    --text-color: #3a2d2d;
+    --muted-text: #a1918f;
+    --accent-text: #d57c91;
+    --icon-color: #3a2d2d;
+
+    /* 🧱 Fondo y layout */
+    --bg-color: #fffaf7;
+    --overlay-bg: rgba(255, 245, 240, 0.85);
+    --footer-bg: #f9f4f1;
+    --navbar-bg: #f9f4f1;
+    --footer-border: #e5d7d0;
+    --navbar-border: #e5d7d0;
+
+    /* 🔘 Botones */
+    --btn-verde-1: #e26d6d;
+    --btn-verde-2: #d65c63;
+    --btn-verde-3: #c44e57;
+    --btn-verde-4: #a03f47;
+    --btn-rojo-1: #e67e80;
+    --btn-rojo-2: #dc6666;
+    --btn-text-color: #fffaf7;
+    --btn-background-color: rgba(255, 240, 240, 0.2);
+    --btn-text-hover-light: white;
+
+    /* 📝 Contenido */
+    --post-title-color: #d57c91;
+    --meta-text-color: #a1918f;
+    --summary-bg: #fef1f3;
+    --summary-text: #843c52;
+    --tag-bg-default: #fbe6ec;
+    --tag-text-default: #a64f69;
+    --title-color: #4d3b3b;
+
+    /* 📦 Cajas decorativas (nuevas combinaciones) */
+    --box-rosado-bg: #fde9eb; --box-rosado-text: #742a3d; --box-rosado-border: #f5c7cf;
+    --box-beige-bg: #f6efe6; --box-beige-text: #6b5847; --box-beige-border: #e8dac6;
+
+    /* 🎨 Colores pastel adaptados */
+    --pastel-1-bg: #fff4f4; --pastel-1-border: #f8dada; --pastel-1-text: #9b4d4d;
+    --pastel-2-bg: #faece3; --pastel-2-border: #eed5c0; --pastel-2-text: #8b5c3e;
+    --pastel-3-bg: #fbeef5; --pastel-3-border: #f2d2e2; --pastel-3-text: #a65c84;
+    --pastel-4-bg: #f4e9e1; --pastel-4-border: #e2cbbd; --pastel-4-text: #7a4e3c;
+    --pastel-5-bg: #f9f2ed; --pastel-5-border: #e4d8ce; --pastel-5-text: #765c4e;
+    --pastel-6-bg: #fff1ee; --pastel-6-border: #f7ccc7; --pastel-6-text: #9c3d32;
+    --pastel-7-bg: #fbeaf8; --pastel-7-border: #e6cfe3; --pastel-7-text: #8b3d7a;
+    --pastel-8-bg: #f5f0fa; --pastel-8-border: #dbcce9; --pastel-8-text: #6e3d90;
+    --pastel-9-bg: #fff7ea; --pastel-9-border: #f5e1c6; --pastel-9-text: #92713a;
+    --pastel-10-bg: #f8f3ef; --pastel-10-border: #e8ded7; --pastel-10-text: #5c4d43;
+}
+
+/* ============================
+   🌙 2. Variables Modo Oscuro
+   ============================ */
+
+[data-theme="dark"] {
+    --primary-color: #d2949b;
+    --secondary-color: #bfa59b;
+    --success-color: #c27280;
+    --danger-color: #d86161;
+    --warning-color: #eac593;
+    --info-color: #e2a9c2;
+    --light-color: #3a2d2d;
+    --dark-color: #f5efea;
+
+    --text-color: #f3e6e6;
+    --muted-text: #c8b9b8;
+    --accent-text: #e09aad;
+    --icon-color: #f3e6e6;
+
+    --bg-color: #2d2222;
+    --overlay-bg: rgba(50, 35, 35, 0.85);
+    --footer-bg: #3a2a2a;
+    --navbar-bg: #3a2a2a;
+    --footer-border: #5b4747;
+    --navbar-border: #5b4747;
+
+    --btn-verde-1: #f29ca0;
+    --btn-verde-2: #d9828d;
+    --btn-verde-3: #c46c76;
+    --btn-verde-4: #9b4f57;
+    --btn-rojo-1: #f38388;
+    --btn-rojo-2: #dd6f6f;
+    --btn-text-color: #2d2222;
+    --btn-background-color: rgba(255, 225, 225, 0.15);
+    --btn-text-hover-light: #2d2222;
+
+    --post-title-color: #f1aab9;
+    --meta-text-color: #c8b0b0;
+    --summary-bg: #4a2f35;
+    --summary-text: #f3c8d2;
+    --tag-bg-default: #5c3842;
+    --tag-text-default: #f8ccd6;
+    --title-color: #f7e5e5;
+
+    --box-rosado-bg: #5a3940;
+    --box-rosado-text: #f8c4d0;
+    --box-rosado-border: #c47b8b;
+    --box-beige-bg: #54443b;
+    --box-beige-text: #f3e1d5;
+    --box-beige-border: #d1bcae;
+
+    --pastel-1-bg: #5b3b3b; --pastel-1-border: #c47878; --pastel-1-text: #f9dada;
+    --pastel-2-bg: #59443c; --pastel-2-border: #c49682; --pastel-2-text: #fcece3;
+    --pastel-3-bg: #553746; --pastel-3-border: #bf7b9d; --pastel-3-text: #fcd8ec;
+    --pastel-4-bg: #443430; --pastel-4-border: #bb9e8e; --pastel-4-text: #f4e1d8;
+    --pastel-5-bg: #483f3a; --pastel-5-border: #c1b2a4; --pastel-5-text: #f3e7e1;
+    --pastel-6-bg: #5c3a34; --pastel-6-border: #ca8078; --pastel-6-text: #ffe9e7;
+    --pastel-7-bg: #50354f; --pastel-7-border: #bf8db7; --pastel-7-text: #ffe6f8;
+    --pastel-8-bg: #453e53; --pastel-8-border: #bca5e1; --pastel-8-text: #f3eaff;
+    --pastel-9-bg: #4c4030; --pastel-9-border: #c6ae83; --pastel-9-text: #fff4dc;
+    --pastel-10-bg: #4a3f38; --pastel-10-border: #c2b2a5; --pastel-10-text: #fff7ef;
+}
+
+/* ============================
+   👁️ 1.2. Variables Modo Daltónico
+   ============================ */
+
+[data-theme="colorblind"] {
+    --primary-color: #c98c92;
+    --secondary-color: #b59c93;
+    --success-color: #b96f6f;
+    --danger-color: #c55757;
+    --warning-color: #d4a45f;
+    --info-color: #d98eb2;
+    --light-color: #fcf9f7;
+    --dark-color: #2a2a2a;
+
+    --text-color: #2c1d1d;
+    --muted-text: #846f6f;
+    --accent-text: #b45970;
+    --icon-color: #2c1d1d;
+
+    --bg-color: #fffaf5;
+    --overlay-bg: rgba(255, 245, 235, 0.85);
+    --footer-bg: #f1eae6;
+    --navbar-bg: #f1eae6;
+    --footer-border: #d6c7c0;
+    --navbar-border: #d6c7c0;
+
+    --btn-verde-1: #c65555;
+    --btn-verde-2: #aa4949;
+    --btn-verde-3: #8e3f3f;
+    --btn-verde-4: #732f2f;
+    --btn-rojo-1: #d06666;
+    --btn-rojo-2: #b84e4e;
+    --btn-text-color: #fffaf5;
+    --btn-background-color: rgba(240, 200, 200, 0.2);
+    --btn-text-hover-light: white;
+
+    --post-title-color: #aa4f64;
+    --meta-text-color: #866b6b;
+    --summary-bg: #f8e3e4;
+    --summary-text: #5e252f;
+    --tag-bg-default: #f3d6dc;
+    --tag-text-default: #7a2f43;
+    --title-color: #392626;
+
+    --box-rosado-bg: #f6d6da; --box-rosado-text: #5d1f2e; --box-rosado-border: #d98f9d;
+    --box-beige-bg: #f0e3d9; --box-beige-text: #5a4234; --box-beige-border: #d1b9a2;
+
+    --pastel-1-bg: #f8dddd; --pastel-1-border: #c78c8c; --pastel-1-text: #832e2e;
+    --pastel-2-bg: #f4e3d9; --pastel-2-border: #c9a27f; --pastel-2-text: #75482c;
+    --pastel-3-bg: #f9e4ef; --pastel-3-border: #d39abc; --pastel-3-text: #873d68;
+    --pastel-4-bg: #f3e3dc; --pastel-4-border: #bb9985; --pastel-4-text: #5a2d1f;
+    --pastel-5-bg: #f6eee8; --pastel-5-border: #c2b2a1; --pastel-5-text: #543f33;
+    --pastel-6-bg: #f7e0dd; --pastel-6-border: #c98e88; --pastel-6-text: #802f2c;
+    --pastel-7-bg: #f2d9eb; --pastel-7-border: #c29abb; --pastel-7-text: #6f2b60;
+    --pastel-8-bg: #ebe2f4; --pastel-8-border: #b7a3d3; --pastel-8-text: #4f2e7c;
+    --pastel-9-bg: #fdf3e4; --pastel-9-border: #e3cfa5; --pastel-9-text: #6e552b;
+    --pastel-10-bg: #f7f0eb; --pastel-10-border: #d8c9be; --pastel-10-text: #4a4038;
+}
+
+/* ============================
+   👁 2.2. Variables Modo Daltónico Oscuro
+   ============================ */
+
+[data-theme="colorblind-dark"] {
+    --primary-color: #c97a87;
+    --secondary-color: #a47d76;
+    --success-color: #b65353;
+    --danger-color: #d85d5d;
+    --warning-color: #deaf60;
+    --info-color: #db88b2;
+    --light-color: #312a2a;
+    --dark-color: #f0e5e5;
+
+    --text-color: #f8eae8;
+    --muted-text: #c4a9a9;
+    --accent-text: #f27d97;
+    --icon-color: #f8eae8;
+
+    --bg-color: #211818;
+    --overlay-bg: rgba(40, 25, 25, 0.9);
+    --footer-bg: #322424;
+    --navbar-bg: #322424;
+    --footer-border: #624646;
+    --navbar-border: #624646;
+
+    --btn-verde-1: #e27e7e;
+    --btn-verde-2: #c55f5f;
+    --btn-verde-3: #a44949;
+    --btn-verde-4: #833535;
+    --btn-rojo-1: #f37777;
+    --btn-rojo-2: #da5d5d;
+    --btn-text-color: #2a1a1a;
+    --btn-background-color: rgba(255, 215, 215, 0.15);
+    --btn-text-hover-light: #2a1a1a;
+
+    --post-title-color: #ee9da9;
+    --meta-text-color: #c2a4a4;
+    --summary-bg: #4e3030;
+    --summary-text: #fac8d2;
+    --tag-bg-default: #623848;
+    --tag-text-default: #f5b5c5;
+    --title-color: #fceaea;
+
+    --box-rosado-bg: #623948; --box-rosado-text: #f9cdd6; --box-rosado-border: #b97387;
+    --box-beige-bg: #5c4b41; --box-beige-text: #f0d9c7; --box-beige-border: #d5bca5;
+
+    --pastel-1-bg: #5f3838; --pastel-1-border: #c86e6e; --pastel-1-text: #ffeaea;
+    --pastel-2-bg: #5a4537; --pastel-2-border: #c6976d; --pastel-2-text: #ffecda;
+    --pastel-3-bg: #56394b; --pastel-3-border: #cb7fa5; --pastel-3-text: #ffeaf5;
+    --pastel-4-bg: #473531; --pastel-4-border: #bb9483; --pastel-4-text: #f8dfd5;
+    --pastel-5-bg: #4c413a; --pastel-5-border: #c7b4a4; --pastel-5-text: #f6eee7;
+    --pastel-6-bg: #5f3e38; --pastel-6-border: #d17d75; --pastel-6-text: #ffe7e3;
+    --pastel-7-bg: #553859; --pastel-7-border: #ba87b5; --pastel-7-text: #ffeaf9;
+    --pastel-8-bg: #4d3f5f; --pastel-8-border: #bfa5db; --pastel-8-text: #f3e7ff;
+    --pastel-9-bg: #554632; --pastel-9-border: #d0b077; --pastel-9-text: #fff3d9;
+    --pastel-10-bg: #4a4037; --pastel-10-border: #d6c2b2; --pastel-10-text: #fff7ee;
+}
+
+
+/* ============================
+   🧱 3. RESET Y CONFIGURACIÓN BÁSICA
+   ============================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* previene zoom en iOS */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: clamp(1rem, 1.5vw, var(--font-size-lg));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ====================================
+   TIPOGRAFÍA Y ENCABEZADOS
+==================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: 600; /* mantengo tu peso para estos */
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ====================================
+   ENLACES Y BOTONES
+==================================== */
+
+a {
+    text-decoration: none;
+    color: var(--accent-text);
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--primary-color);
+    outline: none;
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    background-color: var(--btn-background-color);
+    color: var(--btn-text-color);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+button:hover,
+button:focus {
+    background-color: var(--primary-color);
+    color: var(--btn-text-hover-light);
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    border-color: var(--secondary-color);
+}
+
+/* ====================================
+   FOCUS VISUAL ACCESSIBLE
+==================================== */
+
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+
+/* ====================================
+   FORMULARIOS
+==================================== */
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid var(--border-color, #ccc);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--muted-text);
+    opacity: 1; /* Para consistencia entre navegadores */
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+    border-color: var(--primary-color);
+    box-shadow: va(--info-color); /* Ajuste a color primary-color con opacidad */
+    outline: none; /* Evita doble outline */
+}
+
+/* ====================================
+   MEDIOS E IMÁGENES
+==================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: middle; /* evita espacios debajo en línea */
+    border-style: none; /* elimina borde por defecto en enlaces de imágenes */
+}
+
+/* ====================================
+   LISTAS
+==================================== */
+
+ul, ol {
+    padding-left: var(--spacing-lg);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+li {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ====================================
+   TABLAS (opcional)
+==================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+th,
+td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #ccc);
+    vertical-align: top;
+}
+
+th {
+    font-weight: 600;
+    background-color: var(--summary-bg);
+    color: var(--text-color);
+}
+
+/* ====================================
+   UTILIDADES RESPONSIVAS (opcional extra)
+==================================== */
+
+.container {
+    width: min(90%, 1200px);
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--spacing-md);
+    box-sizing: border-box; /* asegurar padding dentro del ancho */
+}
+
+.overlay {
+    background: var(--overlay-bg);
+    position: fixed; /* si la usas para superponer */
+    inset: 0; /* top, right, bottom, left = 0 */
+    z-index: 1000; /* para que esté arriba de otros elementos */
+}
+
+/* Partículas con id específico */
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none; /* que no bloquee clicks */
+}
+
+/* ============================
+   🏞️ 4. Sección Hero
+   ============================ */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 4rem;
+    color: var(--text-color);
+}
+
+.hero-section {
+    background: linear-gradient(to bottom right, var(--bg-color), var(--verde-1));
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: background-color 0.3s ease;
+    color: var(--text-color);
+}
+
+.hero-section .btn {
+    min-width: 160px;
+}
+
+.hero-box {
+    background-color: var(--hero-box-bg, rgba(255, 255, 255, 0.75));
+    color: var(--hero-box-text, #000);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo oscuro para hero-box usando variables para mejor mantenimiento */
+
+body.theme-dark {
+    --hero-box-bg: rgba(0, 0, 0, 0.6);
+    --hero-box-text: #fff;
+}
+
+/* ============================
+   📝 5. Contenido de Texto Mejorado
+   ============================ */
+
+.text-box {
+    background: var(--overlay-bg);
+    color: var(--text-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-dark .text-box {
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+.text-title {
+    color: var(--btn-verde-2);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    transition: color 0.3s ease;
+}
+
+.text-subtitle {
+    color: var(--muted-text);
+    font-weight: 500;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    transition: color 0.3s ease;
+}
+
+.text-verde-1 {
+    color: var(--verde-1);
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+/* Mejorar foco accesible */
+.text-title:focus-visible,
+.text-subtitle:focus-visible {
+    outline: 2px solid var(--btn-verde-2);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 600px) {
+    .text-box {
+        padding: 1rem;
+    }
+
+    .text-title {
+        font-size: 1.5rem;
+    }
+
+    .text-subtitle {
+        font-size: 1rem;
+    }
+}
+/* ============================
+   🧭 6. Navegación y Navbar Mejorado
+   ============================ */
+
+#navbar {
+    background-color: var(--navbar-bg);
+    color: var(--text-color);
+    border-bottom: 1px solid var(--navbar-border);
+    transition: background-color 0.3s ease, border-bottom 0.3s ease, color 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    transition: color 0.3s ease;
+    outline-offset: 2px;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus-visible {
+    color: var(--btn-verde-1);
+    outline: none;
+    text-decoration: underline;
+    outline-offset: 3px;
+}
+
+/* === Contenedor dropdown === */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Botón toggle sin estilos predeterminados */
+.dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer; /* Indica que es clicable */
+}
+
+/* === Menú desplegable === */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--footer-bg);
+    border: 1px solid var(--navbar-border);
+    min-width: 160px;
+    z-index: 10000;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none; /* Evita interacción cuando está oculto */
+}
+
+/* Mostrar menú al hover del dropdown */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Mostrar menú al tener clase .show (útil para toggle JS) */
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* === Elementos del menú === */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+    cursor: pointer; /* Para mejorar UX */
+}
+
+/* Hover */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--summary-bg);
+    color: var(--summary-text);
+    outline: none; /* Para manejar focus visual con JS o :focus-visible */
+}
+
+/* Estado activo */
+.dropdown-item.active {
+    font-weight: bold;
+    background-color: var(--tag-bg-default);
+    color: var(--tag-text-default);
+}
+
+/* === Iconos de bandera === */
+.flag-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0; /* Evita que la imagen se reduzca si el contenedor se achica */
+}
+
+/* === Modo oscuro === */
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--navbar-bg);
+    border-color: var(--navbar-border);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: var(--summary-bg);
+    color: var(--summary-text); /* Asegúrate de que el color contraste bien */
+}
+
+/* Añadir estilo para focus visible accesible */
+#navbar a:focus-visible {
+    outline: 2px solid var(--btn-verde-1);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Responsive: Menú básico centrado */
+@media (max-width: 768px) {
+    #navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+}
+
+/* ============================
+   🦶 7. Footer Mejorado
+   ============================ */
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--footer-border);
+    transition: background-color 0.3s ease, border-top 0.3s ease, color 0.3s ease;
+    font-size: 0.875rem;
+}
+
+footer small,
+footer a {
+    color: var(--muted-text);
+    transition: color 0.3s ease, opacity 0.2s ease;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    outline-offset: 2px;
+}
+
+footer a:hover,
+footer a:focus-visible {
+    opacity: 0.8;
+    color: var(--btn-verde-1);
+    outline: 2px solid var(--btn-verde-1);
+    border-radius: 4px;
+}
+
+/* Mejor espaciado en móviles */
+@media (max-width: 600px) {
+    footer {
+        padding: 1rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+/* ============================
+   📚 8. Menú Lateral (Sidebar) Mejorado
+   ============================ */
+
+#sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    padding: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    z-index: 10000;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+    overflow-y: auto;
+    transform: translateX(100%);
+    outline: none; /* para poder hacer focus sin mostrar borde por defecto */
+    tabindex: -1; /* Asegúrate de añadir tabindex="-1" también en el HTML */
+}
+
+#sidebar-wrapper.active {
+    transform: translateX(0);
+}
+
+.sidebar-nav {
+    list-style: none;
+    margin-top: 3rem;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    margin: 1rem 0;
+}
+
+.sidebar-nav a {
+    color: var(--text-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
+    outline-offset: 3px;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus-visible {
+    color: var(--btn-verde-1);
+    background-color: rgba(60, 200, 143, 0.1);
+    outline: 2px solid var(--btn-verde-1);
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--btn-verde-2);
+    border-radius: 4px;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/* ============================
+   🎯 9. Botones e Iconos
+   ============================ */
+.btn:focus-visible,
+.icon-button:focus-visible,
+.dropdown-item:focus-visible,
+.navbar-brand:focus-visible,
+.sidebar-nav a:focus-visible {
+    outline: 2px dashed var(--btn-verde-2);
+    outline-offset: 4px;
+    /* Asegura que el outline no se confunda con el fondo */
+}
+
+/* Botones circulares con centrado y transición */
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--btn-verde-1);
+    color: var(--btn-text-color);
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+    background-color: var(--btn-verde-2);
+    outline-offset: 2px;
+}
+
+/* Botón cerrar menú lateral (más destacado y posicionado dentro del sidebar) */
+#close-menu-toggle {
+    background-color: var(--btn-rojo-1);
+    color: var(--btn-text-color);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 11001; /* un poco más alto para que esté encima de todo */
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    display: none; /* inicial: oculto hasta que el menú esté abierto */
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
+
+#close-menu-toggle:hover,
+#close-menu-toggle:focus-visible {
+    background-color: var(--btn-rojo-2);
+    outline-offset: 2px;
+}
+
+/* Mostrar botón cerrar cuando el sidebar está activo */
+#sidebar-wrapper.active #close-menu-toggle {
+    display: inline-flex;
+}
+
+/* Iconos personalizados FontAwesome */
+.icon-theme-light::before,
+.icon-theme-dark::before,
+.icon-theme-colorblind::before,
+.icon-theme-colorblind-dark::before,
+.icon-github::before,
+.icon-linkedin::before,
+.icon-email::before {
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: var(--icon-color);
+    transition: color 0.3s;
+}
+
+/* Asignar códigos Unicode de Font Awesome */
+.icon-theme-light::before { content: "\f0eb"; } /* fa-sun */
+.icon-theme-dark::before { content: "\f186"; } /* fa-moon */
+.icon-theme-colorblind::before { content: "\f070"; } /* fa-low-vision */
+.icon-theme-colorblind-dark::before{ content: "\f2a8"; } /* fa-eye-slash (como alternativa) */
+.icon-github::before { content: "\f09b"; }
+.icon-linkedin::before { content: "\f08c"; }
+.icon-email::before { content: "\f0e0"; }
+
+.dropdown-item:hover::before,
+.icon-github:hover::before,
+.icon-linkedin:hover::before,
+.icon-email:hover::before {
+    color: var(--btn-verde-1);
+}
+
+/* Scroll to top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    opacity: 0;
+    z-index: 1100;
+    transition: opacity 0.3s;
+}
+
+.scroll-to-top::before {
+    content: "\f106"; /* flecha arriba */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.scroll-to-top:hover,
+.scroll-to-top:focus-visible {
+    background-color: var(--btn-verde-2);
+    outline-offset: 2px;
+}
+
+/* ============================
+   🔤 10. Iconos Font Awesome
+   ============================ */
+
+#menu-toggle::before,
+#close-menu-toggle::before,
+#theme-toggle::before,
+#language-toggle::before,
+#send-toggle::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    pointer-events: none; /* que el icono no intercepte clicks/focus */
+    user-select: none;
+}
+
+#menu-toggle::before { content: "\f0c9"; }       /* hamburguesa */
+#close-menu-toggle::before { content: "\f00d"; } /* X */
+#theme-toggle::before { content: "\f042"; }      /* circulo blanco y negro */
+#language-toggle::before { content: "\f57d"; }   /* globo */
+#send-toggle::before { content: "\f1d8"; }
+
+/* ============================
+   🖼️ 11. Botones Outline
+   ============================ */
+
+[class^="btn-outline-verde-"] {
+    border: 2px solid;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    display: inline-block;
+    background-color: var(--btn-background-color);
+    backdrop-filter: blur(2px);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Verde 1 */
+.btn-outline-verde-1 {
+    border-color: var(--btn-verde-1);
+    color: var(--btn-verde-1);
+}
+
+.btn-outline-verde-1:hover,
+.btn-outline-verde-1:focus {
+    background-color: var(--btn-verde-1);
+    color: var(--btn-text-hover-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(34, 139, 34, 0.5); /* ejemplo verde suave */
+}
+
+/* Verde 2 */
+.btn-outline-verde-2 {
+    border-color: var(--btn-verde-2);
+    color: var(--btn-verde-2);
+}
+
+.btn-outline-verde-2:hover,
+.btn-outline-verde-2:focus {
+    background-color: var(--btn-verde-2);
+    color: var(--btn-text-hover-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5);
+}
+
+/* Verde 3 */
+.btn-outline-verde-3 {
+    border-color: var(--btn-verde-3);
+    color: var(--btn-verde-3);
+}
+
+.btn-outline-verde-3:hover,
+.btn-outline-verde-3:focus {
+    background-color: var(--btn-verde-3);
+    color: var(--btn-text-hover-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 128, 0, 0.5);
+}
+
+/* Verde 4 */
+.btn-outline-verde-4 {
+    border-color: var(--btn-verde-4);
+    color: var(--btn-verde-4);
+}
+
+.btn-outline-verde-4:hover,
+.btn-outline-verde-4:focus {
+    background-color: var(--btn-verde-4);
+    color: var(--btn-text-hover-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.5);
+}
+/* ============================
+   🏷️ 12. Etiquetas y Tags
+   ============================ */
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    background-color: var(--tag-bg-default);
+    color: var(--tag-text-default);
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none; /* Evita selección accidental */
+}
+
+/* Etiquetas con color automático */
+.tag-badge {
+    display: inline-block;
+    padding: 0.3em 0.6em;
+    font-size: 0.85em;
+    font-weight: 600;
+    border-radius: 0.5em;
+    /* Uso de HSL con calc() es muy bueno para colores dinámicos */
+    background-color: hsl(calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37), 65%, 75%);
+    color: #222;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    /* Puedes agregar cursor si son interactivos */
+    /* cursor: default; */
+}
+
+/* Modo oscuro: mejor contraste */
+[data-theme="dark"] .tag-badge {
+    background-color: hsl(calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37), 65%, 30%);
+    color: #f0f0f0;
+}
+
+/* Cajitas */
+
+.box {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Interacción */
+.box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Accesibilidad */
+.box:focus-visible {
+    outline: 2px dashed var(--focus-color, #444);
+    outline-offset: 4px;
+}
+
+/* Contenedor */
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Temas de color */
+.box-sol {
+    background-color: var(--box-sol-bg);
+    color: var(--box-sol-text);
+    border-color: var(--box-sol-border);
+}
+
+.box-mar {
+    background-color: var(--box-mar-bg);
+    color: var(--box-mar-text);
+    border-color: var(--box-mar-border);
+}
+
+.box-flor {
+    background-color: var(--box-flor-bg);
+    color: var(--box-flor-text);
+    border-color: var(--box-flor-border);
+}
+
+.box-hoja {
+    background-color: var(--box-hoja-bg);
+    color: var(--box-hoja-text);
+    border-color: var(--box-hoja-border);
+}
+
+.box-cielo {
+    background-color: var(--box-cielo-bg);
+    color: var(--box-cielo-text);
+    border-color: var(--box-cielo-border);
+}
+
+.box-uva {
+    background-color: var(--box-uva-bg);
+    color: var(--box-uva-text);
+    border-color: var(--box-uva-border);
+}
+
+.box-coral {
+    background-color: var(--box-coral-bg);
+    color: var(--box-coral-text);
+    border-color: var(--box-coral-border);
+}
+
+.box-fuego {
+    background-color: var(--box-fuego-bg);
+    color: var(--box-fuego-text);
+    border-color: var(--box-fuego-border);
+}
+
+/* Títulos de sección adaptables */
+.section-title {
+    color: var(--title-color);
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Secciones generales de habilidades */
+.skill-section {
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Skill badge individual */
+.skill-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    border-radius: 0.4rem;
+    padding: 0.25rem 0.6rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    font-weight: 500;
+    background-color: hsl(
+            calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
+            70%,
+            85%
+    );
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.skill-item:focus-visible {
+    outline: 2px dashed var(--focus-color, #555);
+    outline-offset: 4px;
+}
+
+[data-theme="dark"] .skill-item {
+    background-color: hsl(
+            calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
+            70%,
+            25%
+    );
+    color: #f0f0f0;
+}
+
+.pastel-box {
+    border-radius: var(--border-radius, 1rem);
+    padding: 1rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pastel-box:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos y texto controlados */
+.pastel-box h1, .pastel-box h2, .pastel-box h3 {
+    color: var(--title-color);
+    margin-top: 0;
+    font-weight: bold;
+}
+
+.pastel-box p {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Modo oscuro (opcional) */
+[data-theme="dark"] .pastel-box {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #f0f0f0;
+}
+
+.subsection {
+    background-color: var(--box-cielo-bg); /* sutil fondo interno */
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--box-cielo-border); /* indica jerarquía */
+    border-radius: 0.5rem;
+    color: var(--box-cielo-text);
+}
+
+.subsection-box {
+    background: var(--box-mar-bg); /* translúcido sobre color pastel */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: var(--box-mar-text);
+}
+
+/* Tags de Skills */
+.badge-img {
+    height: 28px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Tippy.js tooltip themes */
+.tippy-box[data-theme~='light'] {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    font-size: 0.8rem;
+}
+
+.tippy-box[data-theme~='material'] {
+    background-color: #333;
+    color: #f0f0f0;
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
+span[tabindex="0"]:focus-visible {
+    outline: 2px solid var(--verde-1);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Estilo base del elemento que tiene tooltip */
+[data-tippy-content] {
+    outline: none; /* Evita bordes innecesarios en clic */
+}
+
+/* Muestra borde solo al navegar con teclado */
+[data-tippy-content]:focus-visible {
+    outline: 2px solid var(--verde-acento, #00cc99);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* === METADATOS Y TÍTULOS DE POSTS === */
+.post-meta {
+    color: var(--meta-text-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.post-title {
+    color: var(--post-title-color);
+    transition: color 0.3s;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.post-title:focus-visible {
+    outline: 2px dashed var(--btn-verde-1);
+    outline-offset: 4px;
+}
+
+/* === RESUMEN DE POSTS === */
+.post-summary {
+    background-color: var(--summary-bg);
+    color: var(--summary-text);
+    border-left: 4px solid var(--btn-verde-2);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    font-style: italic;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* === Miniaturas de posts === */
+.post-thumbnail {
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.post-thumbnail img {
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.post-thumbnail img:hover {
+    transform: scale(1.03);
+}
+
+/* === IMÁGENES DE PERFIL === */
+.imagen-circular {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--btn-verde-2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.imagen-poligono {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+/* === PÁGINAS DE PROYECTO === */
+.project {
+    padding: 2rem 0;
+    font-family: var(--body-font, sans-serif);
+}
+
+/* Contenido principal */
+.project-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color, #333);
+}
+
+.project-content h2,
+.project-content h3 {
+    margin-top: 2rem;
+    color: var(--title-color);
+}
+
+.project-content a {
+    color: var(--btn-verde-2);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.project-content a:focus-visible {
+    outline: 2px dashed var(--btn-verde-1);
+    outline-offset: 3px;
+}
+
+.project-content a:hover {
+    color: var(--btn-verde-1);
+}
+
+/* IMÁGENES DE PROYECTO */
+.project-content img {
+    max-width: 100%;
+    border-radius: var(--border-radius, 0.5rem);
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.project-hero-image {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    filter: brightness(0.95);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* BLOQUES DE CÓDIGO */
+.project-content pre,
+.project-content code {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    display: block;
+    margin: 1rem 0;
+    color: #2a2a2a;
+}
+
+/* BADGES DE ETIQUETAS */
+.project .tag-badge {
+    display: inline-block;
+    background-color: hsl(var(--tag-hue, 180), 70%, 92%);
+    color: hsl(var(--tag-hue, 180), 30%, 30%);
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* BOTONES DE NAVEGACIÓN */
+.project .btn-outline-verde-1,
+.project .btn-outline-verde-3 {
+    border: 1px solid var(--btn-verde-1);
+    color: var(--btn-verde-1);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.project .btn-outline-verde-1:focus-visible,
+.project .btn-outline-verde-3:focus-visible {
+    outline: 2px solid var(--btn-verde-2);
+    outline-offset: 2px;
+}
+
+.project .btn-outline-verde-1:hover,
+.project .btn-outline-verde-3:hover {
+    background-color: var(--btn-verde-1);
+    color: white;
+}
+
+/* TECH STACK */
+.project-tech-stack .tech-card {
+    background: #ffffffcc;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-tech-stack .tech-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+/* Estilo para tarjetas de tecnologías */
+.tech-card .badge-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Responsividad para secciones grid de habilidades */
+@media (max-width: 768px) {
+    .tech-card .badge-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .tech-card .fw-bold {
+        font-size: 0.85rem;
+    }
+}
+
+/* === TRANSICIONES GLOBALES === */
+img,
+header.hero,
+.post-hero-image,
+[data-bg-dark],
+[data-bg-light] {
+    transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}

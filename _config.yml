@@ -1,0 +1,71 @@
+title: "Marta Paz Coaching"
+description: "Coaching para poder obtener Mi Paz"
+baseurl: "/coaching-site"
+url: "https://MiPazCoaching.github.io"
+
+markdown: kramdown
+
+# Plugins necesarios
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-archives
+
+plugins_dir: _plugins
+
+# Configuración de paginación
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: /page/:num/
+  title: ":title - Página :num"
+
+pagination_tag:
+  enabled: true
+  per_page: 5
+  title: "Etiqueta: :tag - Página :num"
+  permalink: /tags/:tag/page/:num/
+  layout: tag
+
+# Colecciones personalizadas
+collections:
+  projects:
+    output: true
+
+# Configuración por defecto para posts y colecciones
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      lang: es
+      show_header: true
+      hero: false   # o true, si la mayoría lo usan
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: devlog
+      lang: es
+  - scope:
+      path: "projects"
+      type: "projects"
+    values:
+      layout: project
+      lang: es
+  - scope:
+      path: ""
+      type: "tags"
+    values:
+      layout: tag
+  - scope:
+      path: ""
+    values:
+      layout: default
+      lang: es
+
+# Soporte para múltiples idiomas (manual)
+languages: ["es", "en"]
+default_lang: "es"

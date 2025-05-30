@@ -67,5 +67,5 @@ defaults:
       lang: es
 
 # Soporte para múltiples idiomas (manual)
-languages: ["es", "en"]
+languages: ["es", "en", "fr"]
 default_lang: "es"

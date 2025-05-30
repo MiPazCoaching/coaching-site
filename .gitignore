@@ -15,6 +15,7 @@ Thumbs.db
 node_modules/
 package-lock.json
 yarn.lock
+assets\js\dist/*.map
 
 # Archivos personales o sensibles
 .env

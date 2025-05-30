@@ -1,0 +1,39 @@
+name: Build JavaScript and Commit
+
+on:
+  push:
+    branches:
+      - main # Cambia esto si tu rama principal tiene otro nombre
+
+jobs:
+  build-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false # lo haremos manualmente
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build JavaScript bundle
+        run: npm run build
+
+      - name: Commit built JS
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add assets/js/dist/bundle.js
+          git commit -m "🔧 Build JS bundle [auto]" || echo "No changes to commit"
+          git push
+        env:
+          # Necesitamos un token porque deshabilitamos persist-credentials arriba
+          # Esto permite que la acción pueda hacer commit
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -30,10 +30,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add assets/js/dist/bundle.js
+          git add assets/js/dist/bundle.js assets/js/dist/bundle.js.map
           git commit -m "🔧 Build JS bundle [auto]" || echo "No changes to commit"
-          git push
-        env:
-          # Necesitamos un token porque deshabilitamos persist-credentials arriba
-          # Esto permite que la acción pueda hacer commit
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main

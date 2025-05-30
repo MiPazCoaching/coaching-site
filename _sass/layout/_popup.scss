@@ -1,0 +1,110 @@
+/* ============================
+   🪟 Popup Personalizado (Inferior)
+============================ */
+
+/* Fondo difuminado */
+.popup-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--overlay-bg);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Caja emergente */
+.popup-content {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--pastel-3-border);
+  border-radius: 1rem 1rem 0 0;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
+
+  .popup-title {
+    color: var(--post-title-color);
+    margin-bottom: 1rem;
+  }
+
+  .popup-text {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+  }
+}
+
+.popup-overlay.show .popup-content {
+  transform: translateY(0);
+}
+
+/* Botón cerrar */
+.popup-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--btn-rojo-1);
+  color: var(--btn-text-color);
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--btn-rojo-2);
+    outline-offset: 2px;
+  }
+}
+
+/* Botón de reapertura */
+#popup-reopen-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--btn-verde-1);
+  color: var(--btn-text-color);
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  z-index: 9999;
+
+  &.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background-color: var(--btn-verde-2);
+    transform: scale(1.05);
+  }
+}

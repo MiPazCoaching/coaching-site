@@ -1,0 +1,62 @@
+/* ============================
+   🌙 2. Variables Modo Oscuro
+   ============================ */
+
+[data-theme="dark"] {
+  --primary-color: #d2949b;
+  --secondary-color: #bfa59b;
+  --success-color: #c27280;
+  --danger-color: #d86161;
+  --warning-color: #eac593;
+  --info-color: #e2a9c2;
+  --light-color: #3a2d2d;
+  --dark-color: #f5efea;
+
+  --text-color: #f3e6e6;
+  --muted-text: #c8b9b8;
+  --accent-text: #e09aad;
+  --icon-color: #f3e6e6;
+
+  --bg-color: #2d2222;
+  --overlay-bg: rgba(50, 35, 35, 0.85);
+  --footer-bg: #3a2a2a;
+  --navbar-bg: #3a2a2a;
+  --footer-border: #5b4747;
+  --navbar-border: #5b4747;
+
+  --btn-verde-1: #f29ca0;
+  --btn-verde-2: #d9828d;
+  --btn-verde-3: #c46c76;
+  --btn-verde-4: #9b4f57;
+  --btn-rojo-1: #f38388;
+  --btn-rojo-2: #dd6f6f;
+  --btn-text-color: #2d2222;
+  --btn-background-color: rgba(255, 225, 225, 0.15);
+  --btn-text-hover-light: #2d2222;
+
+  --post-title-color: #f1aab9;
+  --meta-text-color: #c8b0b0;
+  --summary-bg: #4a2f35;
+  --summary-text: #f3c8d2;
+  --tag-bg-default: #5c3842;
+  --tag-text-default: #f8ccd6;
+  --title-color: #f7e5e5;
+
+  --box-rosado-bg: #5a3940;
+  --box-rosado-text: #f8c4d0;
+  --box-rosado-border: #c47b8b;
+  --box-beige-bg: #54443b;
+  --box-beige-text: #f3e1d5;
+  --box-beige-border: #d1bcae;
+
+  --pastel-1-bg: #5b3b3b; --pastel-1-border: #c47878; --pastel-1-text: #f9dada;
+  --pastel-2-bg: #59443c; --pastel-2-border: #c49682; --pastel-2-text: #fcece3;
+  --pastel-3-bg: #553746; --pastel-3-border: #bf7b9d; --pastel-3-text: #fcd8ec;
+  --pastel-4-bg: #443430; --pastel-4-border: #bb9e8e; --pastel-4-text: #f4e1d8;
+  --pastel-5-bg: #483f3a; --pastel-5-border: #c1b2a4; --pastel-5-text: #f3e7e1;
+  --pastel-6-bg: #5c3a34; --pastel-6-border: #ca8078; --pastel-6-text: #ffe9e7;
+  --pastel-7-bg: #50354f; --pastel-7-border: #bf8db7; --pastel-7-text: #ffe6f8;
+  --pastel-8-bg: #453e53; --pastel-8-border: #bca5e1; --pastel-8-text: #f3eaff;
+  --pastel-9-bg: #4c4030; --pastel-9-border: #c6ae83; --pastel-9-text: #fff4dc;
+  --pastel-10-bg: #4a3f38; --pastel-10-border: #c2b2a5; --pastel-10-text: #fff7ef;
+}

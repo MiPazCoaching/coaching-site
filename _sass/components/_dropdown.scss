@@ -1,0 +1,146 @@
+/* ================================
+   📂 Dropdown (menú desplegable)
+================================ */
+
+/* 🔽 Contenedor del dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+/* 🎛️ Botón toggle (sin estilos predeterminados) */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* 📦 Menú desplegable principal y submenús */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--footer-bg);
+  border: 1px solid var(--navbar-border);
+  min-width: 160px;
+  z-index: 10000;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  /* Para evitar que el menú cambie de tamaño al aparecer */
+  will-change: opacity;
+}
+
+/* Mostrar menú activo */
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Submenús dentro del dropdown */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* Submenú (ul) dentro del dropdown-submenu */
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.5rem;
+  min-width: 180px;
+  background-color: var(--footer-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Flecha para indicar submenú en el botón */
+.dropdown-submenu > .dropdown-toggle::after {
+  content: "▶"; /* Puedes cambiar por una flecha o icono SVG */
+  font-size: 0.65rem;
+  margin-left: auto;
+  color: var(--text-color);
+  user-select: none;
+}
+
+/* 🧱 Elementos del menú */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  /* Para que botones funcionen bien en flexbox */
+  font-family: inherit;
+}
+
+/* 🎯 Interacciones */
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+  background-color: var(--summary-bg);
+  color: var(--summary-text);
+  outline: none;
+}
+
+/* ✅ Estado activo */
+.dropdown-item.active {
+  font-weight: bold;
+  background-color: var(--tag-bg-default);
+  color: var(--tag-text-default);
+}
+
+/* 🌐 Iconos de bandera */
+.flag-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* 🌙 Modo oscuro */
+[data-theme="dark"] .dropdown-menu {
+  background-color: var(--navbar-bg);
+  border-color: var(--navbar-border);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus-visible {
+  background-color: var(--summary-bg);
+  color: var(--summary-text);
+}
+
+/* Para que el botón toggle cambie el icono con el estado aria-expanded */
+#theme-toggle[aria-expanded="true"] #theme-icon {
+  /* Aquí podrías poner un icono diferente si quieres */
+}
+
+/* Opcional: evitar que el dropdown se cierre si se hace click dentro */
+.dropdown-menu,
+.dropdown-submenu > .dropdown-menu {
+  user-select: none;
+}
+
+/* Cursor para los dropdown-toggle dentro de submenu */
+.dropdown-submenu > .dropdown-toggle {
+  cursor: pointer;
+}

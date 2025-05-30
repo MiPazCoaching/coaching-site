@@ -83,8 +83,10 @@
               {% if page.lang == 'es' %}Oscuro{% else %}Dark{% endif %}
             </button>
           </li>
-          <li>
-            <button class="dropdown-item" data-theme-choice="colorblind">
+
+          <!-- Tema colorblind con submenú para tipos y niveles -->
+          <li class="dropdown-submenu">
+            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind" aria-haspopup="true" aria-expanded="false">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <circle cx="12" cy="12" r="6"/>
@@ -92,9 +94,27 @@
               </span>
               {% if page.lang == 'es' %}Daltónico{% else %}Colorblind{% endif %}
             </button>
+            <ul class="dropdown-menu">
+
+              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</strong></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-default">{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-protanopia">{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-deuteranopia">{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-tritanopia">{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}</button></li>
+
+              <li><hr class="dropdown-divider"></li>
+
+              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</strong></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-low">{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-medium">{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-high">{% if page.lang == 'es' %}Alto{% else %}High{% endif %}</button></li>
+
+            </ul>
           </li>
-          <li>
-            <button class="dropdown-item" data-theme-choice="colorblind-dark">
+
+          <!-- Tema colorblind-dark con submenú similar -->
+          <li class="dropdown-submenu">
+            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind-dark" aria-haspopup="true" aria-expanded="false">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <circle cx="12" cy="12" r="6"/>
@@ -103,7 +123,24 @@
               </span>
               {% if page.lang == 'es' %}Daltónico Oscuro{% else %}Colorblind Dark{% endif %}
             </button>
+            <ul class="dropdown-menu">
+
+              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</strong></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-default">{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-protanopia">{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-deuteranopia">{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-tritanopia">{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}</button></li>
+
+              <li><hr class="dropdown-divider"></li>
+
+              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</strong></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-low">{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-medium">{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}</button></li>
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-high">{% if page.lang == 'es' %}Alto{% else %}High{% endif %}</button></li>
+
+            </ul>
           </li>
+
         </ul>
       </div>
 

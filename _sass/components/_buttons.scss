@@ -1,0 +1,54 @@
+/* ====================================
+   7. ENLACES Y BOTONES
+==================================== */
+
+a {
+  text-decoration: none;
+  color: var(--accent-text);
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--primary-color);
+  outline: none;
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  background-color: var(--btn-background-color);
+  color: var(--btn-text-color);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--primary-color);
+  color: var(--btn-text-hover-light);
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  border-color: var(--secondary-color);
+}

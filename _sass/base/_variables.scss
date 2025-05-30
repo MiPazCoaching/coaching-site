@@ -1,0 +1,96 @@
+/* ============================
+   🎨 1. Variables de Color
+   ============================ */
+
+:root {
+  /* 🎨 Colores base en tonos rosas y beige */
+  --primary-color: #e9a5aa;      /* Rosa suave armonioso */
+  --secondary-color: #d4b8aa;    /* Beige grisáceo elegante */
+  --success-color: #cc7d88;      /* Rosa viejo más vibrante */
+  --danger-color: #e26d6d;       /* Rojo rosado pastel */
+  --warning-color: #f2d3a2;      /* Amarillo beige suave */
+  --info-color: #f0bcd4;         /* Rosa claro tipo blush */
+  --light-color: #fcf8f5;        /* Beige casi blanco */
+  --dark-color: #4d3b3b;         /* Marrón oscuro cálido */
+
+  /* ✍️ Tipografía */
+  --text-color: #3a2d2d;
+  --muted-text: #a1918f;
+  --accent-text: #d57c91;
+  --icon-color: #3a2d2d;
+
+  /* 🧱 Fondo y layout */
+  --bg-color: #fffaf7;
+  --overlay-bg: rgba(255, 245, 240, 0.85);
+  --footer-bg: #f9f4f1;
+  --navbar-bg: #f9f4f1;
+  --footer-border: #e5d7d0;
+  --navbar-border: #e5d7d0;
+
+  /* 🔘 Botones */
+  --btn-verde-1: #e26d6d;
+  --btn-verde-2: #d65c63;
+  --btn-verde-3: #c44e57;
+  --btn-verde-4: #a03f47;
+  --btn-rojo-1: #e67e80;
+  --btn-rojo-2: #dc6666;
+  --btn-text-color: #fffaf7;
+  --btn-background-color: rgba(255, 240, 240, 0.2);
+  --btn-text-hover-light: white;
+
+  /* 📝 Contenido */
+  --post-title-color: #d57c91;
+  --meta-text-color: #a1918f;
+  --summary-bg: #fef1f3;
+  --summary-text: #843c52;
+  --tag-bg-default: #fbe6ec;
+  --tag-text-default: #a64f69;
+  --title-color: #4d3b3b;
+
+  /* 📦 Cajas decorativas (nuevas combinaciones) */
+  --box-rosado-bg: #fde9eb; --box-rosado-text: #742a3d; --box-rosado-border: #f5c7cf;
+  --box-beige-bg: #f6efe6; --box-beige-text: #6b5847; --box-beige-border: #e8dac6;
+
+  /* 🎨 Colores pastel adaptados */
+  --pastel-1-bg: #fff4f4; --pastel-1-border: #f8dada; --pastel-1-text: #9b4d4d;
+  --pastel-2-bg: #faece3; --pastel-2-border: #eed5c0; --pastel-2-text: #8b5c3e;
+  --pastel-3-bg: #fbeef5; --pastel-3-border: #f2d2e2; --pastel-3-text: #a65c84;
+  --pastel-4-bg: #f4e9e1; --pastel-4-border: #e2cbbd; --pastel-4-text: #7a4e3c;
+  --pastel-5-bg: #f9f2ed; --pastel-5-border: #e4d8ce; --pastel-5-text: #765c4e;
+  --pastel-6-bg: #fff1ee; --pastel-6-border: #f7ccc7; --pastel-6-text: #9c3d32;
+  --pastel-7-bg: #fbeaf8; --pastel-7-border: #e6cfe3; --pastel-7-text: #8b3d7a;
+  --pastel-8-bg: #f5f0fa; --pastel-8-border: #dbcce9; --pastel-8-text: #6e3d90;
+  --pastel-9-bg: #fff7ea; --pastel-9-border: #f5e1c6; --pastel-9-text: #92713a;
+  --pastel-10-bg: #f8f3ef; --pastel-10-border: #e8ded7; --pastel-10-text: #5c4d43;
+}
+
+/* ====================================
+   TIPOGRAFÍA Y ENCABEZADOS
+==================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 600; /* mantengo tu peso para estos */
+  margin-bottom: var(--spacing-sm);
+}

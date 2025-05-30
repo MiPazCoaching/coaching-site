@@ -1,41 +1,97 @@
-import { loadParticles, updateImagesForTheme, updateTippyTheme } from './theme-helpers.js';
+import {
+  loadParticles,
+  updateImagesForTheme,
+  updateTippyTheme,
+  updateMobileBarColor
+} from './theme-helpers.js';
 
-/**
- * Controla el menú desplegable para cambio de tema (claro/oscuro).
- * @param {Object} options - Elementos DOM necesarios.
- * @param {HTMLElement} options.themeToggle - Botón que abre el menú de temas.
- * @param {HTMLElement} options.themeDropdown - Contenedor dropdown.
- * @param {HTMLElement} options.themeMenu - Menú con opciones.
- * @param {HTMLElement} options.htmlElement - Elemento HTML raíz para aplicar data-theme.
- */
 export function setupThemeSwitcher({ themeToggle, themeDropdown, themeMenu, htmlElement }) {
   if (!(themeToggle && themeDropdown && themeMenu && htmlElement)) return;
 
   themeToggle.setAttribute('aria-haspopup', 'true');
   themeToggle.setAttribute('aria-expanded', 'false');
 
-  const themeButtons = themeMenu.querySelectorAll('[data-theme-choice]');
+  // Obtener todos los botones que elijan tema base y contraste
+  // Buscamos dentro de themeMenu porque allí hay submenús también
+  const themeButtons = themeMenu.querySelectorAll('button[data-theme-choice]');
+  const contrastButtons = themeMenu.querySelectorAll('button[data-contrast-choice]');
 
-  const setActiveTheme = (theme) => {
+  // Estado actual
+  let currentTheme = null;
+  let currentContrast = null;
+
+  // Función para actualizar botones activos y aplicar atributos
+  function applyThemeAndContrast(theme, contrast) {
+    currentTheme = theme;
+    currentContrast = contrast;
+
     htmlElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    updateImagesForTheme(theme);
-    loadParticles(theme);
-    updateTippyTheme(theme);
+    if (contrast && contrast !== 'default') {
+      htmlElement.setAttribute('data-contrast', contrast);
+    } else {
+      htmlElement.removeAttribute('data-contrast');
+    }
 
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('contrast', contrast || 'default');
+
+    updateImagesForTheme(theme);
+    loadParticles(theme, contrast);
+    updateTippyTheme(theme);
+    updateMobileBarColor(theme);
+
+    // Actualizar estilos activos para botones de tema
     themeButtons.forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === theme);
     });
-  };
 
+    // Actualizar estilos activos para botones de contraste
+    contrastButtons.forEach(btn => {
+      const c = btn.getAttribute('data-contrast-choice') || 'default';
+      btn.classList.toggle('active', c === (contrast || 'default'));
+    });
+  }
+
+  // Manejo click en botones de tema base
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedTheme = btn.getAttribute('data-theme-choice');
+      // Mantener contraste actual o default si no hay
+      const contrastToApply = currentContrast || 'default';
+
+      applyThemeAndContrast(selectedTheme, contrastToApply);
+      // Cerrar menú y actualizar aria
+      themeMenu.classList.remove('show');
+      themeToggle.setAttribute('aria-expanded', 'false');
+      themeToggle.focus();
+    });
+  });
+
+  // Manejo click en botones de contraste
+  contrastButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedContrast = btn.getAttribute('data-contrast-choice') || 'default';
+      // Mantener tema actual
+      const themeToApply = currentTheme || 'dark';
+
+      applyThemeAndContrast(themeToApply, selectedContrast);
+      // No cerramos menú para que puedan elegir otros ajustes fácilmente
+      // Pero si quieres cerrar, descomenta las siguientes líneas:
+      // themeMenu.classList.remove('show');
+      // themeToggle.setAttribute('aria-expanded', 'false');
+      // themeToggle.focus();
+    });
+  });
+
+  // Toggle dropdown menú principal
   themeToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const expanded = themeMenu.classList.toggle('show');
     themeToggle.setAttribute('aria-expanded', expanded);
-    const first = themeMenu.querySelector('button');
-    if (first && expanded) first.focus();
+    if (expanded) themeMenu.querySelector('button')?.focus();
   });
 
+  // Cerrar menú si clic fuera
   document.addEventListener('click', (e) => {
     if (!themeDropdown.contains(e.target)) {
       themeMenu.classList.remove('show');
@@ -43,6 +99,7 @@ export function setupThemeSwitcher({ themeToggle, themeDropdown, themeMenu, html
     }
   });
 
+  // Cerrar menú con ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && themeMenu.classList.contains('show')) {
       themeMenu.classList.remove('show');
@@ -51,8 +108,9 @@ export function setupThemeSwitcher({ themeToggle, themeDropdown, themeMenu, html
     }
   });
 
+  // Navegación con flechas arriba/abajo dentro del menú
   themeMenu.addEventListener('keydown', (e) => {
-    const items = [...themeMenu.querySelectorAll('button')];
+    const items = Array.from(themeMenu.querySelectorAll('button'));
     const i = items.indexOf(document.activeElement);
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -63,21 +121,8 @@ export function setupThemeSwitcher({ themeToggle, themeDropdown, themeMenu, html
     }
   });
 
-  themeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const selectedTheme = btn.getAttribute('data-theme-choice');
-      setActiveTheme(selectedTheme);
-      themeMenu.classList.remove('show');
-      themeToggle.setAttribute('aria-expanded', 'false');
-      themeToggle.focus();
-    });
-  });
-
-  // Inicializar tema con valor de localStorage o dark por defecto
-  let initialTheme = 'dark';
-  try {
-    const stored = localStorage.getItem('theme');
-    if (stored) initialTheme = stored;
-  } catch {}
-  setActiveTheme(initialTheme);
+  // Inicializar con tema y contraste guardados o por defecto
+  const storedTheme = localStorage.getItem('theme') || 'dark';
+  const storedContrast = localStorage.getItem('contrast') || 'default';
+  applyThemeAndContrast(storedTheme, storedContrast);
 }

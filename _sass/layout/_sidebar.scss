@@ -1,0 +1,67 @@
+/* ============================
+   📚 Sidebar Mejorado
+============================ */
+
+#sidebar-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: var(--footer-bg);
+  color: var(--text-color);
+  padding: 1rem;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  z-index: 10000;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  transform: translateX(100%);
+  outline: none;
+  tabindex: -1;
+}
+
+#sidebar-wrapper.active {
+  transform: translateX(0);
+}
+
+.sidebar-nav {
+  list-style: none;
+  margin-top: 3rem;
+  padding: 0;
+
+  li {
+    margin: 1rem 0;
+  }
+
+  a {
+    color: var(--text-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
+    outline-offset: 3px;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--btn-verde-1);
+      background-color: rgba(60, 200, 143, 0.1);
+      outline: 2px solid var(--btn-verde-1);
+    }
+  }
+}
+
+/* Scroll personalizado */
+#sidebar-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--btn-verde-2);
+  border-radius: 4px;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-track {
+  background-color: transparent;
+}

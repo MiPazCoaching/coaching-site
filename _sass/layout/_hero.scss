@@ -1,0 +1,40 @@
+/* ============================
+   🏞️ Hero Section
+============================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 4rem;
+  color: var(--text-color);
+}
+
+.hero-section {
+  background: linear-gradient(to bottom right, var(--bg-color), var(--verde-1));
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: background-color 0.3s ease;
+  color: var(--text-color);
+}
+
+.hero-section .btn {
+  min-width: 160px;
+}
+
+.hero-box {
+  background-color: var(--hero-box-bg, rgba(255, 255, 255, 0.75));
+  color: var(--hero-box-text, #000);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo oscuro */
+body.theme-dark {
+  --hero-box-bg: rgba(0, 0, 0, 0.6);
+  --hero-box-text: #fff;
+}
+

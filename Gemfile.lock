@@ -10,9 +10,14 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
+    ffi (1.17.2)
     ffi (1.17.2-x64-mingw-ucrt)
     ffi (1.17.2-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
+    google-protobuf (4.30.2)
+      bigdecimal
+      rake (>= 13)
     google-protobuf (4.30.2-x64-mingw-ucrt)
       bigdecimal
       rake (>= 13)
@@ -71,6 +76,9 @@ GEM
     rexml (3.4.1)
     rouge (4.5.1)
     safe_yaml (1.0.5)
+    sass-embedded (1.87.0)
+      google-protobuf (~> 4.30)
+      rake (>= 13)
     sass-embedded (1.87.0-x64-mingw-ucrt)
       google-protobuf (~> 4.30)
     sass-embedded (1.87.0-x86_64-linux-gnu)
@@ -83,6 +91,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x64-mingw32
   x86_64-linux
 
 DEPENDENCIES
@@ -93,8 +102,12 @@ DEPENDENCIES
   jekyll-sass-converter (~> 3.1)
   jekyll-seo-tag
   jekyll-sitemap
+  sass-embedded (~> 1.87)
   wdm (>= 0.1.0)
   webrick
+
+RUBY VERSION
+   ruby 3.3.8p144
 
 BUNDLED WITH
    2.6.8

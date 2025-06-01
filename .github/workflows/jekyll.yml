@@ -2,31 +2,42 @@ name: Build Jekyll Site
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
 
 jobs:
-  jekyll:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
-          bundler-cache: true
+          ruby-version: 3.3.8
+          bundler-cache: true  # Activa la caché automáticamente
 
       - name: Install dependencies
         run: bundle install
 
+      - name: Normalize platforms in lockfile
+        run: |
+          bundle lock --add-platform x86_64-linux
+          bundle lock --add-platform x64-mingw32
+          
       - name: Build site with Jekyll
         run: bundle exec jekyll build
 
-      - name: Upload built site
+      - name: Upload build (opcional)
         uses: actions/upload-artifact@v4
         with:
           name: site
-          path: _site
+          path: _site/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site

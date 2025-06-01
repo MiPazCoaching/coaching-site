@@ -31,10 +31,3 @@
   color: var(--hero-box-text, #000);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-/* Modo oscuro */
-body.theme-dark {
-  --hero-box-bg: rgba(0, 0, 0, 0.6);
-  --hero-box-text: #fff;
-}
-

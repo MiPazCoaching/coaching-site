@@ -1,9 +1,9 @@
 /* ============================
-   🎨 1. Variables de Color
+   1. Variables de Color
    ============================ */
 
 :root {
-  /* 🎨 Colores base en tonos rosas y beige */
+  /*  Colores base */
   --primary-color: #e9a5aa;      /* Rosa suave armonioso */
   --secondary-color: #d4b8aa;    /* Beige grisáceo elegante */
   --success-color: #cc7d88;      /* Rosa viejo más vibrante */
@@ -13,21 +13,27 @@
   --light-color: #fcf8f5;        /* Beige casi blanco */
   --dark-color: #4d3b3b;         /* Marrón oscuro cálido */
 
-  /* ✍️ Tipografía */
+  /* Texto y fondo */
   --text-color: #3a2d2d;
   --muted-text: #a1918f;
   --accent-text: #d57c91;
   --icon-color: #3a2d2d;
-
-  /* 🧱 Fondo y layout */
   --bg-color: #fffaf7;
   --overlay-bg: rgba(255, 245, 240, 0.85);
+  --text-shadow: 0 0 3px rgba(250, 240, 230, 0.8);
+  --info-box-shadow: 0 0 3px #e2a9c2;
+ 
+  // Hero
+  --hero-box-bg:  #fff;
+  --hero-box-text: rgba(0, 0, 0, 0.6);
+  
+  /*  UI específica */
   --footer-bg: #f9f4f1;
   --navbar-bg: #f9f4f1;
   --footer-border: #e5d7d0;
   --navbar-border: #e5d7d0;
 
-  /* 🔘 Botones */
+  /* Botones */
   --btn-verde-1: #e26d6d;
   --btn-verde-2: #d65c63;
   --btn-verde-3: #c44e57;
@@ -38,7 +44,7 @@
   --btn-background-color: rgba(255, 240, 240, 0.2);
   --btn-text-hover-light: white;
 
-  /* 📝 Contenido */
+  /* Elementos temáticos */
   --post-title-color: #d57c91;
   --meta-text-color: #a1918f;
   --summary-bg: #fef1f3;
@@ -47,11 +53,15 @@
   --tag-text-default: #a64f69;
   --title-color: #4d3b3b;
 
-  /* 📦 Cajas decorativas (nuevas combinaciones) */
-  --box-rosado-bg: #fde9eb; --box-rosado-text: #742a3d; --box-rosado-border: #f5c7cf;
-  --box-beige-bg: #f6efe6; --box-beige-text: #6b5847; --box-beige-border: #e8dac6;
+  /* Cajas temáticas */
+  --box-rosado-bg: #fde9eb; 
+  --box-rosado-text: #742a3d; 
+  --box-rosado-border: #f5c7cf;
+  --box-beige-bg: #f6efe6; 
+  --box-beige-text: #6b5847; 
+  --box-beige-border: #e8dac6;
 
-  /* 🎨 Colores pastel adaptados */
+  /*  Pasteles */
   --pastel-1-bg: #fff4f4; --pastel-1-border: #f8dada; --pastel-1-text: #9b4d4d;
   --pastel-2-bg: #faece3; --pastel-2-border: #eed5c0; --pastel-2-text: #8b5c3e;
   --pastel-3-bg: #fbeef5; --pastel-3-border: #f2d2e2; --pastel-3-text: #a65c84;
@@ -62,35 +72,48 @@
   --pastel-8-bg: #f5f0fa; --pastel-8-border: #dbcce9; --pastel-8-text: #6e3d90;
   --pastel-9-bg: #fff7ea; --pastel-9-border: #f5e1c6; --pastel-9-text: #92713a;
   --pastel-10-bg: #f8f3ef; --pastel-10-border: #e8ded7; --pastel-10-text: #5c4d43;
-}
+  
+  /* Navbar y Dropdown */
+  .dropdown-menu {
+    background-color: var(--navbar-bg);
+    border-color: var(--navbar-border);
+  }
 
-/* ====================================
-   TIPOGRAFÍA Y ENCABEZADOS
-==================================== */
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: var(--summary-bg);
+    color: var(--summary-text);
+  }
+  /* Contraste para tags generadas */
+  .tag-badge {
+    background-color: hsl(calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37), 65%, 30%);
+    color: #f0f0f0;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family);
-  color: var(--text-color);
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
-  line-height: 1.2;
-  font-weight: 700;
-}
+  .skill-item {
+    background-color: hsl(
+                    calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
+                    70%,
+                    25%
+    );
+    color: #f0f0f0;
+  }
+  /* Temas de Box por color*/
 
-h1 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-}
+  .box-sol    { background-color: var(--box-sol-bg);    color: var(--box-sol-text);    border-color: var(--box-sol-border); }
+  .box-mar    { background-color: var(--box-mar-bg);    color: var(--box-mar-text);    border-color: var(--box-mar-border); }
+  .box-flor   { background-color: var(--box-flor-bg);   color: var(--box-flor-text);   border-color: var(--box-flor-border); }
+  .box-hoja   { background-color: var(--box-hoja-bg);   color: var(--box-hoja-text);   border-color: var(--box-hoja-border); }
+  .box-cielo  { background-color: var(--box-cielo-bg);  color: var(--box-cielo-text);  border-color: var(--box-cielo-border); }
+  .box-uva    { background-color: var(--box-uva-bg);    color: var(--box-uva-text);    border-color: var(--box-uva-border); }
+  .box-coral  { background-color: var(--box-coral-bg);  color: var(--box-coral-text);  border-color: var(--box-coral-border); }
+  .box-fuego  { background-color: var(--box-fuego-bg);  color: var(--box-fuego-text);  border-color: var(--box-fuego-border); }
 
-h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-}
-
-h3 {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-}
-
-h4, h5, h6 {
-  font-size: 1rem;
-  font-weight: 600; /* mantengo tu peso para estos */
-  margin-bottom: var(--spacing-sm);
+  /* Box Pastel */
+  .pastel-box {
+    background-color: #f0f0f0;
+    border-color: #444;
+    color: #2a2a2a;
+  }
+  
 }

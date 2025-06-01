@@ -1,5 +1,5 @@
 /* ====================================
-   🎨 6.TIPOGRAFÍA Y ENCABEZADOS
+   6.TIPOGRAFÍA Y ENCABEZADOS
 ==================================== */
 
 body {
@@ -37,4 +37,13 @@ h4, h5, h6 {
   font-size: 1rem;
   font-weight: 600; /* mantengo tu peso para estos */
   margin-bottom: var(--spacing-sm);
+}
+
+/* Títulos de sección adaptables */
+.section-title {
+  color: var(--title-color);
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 }

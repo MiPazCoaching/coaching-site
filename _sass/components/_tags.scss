@@ -1,0 +1,26 @@
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  background-color: var(--tag-bg-default);
+  color: var(--tag-text-default);
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 🎨 Badge dinámico por índice (ideal para etiquetas auto-generadas) */
+.tag-badge {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  font-size: 0.85em;
+  font-weight: 600;
+  border-radius: 0.5em;
+  background-color: hsl(calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37), 65%, 75%);
+  color: #222;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -1,7 +1,5 @@
-/* _utilities.scss */
-
 /* ====================================
-   UTILIDADES RESPONSIVAS
+   8. UTILIDADES RESPONSIVAS
 ==================================== */
 
 .container {
@@ -17,18 +15,4 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-}
-
-/* Partículas con id específico */
-
-#particles-js {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none;
 }

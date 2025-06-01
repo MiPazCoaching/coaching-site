@@ -1,0 +1,125 @@
+.box {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition:
+          background 0.3s ease,
+          border 0.3s ease,
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
+}
+
+/* Interacción hover */
+.box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor con múltiples box */
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Secciones generales de habilidades */
+.skill-section {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Skill badge individual */
+.skill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  border-radius: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-weight: 500;
+  background-color: hsl(
+                  calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
+                  70%,
+                  85%
+  );
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pastel-box {
+  border-radius: var(--border-radius, 1rem);
+  padding: 1rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pastel-box:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos y texto controlados */
+.pastel-box h1, .pastel-box h2, .pastel-box h3 {
+  color: var(--title-color);
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.pastel-box p {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.subsection {
+  background-color: var(--box-cielo-bg); /* sutil fondo interno */
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--box-cielo-border); /* indica jerarquía */
+  border-radius: 0.5rem;
+  color: var(--box-cielo-text);
+}
+
+.subsection-box {
+  background: var(--box-mar-bg); /* translúcido sobre color pastel */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: var(--box-mar-text);
+}
+
+/* Tags de Skills */
+.badge-img {
+  height: 28px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para tarjetas de tecnologías */
+.tech-card {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Responsividad para secciones grid de habilidades */
+@media (max-width: 768px) {
+  .tech-card {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tech-card .fw-bold {
+    font-size: 0.85rem;
+  }
+}

@@ -34,7 +34,7 @@
   z-index: 10000;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--info-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
   transition: opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
@@ -62,7 +62,7 @@
   border-radius: 0.5rem;
   min-width: 180px;
   background-color: var(--footer-bg);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--info-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 /* Flecha para indicar submenú en el botón */
@@ -105,33 +105,6 @@
   font-weight: bold;
   background-color: var(--tag-bg-default);
   color: var(--tag-text-default);
-}
-
-/* 🌐 Iconos de bandera */
-.flag-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-/* 🌙 Modo oscuro */
-[data-theme="dark"] .dropdown-menu {
-  background-color: var(--navbar-bg);
-  border-color: var(--navbar-border);
-}
-
-[data-theme="dark"] .dropdown-item:hover,
-[data-theme="dark"] .dropdown-item:focus-visible {
-  background-color: var(--summary-bg);
-  color: var(--summary-text);
-}
-
-/* Para que el botón toggle cambie el icono con el estado aria-expanded */
-#theme-toggle[aria-expanded="true"] #theme-icon {
-  /* Aquí podrías poner un icono diferente si quieres */
 }
 
 /* Opcional: evitar que el dropdown se cierre si se hace click dentro */

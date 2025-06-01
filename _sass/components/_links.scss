@@ -1,0 +1,16 @@
+/* ====================================
+   7. ENLACES
+==================================== */
+
+a {
+  text-decoration: none;
+  color: var(--accent-text);
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--primary-color);
+  outline: none;
+  text-decoration: underline;
+}

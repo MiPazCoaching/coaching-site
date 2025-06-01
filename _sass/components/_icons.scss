@@ -1,5 +1,5 @@
 /* ============================
-   🔤 10. Iconos Font Awesome
+   12. Iconos Font Awesome
 ============================ */
 
 /* 🧩 Estilos base para todos los iconos Font Awesome */
@@ -63,3 +63,13 @@
 #theme-toggle.icon-theme-colorblind-dark::before { content: "\f2a8"; }
 #language-toggle::before           { content: "\f57d"; } /* fa-language */
 #send-toggle::before               { content: "\f1d8"; } /* fa-paper-plane */
+
+/* Banderas */
+.flag-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}

@@ -89,8 +89,10 @@ DEPENDENCIES
   jekyll-archives
   jekyll-feed
   jekyll-paginate-v2
+  jekyll-sass-converter (~> 3.1)
   jekyll-seo-tag
   jekyll-sitemap
+  webrick
 
 BUNDLED WITH
    2.6.8

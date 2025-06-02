@@ -1,41 +1,169 @@
-/* ============================
-   🧭 Navbar Mejorado
-============================ */
-
 #navbar {
-  background-color: var(--navbar-bg);
-  color: var(--text-color);
-  border-bottom: 1px solid var(--navbar-border);
-  transition: background-color 0.3s ease, border-bottom 0.3s ease, color 0.3s ease;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar-brand {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  transition: color 0.3s ease;
-  outline-offset: 2px;
-
-  &:hover,
-  &:focus-visible {
-    color: var(--btn-verde-1);
-    outline: none;
-    text-decoration: underline;
-    outline-offset: 3px;
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #navbar {
-    padding: 0.5rem 1rem;
-  }
+  background-color: var(--navbar-bg, #fff);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
   .navbar-brand {
+    font-weight: bold;
     font-size: 1.25rem;
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  // Iconos por ID
+  #language-toggle {
+    background-image: url('/assets/icons/language.svg');
+  }
+
+  #menu-toggle {
+    background-image: url('/assets/icons/menu.svg');
+  }
+
+  #close-menu-toggle {
+    background-image: url('/assets/icons/close.svg');
+  }
+
+  #close-accessibility-toggle {
+    background-image: url('/assets/icons/close.svg');
+  }
+
+  .dropdown-menu {
+    min-width: 10rem;
+    font-size: 0.95rem;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+
+  .flag-icon {
+    border-radius: 50%;
   }
 }
+
+// Sidebar común
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  background-color: var(--sidebar-bg, #fff);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  z-index: 9998;
+  right: 0;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .section-header {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary-color, #333);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(18px);
+    }
+  }
+
+  .animation-slider-container {
+    margin-top: 0.5rem;
+    input[type="range"] {
+      width: 100%;
+    }
+    .animation-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+  }
+}
+

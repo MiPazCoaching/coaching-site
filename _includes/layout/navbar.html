@@ -5,17 +5,24 @@
     <div class="d-flex align-items-center gap-2">
       <a class="navbar-brand" href="{{ '/' | relative_url }}">M: Paz</a>
 
-      {% if page.lang == 'es' %}
+      {% case page.lang %}
+      {% when 'es' %}
       <img src="{{ '/assets/icons/es-variant.svg' | relative_url }}"
            alt="Español"
            style="width: 20px; height: 20px; border-radius: 50%;">
+
+      {% when 'fr' %}
+      <img src="{{ '/assets/icons/fr.svg' | relative_url }}"
+           alt="Français"
+           style="width: 20px; height: 20px; border-radius: 50%;">
+
       {% else %}
       <img src="{{ '/assets/icons/gb.svg' | relative_url }}"
            alt="English"
            style="width: 20px; height: 20px; border-radius: 50%;">
-      {% endif %}
+      {% endcase %}
     </div>
-
+    
     <!-- Botones: Idioma, Tema, Menú -->
     <div class="d-flex align-items-center gap-2">
 
@@ -26,118 +33,250 @@
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                aria-label="Cambiar idioma"
-                title="Cambiar idioma">
+                aria-label="{% if page.lang == 'es' %}Cambiar idioma{% elsif page.lang == 'fr' %}Changer de langue{% else %}Change language{% endif %}"
+                title="{% if page.lang == 'es' %}Cambiar idioma{% elsif page.lang == 'fr' %}Changer de langue{% else %}Change language{% endif %}">
         </button>
 
         {% comment %}
-        Creamos una versión "base" del URL actual sin el prefijo '/en' (si lo tiene)
-        Esto permite generar el path correcto en español que va en la raíz
+        Quitamos cualquier prefijo de idioma (/en o /fr) del path actual
+        para reconstruir correctamente las rutas base.
         {% endcomment %}
-        {% assign base_url = page.url | remove_first: '/en' %}
+        {% assign base_url = page.url | remove_first: '/en' | remove_first: '/fr' %}
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-toggle">
           <li>
             <a href="{{ base_url | relative_url }}" class="dropdown-item {% if page.lang == 'es' %}active{% endif %}">
-              <img src="{{ '/assets/icons/es-variant.svg' | relative_url }}" alt="Español" class="flag-icon me-2" style="width:16px; height:16px;"> Español
+              <img src="{{ '/assets/icons/es-variant.svg' | relative_url }}" alt="Español" class="flag-icon me-2" style="width:16px; height:16px;">
+              Español
             </a>
           </li>
           <li>
             <a href="{{ '/en' | append: base_url | relative_url }}" class="dropdown-item {% if page.lang == 'en' %}active{% endif %}">
-              <img src="{{ '/assets/icons/gb.svg' | relative_url }}" alt="English" class="flag-icon me-2" style="width:16px; height:16px;"> English
+              <img src="{{ '/assets/icons/gb.svg' | relative_url }}" alt="English" class="flag-icon me-2" style="width:16px; height:16px;">
+              English
+            </a>
+          </li>
+          <li>
+            <a href="{{ '/fr' | append: base_url | relative_url }}" class="dropdown-item {% if page.lang == 'fr' %}active{% endif %}">
+              <img src="{{ '/assets/icons/fr.svg' | relative_url }}" alt="Français" class="flag-icon me-2" style="width:16px; height:16px;">
+              Français
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Tema -->
-      <div class="dropdown" id="themeDropdown">
-        <button class="dropdown-toggle icon-button"
-                id="theme-toggle"
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="{% if page.lang == 'es' %}Cambiar tema{% else %}Change theme{% endif %}"
-                title="{% if page.lang == 'es' %}Cambiar tema{% else %}Change theme{% endif %}">
-          <span id="theme-icon"></span>
-        </button>
+      <!-- Menú lateral de ajustes -->
+      <div id="accessibility-sidebar" tabindex="-1" class="sidebar" aria-hidden="true" role="menu">
+        <button class="icon-button" id="close-accessibility-toggle" aria-label="{% if page.lang == 'es' %}Cerrar ajustes{% elsif page.lang == 'fr' %}Fermer les paramètres{% else %}Close settings{% endif %}" title="{% if page.lang == 'es' %}Cerrar ajustes{% elsif page.lang == 'fr' %}Fermer les paramètres{% else %}Close settings{% endif %}"></button>
 
-        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="theme-toggle" role="menu">
-          <li>
-            <button class="dropdown-item" data-theme-choice="light" role="menuitem">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M12 3v1M12 20v1M5.6 5.6l.7.7M17.7 17.7l.7.7M3 12h1M20 12h1M5.6 18.4l.7-.7M17.7 6.3l.7-.7M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
-                </svg>
-              </span>
-              {% if page.lang == 'es' %}Claro{% else %}Light{% endif %}
-            </button>
+        <ul class="sidebar-nav list-unstyled">
+
+          <!-- TEMA -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Tema
+            {% when 'fr' %}Thème
+            {% else %}Theme
+            {% endcase %}
           </li>
-          <li>
-            <button class="dropdown-item" data-theme-choice="dark" role="menuitem">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 0 0 12 21a9 9 0 0 1 9-8.21z"/>
-                </svg>
-              </span>
-              {% if page.lang == 'es' %}Oscuro{% else %}Dark{% endif %}
-            </button>
+          <li><button class="dropdown-item" data-theme-choice="light">
+            {% case page.lang %}
+            {% when 'es' %}Claro
+            {% when 'fr' %}Clair
+            {% else %}Light
+            {% endcase %}
+          </button></li>
+          <li><button class="dropdown-item" data-theme-choice="dark">
+            {% case page.lang %}
+            {% when 'es' %}Oscuro
+            {% when 'fr' %}Sombre
+            {% else %}Dark
+            {% endcase %}
+          </button></li>
+
+          <!-- CONTRASTE -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Contraste
+            {% when 'fr' %}Contraste
+            {% else %}Contrast
+            {% endcase %}
           </li>
-
-          <!-- Submenús de Daltonismo -->
-          {% assign themes = "colorblind,colorblind-dark" | split: "," %}
-          {% for theme in themes %}
-          <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle"
-                    data-theme-choice="{{ theme }}"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <circle cx="12" cy="12" r="6"/>
-                  {% if theme == 'colorblind-dark' %}
-                  <path d="M21 12.79A9 9 0 0 1 11.21 3" fill="none" stroke="currentColor"/>
-                  {% endif %}
-                </svg>
-              </span>
-              {% if theme == 'colorblind' %}
-              {% if page.lang == 'es' %}Daltónico{% else %}Colorblind{% endif %}
-              {% else %}
-              {% if page.lang == 'es' %}Daltónico Oscuro{% else %}Colorblind Dark{% endif %}
-              {% endif %}
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header" role="presentation">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</li>
-              {% for type in "default,protanopia,deuteranopia,tritanopia" | split: "," %}
-              <li><button class="dropdown-item" data-theme-choice="{{ theme }}-{{ type }}" role="menuitem">
-                {% case type %}
-                {% when 'default' %}{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}
-                {% when 'protanopia' %}{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}
-                {% when 'deuteranopia' %}{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}
-                {% when 'tritanopia' %}{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}
-                {% endcase %}
-              </button></li>
-              {% endfor %}
-
-              <li><hr class="dropdown-divider"></li>
-
-              <li class="dropdown-header" role="presentation">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</li>
-              {% for level in "low,medium,high" | split: "," %}
-              <li><button class="dropdown-item" data-theme-choice="{{ theme }}-{{ level }}" role="menuitem">
-                {% case level %}
-                {% when 'low' %}{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}
-                {% when 'medium' %}{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}
-                {% when 'high' %}{% if page.lang == 'es' %}Alto{% else %}High{% endif %}
-                {% endcase %}
-              </button></li>
-              {% endfor %}
-            </ul>
-          </li>
+          {% assign levels = "low,medium,high" | split: "," %}
+          {% for level in levels %}
+          <li><button class="dropdown-item" data-contrast-choice="{{ level }}">
+            {% case level %}
+            {% when 'low' %}
+            {% case page.lang %}
+            {% when 'es' %}Bajo
+            {% when 'fr' %}Faible
+            {% else %}Low
+            {% endcase %}
+            {% when 'medium' %}
+            {% case page.lang %}
+            {% when 'es' %}Medio
+            {% when 'fr' %}Moyen
+            {% else %}Medium
+            {% endcase %}
+            {% when 'high' %}
+            {% case page.lang %}
+            {% when 'es' %}Alto
+            {% when 'fr' %}Élevé
+            {% else %}High
+            {% endcase %}
+            {% endcase %}
+          </button></li>
           {% endfor %}
+
+          <!-- DALTONISMO -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Daltonismo
+            {% when 'fr' %}Daltonisme
+            {% else %}Colorblind
+            {% endcase %}
+          </li>
+          <li><button class="dropdown-item" data-colorblind-type="none">
+            {% case page.lang %}
+            {% when 'es' %}Ninguno
+            {% when 'fr' %}Aucun
+            {% else %}None
+            {% endcase %}
+          </button></li>
+          <li><button class="dropdown-item" data-colorblind-type="protanopia">Protanopia</button></li>
+          <li><button class="dropdown-item" data-colorblind-type="deuteranopia">Deuteranopia</button></li>
+          <li><button class="dropdown-item" data-colorblind-type="tritanopia">Tritanopia</button></li>
+
+          <!-- TAMAÑO DE TEXTO -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Tamaño de texto
+            {% when 'fr' %}Taille du texte
+            {% else %}Text Size
+            {% endcase %}
+          </li>
+          {% assign sizes = "small,medium,large,xlarge" | split: "," %}
+          {% for size in sizes %}
+          <li><button class="dropdown-item" data-text-size="{{ size }}">
+            {% case size %}
+            {% when 'small' %}
+            {% case page.lang %}
+            {% when 'es' %}Pequeño
+            {% when 'fr' %}Petit
+            {% else %}Small
+            {% endcase %}
+            {% when 'medium' %}
+            {% case page.lang %}
+            {% when 'es' %}Mediano
+            {% when 'fr' %}Moyen
+            {% else %}Medium
+            {% endcase %}
+            {% when 'large' %}
+            {% case page.lang %}
+            {% when 'es' %}Grande
+            {% when 'fr' %}Grand
+            {% else %}Large
+            {% endcase %}
+            {% when 'xlarge' %}
+            {% case page.lang %}
+            {% when 'es' %}Muy grande
+            {% when 'fr' %}Très grand
+            {% else %}Extra Large
+            {% endcase %}
+            {% endcase %}
+          </button></li>
+          {% endfor %}
+
+          <!-- OPCIONES AVANZADAS -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Opciones avanzadas
+            {% when 'fr' %}Options avancées
+            {% else %}Advanced Options
+            {% endcase %}
+          </li>
+
+          <!-- Nivel de animación -->
+          <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Animaciones
+            {% when 'fr' %}Animations
+            {% else %}Animations
+            {% endcase %}
+          </li>
+          <li class="animation-slider-container">
+            <label for="animation-slider">
+              <span id="animation-slider-label">
+                {% case page.lang %}
+                {% when 'es' %}Nivel de animación
+                {% when 'fr' %}Niveau d'animation
+                {% else %}Animation Level
+                {% endcase %}
+              </span>
+            </label>
+            <input type="range"
+                   id="animation-slider"
+                   name="animation-slider"
+                   min="0" max="2" step="1"
+                   value="1"
+                   data-animation-choice />
+            <div class="animation-slider-labels">
+              <span>
+                {% case page.lang %}
+                {% when 'es' %}Ninguna
+                {% when 'fr' %}Aucune
+                {% else %}None
+                {% endcase %}
+              </span>
+              <span>
+                {% case page.lang %}
+                {% when 'es' %}Reducida
+                {% when 'fr' %}Réduite
+                {% else %}Reduced
+                {% endcase %}
+              </span>
+              <span>
+                {% case page.lang %}
+                {% when 'es' %}Normal
+                {% when 'fr' %}Normale
+                {% else %}Normal
+                {% endcase %}
+              </span>
+            </div>
+          </li>
+
+          <!-- Reading Mode -->
+          <li class="d-flex align-items-center justify-content-between mt-2">
+            <span>
+              {% case page.lang %}
+              {% when 'es' %}Modo lectura
+              {% when 'fr' %}Mode lecture
+              {% else %}Reading Mode
+              {% endcase %}
+            </span>
+            <label class="switch">
+              <input type="checkbox" id="reading-mode-toggle">
+              <span class="slider"></span>
+            </label>
+          </li>
+
+          <!-- Dyslexia Mode -->
+          <li class="d-flex align-items-center justify-content-between">
+            <span>
+              {% case page.lang %}
+              {% when 'es' %}Modo dislexia
+              {% when 'fr' %}Mode dyslexie
+              {% else %}Dyslexia Mode
+              {% endcase %}
+            </span>
+            <label class="switch">
+              <input type="checkbox" id="dyslexia-toggle">
+              <span class="slider"></span>
+            </label>
+          </li>
+
         </ul>
       </div>
-
-
 
       <button class="icon-button" id="menu-toggle" aria-label="Abrir menú" title="Menú"></button>
     </div>
@@ -146,7 +285,7 @@
 
 <!-- Menú lateral -->
 <div id="sidebar-wrapper" tabindex="-1" class="sidebar" aria-hidden="true" role="menu">
-  <button class="icon-button" id="close-menu-toggle" aria-label="Cerrar menú" title="Cerrar"></button>
+  <button class="icon-button" id="close-menu-toggle" aria-label="{% if page.lang == 'es' %}Cerrar menú{% elsif page.lang == 'fr' %}Fermer le menu{% else %}Close menu{% endif %}" title="{% if page.lang == 'es' %}Cerrar{% elsif page.lang == 'fr' %}Fermer{% else %}Close{% endif %}"></button>
 
   <ul class="sidebar-nav list-unstyled">
     {% if page.lang == "es" %}
@@ -156,6 +295,15 @@
     <li><a href="{{ '/proyectos.html' | relative_url }}">Proyectos</a></li>
     <li><a href="{{ '/recursos.html' | relative_url }}">Recursos</a></li>
     <li><a href="{{ '/contacto.html' | relative_url }}">Contacto</a></li>
+
+    {% elsif page.lang == "fr" %}
+    <li><a href="{{ '/fr' | relative_url }}">Accueil</a></li>
+    <li><a href="{{ '/fr/sobre-mi.html' | relative_url }}">À propos</a></li>
+    <li><a href="{{ '/fr/posts.html' | relative_url }}">Devlogs</a></li>
+    <li><a href="{{ '/fr/proyectos.html' | relative_url }}">Projets</a></li>
+    <li><a href="{{ '/fr/recursos.html' | relative_url }}">Ressources</a></li>
+    <li><a href="{{ '/fr/contacto.html' | relative_url }}">Contact</a></li>
+
     {% else %}
     <li><a href="{{ '/en' | relative_url }}">Home</a></li>
     <li><a href="{{ '/en/sobre-mi.html' | relative_url }}">About Me</a></li>

@@ -22,16 +22,18 @@
   --overlay-bg: rgba(255, 245, 240, 0.85);
   --text-shadow: 0 0 3px rgba(250, 240, 230, 0.8);
   --info-box-shadow: 0 0 3px #e2a9c2;
- 
-  // Hero
-  --hero-box-bg:  #fff;
-  --hero-box-text: rgba(0, 0, 0, 0.6);
-  
+
   /*  UI específica */
   --footer-bg: #f9f4f1;
   --navbar-bg: #f9f4f1;
+  --sidebar-bg: #fff;
   --footer-border: #e5d7d0;
   --navbar-border: #e5d7d0;
+  --border-color: #ccc;
+  --accent-color: #9e0059;
+  --accent-bg: #e7f1ff;
+  --hover-bg: #f2f2f2;
+  --heading-color: #555;
 
   /* Botones */
   --btn-verde-1: #e26d6d;
@@ -53,15 +55,19 @@
   --tag-text-default: #a64f69;
   --title-color: #4d3b3b;
 
-  /* Cajas temáticas */
-  --box-rosado-bg: #fde9eb; 
-  --box-rosado-text: #742a3d; 
+  /* Hero */
+  --hero-box-bg: #fff;
+  --hero-box-text: rgba(0, 0, 0, 0.6);
+
+  /* Cajas */
+  --box-rosado-bg: #fde9eb;
+  --box-rosado-text: #742a3d;
   --box-rosado-border: #f5c7cf;
-  --box-beige-bg: #f6efe6; 
-  --box-beige-text: #6b5847; 
+  --box-beige-bg: #f6efe6;
+  --box-beige-text: #6b5847;
   --box-beige-border: #e8dac6;
 
-  /*  Pasteles */
+  /* Pasteles */
   --pastel-1-bg: #fff4f4; --pastel-1-border: #f8dada; --pastel-1-text: #9b4d4d;
   --pastel-2-bg: #faece3; --pastel-2-border: #eed5c0; --pastel-2-text: #8b5c3e;
   --pastel-3-bg: #fbeef5; --pastel-3-border: #f2d2e2; --pastel-3-text: #a65c84;
@@ -72,7 +78,7 @@
   --pastel-8-bg: #f5f0fa; --pastel-8-border: #dbcce9; --pastel-8-text: #6e3d90;
   --pastel-9-bg: #fff7ea; --pastel-9-border: #f5e1c6; --pastel-9-text: #92713a;
   --pastel-10-bg: #f8f3ef; --pastel-10-border: #e8ded7; --pastel-10-text: #5c4d43;
-  
+}
   /* Navbar y Dropdown */
   .dropdown-menu {
     background-color: var(--navbar-bg);

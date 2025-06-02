@@ -117,9 +117,9 @@
         </ul>
       </div>
 
-      <!-- Menú desplegable de temas -->
+      <!-- Tema -->
       <div class="dropdown" id="themeDropdown">
-        <button class="icon-button dropdown-toggle" id="themeToggle"
+        <button class="dropdown-toggle icon-button"
                 id="theme-toggle"
                 type="button"
                 aria-haspopup="true"
@@ -129,9 +129,9 @@
           <span id="theme-icon"></span>
         </button>
 
-        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="themeToggle">
+        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="theme-toggle" role="menu">
           <li>
-            <button class="dropdown-item" data-theme-choice="light">
+            <button class="dropdown-item" data-theme-choice="light" role="menuitem">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <path d="M12 3v1M12 20v1M5.6 5.6l.7.7M17.7 17.7l.7.7M3 12h1M20 12h1M5.6 18.4l.7-.7M17.7 6.3l.7-.7M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
@@ -141,7 +141,7 @@
             </button>
           </li>
           <li>
-            <button class="dropdown-item" data-theme-choice="dark">
+            <button class="dropdown-item" data-theme-choice="dark" role="menuitem">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 0 0 12 21a9 9 0 0 1 9-8.21z"/>
@@ -151,65 +151,82 @@
             </button>
           </li>
 
-          <!-- Tema colorblind con submenú para tipos y niveles -->
+          <!-- Submenús de Daltonismo -->
+          
+          
           <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind" aria-haspopup="true" aria-expanded="false">
+            <button class="dropdown-item dropdown-toggle"
+                    data-theme-choice="colorblind"
+                    aria-haspopup="true"
+                    aria-expanded="false">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <circle cx="12" cy="12" r="6"/>
+                  
                 </svg>
               </span>
+              
               Colorblind
+              
             </button>
-            <ul class="dropdown-menu">
-
-              <li><strong class="dropdown-header">Colorblind Type</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-default">Default</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-protanopia">Protanopia</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-deuteranopia">Deuteranopia</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-tritanopia">Tritanopia</button></li>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header" role="presentation">Colorblind Type</li>
+              
+              <li><button class="dropdown-item" data-theme-choice="colorblind-default,protanopia,deuteranopia,tritanopia" role="menuitem">
+                
+              </button></li>
+              
 
               <li><hr class="dropdown-divider"></li>
 
-              <li><strong class="dropdown-header">Contrast Level</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-low">Low</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-medium">Medium</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-high">High</button></li>
-
+              <li class="dropdown-header" role="presentation">Contrast Level</li>
+              
+              <li><button class="dropdown-item" data-theme-choice="colorblind-low,medium,high" role="menuitem">
+                
+              </button></li>
+              
             </ul>
           </li>
-
-          <!-- Tema colorblind-dark con submenú similar -->
+          
           <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind-dark" aria-haspopup="true" aria-expanded="false">
+            <button class="dropdown-item dropdown-toggle"
+                    data-theme-choice="colorblind-dark"
+                    aria-haspopup="true"
+                    aria-expanded="false">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <circle cx="12" cy="12" r="6"/>
+                  
                   <path d="M21 12.79A9 9 0 0 1 11.21 3" fill="none" stroke="currentColor"/>
+                  
                 </svg>
               </span>
+              
               Colorblind Dark
+              
             </button>
-            <ul class="dropdown-menu">
-
-              <li><strong class="dropdown-header">Colorblind Type</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-default">Default</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-protanopia">Protanopia</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-deuteranopia">Deuteranopia</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-tritanopia">Tritanopia</button></li>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header" role="presentation">Colorblind Type</li>
+              
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-default,protanopia,deuteranopia,tritanopia" role="menuitem">
+                
+              </button></li>
+              
 
               <li><hr class="dropdown-divider"></li>
 
-              <li><strong class="dropdown-header">Contrast Level</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-low">Low</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-medium">Medium</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-high">High</button></li>
-
+              <li class="dropdown-header" role="presentation">Contrast Level</li>
+              
+              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-low,medium,high" role="menuitem">
+                
+              </button></li>
+              
             </ul>
           </li>
-
+          
         </ul>
       </div>
+
 
 
       <button class="icon-button" id="menu-toggle" aria-label="Abrir menú" title="Menú"></button>

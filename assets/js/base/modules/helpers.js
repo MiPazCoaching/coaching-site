@@ -1,4 +1,4 @@
-// assets/js/helpers.js
+// assets/js/base/helpers.js
 
 export function fadeIn(el) {
   el.style.display = 'flex';

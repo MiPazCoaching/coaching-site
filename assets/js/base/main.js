@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeMenuToggle = document.getElementById('close-menu-toggle');
   const sidebarWrapper = document.getElementById('sidebar-wrapper');
 
-  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const scrollBtn = document.getElementById('scrollToTopBtn');
 
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeDropdown = document.getElementById('theme-dropdown');
-  const themeMenu = document.getElementById('theme-menu');
-  const htmlElement = document.documentElement;
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeDropdown = document.getElementById('themeDropdown');
+  const themeMenu = document.getElementById('themeMenu');
 
   const languageToggle = document.getElementById('language-toggle');
   const languageDropdown = document.getElementById('language-dropdown');
@@ -29,9 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const actionBtn = document.getElementById('popup-action-btn');
   const reopenBtn = document.getElementById('popup-reopen-btn');
 
-  setupSidebarMenu({ menuToggle, closeMenuToggle, sidebarWrapper });
-  setupScrollToTop(scrollToTopBtn);
-  setupThemeSwitcher({ themeToggle, themeDropdown, themeMenu, htmlElement });
-  setupLanguageSwitcher({ languageToggle, languageDropdown, languageMenu });
-  setupCustomPopup({ popup, closeBtn, actionBtn, reopenBtn });
+  setupSidebarMenu({ 
+    menuToggle, 
+    closeMenuToggle, 
+    sidebarWrapper 
+  });
+  setupScrollToTop(scrollBtn);
+  setupThemeSwitcher({
+    themeToggle,
+    themeDropdown,
+    themeMenu,
+    htmlElement: html
+  });
+  setupLanguageSwitcher({ 
+    languageToggle, 
+    languageDropdown, 
+    languageMenu 
+  });
+  setupCustomPopup({ 
+    popup, 
+    closeBtn, 
+    actionBtn, 
+    reopenBtn 
+  });
 });

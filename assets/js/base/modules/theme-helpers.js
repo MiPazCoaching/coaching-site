@@ -2,7 +2,24 @@
 
 const BASE_URL = '/coaching-site';
 
-export function loadParticles(theme, contrast) {
+export function setTheme(theme) {
+  const html = document.documentElement;
+
+  html.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+
+  loadParticles(theme);
+  updateImagesForTheme(theme);
+  updateTippyTheme(theme);
+  updateMobileBarColor(theme);
+
+  // Opcional: resaltar botón activo
+  document.querySelectorAll('[data-theme-choice]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === theme);
+  });
+}
+
+export function loadParticles(theme) {
   let configFile = 'particles-light.json';
 
   if (theme.includes('dark')) configFile = 'particles-dark.json';

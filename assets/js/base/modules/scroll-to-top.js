@@ -1,9 +1,6 @@
+// assets/js/scroll-to-top.js
 import { fadeIn, fadeOut } from './helpers.js';
 
-/**
- * Controla el botón "scroll to top" con aparición según scroll y smooth scroll al hacer click.
- * @param {HTMLElement} scrollToTopBtn - Botón para hacer scroll arriba.
- */
 export function setupScrollToTop(scrollToTopBtn) {
   if (!scrollToTopBtn) return;
 

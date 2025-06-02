@@ -118,8 +118,8 @@
       </div>
 
       <!-- Menú desplegable de temas -->
-      <div class="dropdown" id="theme-dropdown">
-        <button class="icon-button dropdown-toggle"
+      <div class="dropdown" id="themeDropdown">
+        <button class="icon-button dropdown-toggle" id="themeToggle"
                 id="theme-toggle"
                 type="button"
                 aria-haspopup="true"
@@ -129,7 +129,7 @@
           <span id="theme-icon"></span>
         </button>
 
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-toggle">
+        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="themeToggle">
           <li>
             <button class="dropdown-item" data-theme-choice="light">
               <span class="theme-icon me-2">
@@ -413,13 +413,13 @@
   
 
       <!-- Botón de Scroll-To-Top -->
-      <button class="scroll-to-top icon-button" 
-        aria-label="Volver arriba">
-      </button>
-
+    <button id="scrollToTopBtn" 
+            class="scroll-to-top icon-button" 
+            aria-label="Volver arriba">
+    </button>
 
     <!-- Scripts -->
-    <script src="/coaching-site/assets/js/dist/bundle.js"></script>
+    <script type="module" src="/coaching-site/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 

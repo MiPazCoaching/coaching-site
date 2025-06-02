@@ -1,29 +1,30 @@
+// assets/js/theme-helpers.js
+
 const BASE_URL = '/coaching-site';
 
 export function loadParticles(theme, contrast) {
-  // Puedes personalizar config según combinación
-  let configFile = 'particles-light.json'; // default
+  let configFile = 'particles-light.json';
 
   if (theme.includes('dark')) configFile = 'particles-dark.json';
   if (theme.includes('colorblind')) configFile = 'particles-colorblind.json';
-
-  // Opcional: si quieres variar config según contraste, añade lógica aquí
 
   if (window.pJSDom?.length > 0) {
     window.pJSDom[0].pJS.fn.vendors.destroypJS();
     window.pJSDom = [];
   }
+
   particlesJS.load('particles-js', `${BASE_URL}/assets/particles/${configFile}`);
 }
 
 export function updateImagesForTheme(theme) {
   const heroHeader = document.querySelector('header.hero');
-  if (heroHeader?.dataset.imgDark && heroHeader?.dataset.imgLight) {
+  if (!heroHeader) return;
+
+  const { imgDark, imgLight } = heroHeader.dataset;
+  if (imgDark && imgLight) {
+    const useDark = ['dark', 'colorblind', 'colorblind-dark'].some(t => theme.includes(t));
     heroHeader.style.transition = 'background-image 0.5s ease-in-out';
-    // Aquí, para temas colorblind usa imgDark (o adapta)
-    const darkThemes = ['dark', 'colorblind', 'colorblind-dark'];
-    const useDarkImage = darkThemes.some(t => theme.includes(t));
-    heroHeader.style.backgroundImage = `url('${useDarkImage ? heroHeader.dataset.imgDark : heroHeader.dataset.imgLight}')`;
+    heroHeader.style.backgroundImage = `url('${useDark ? imgDark : imgLight}')`;
   }
 }
 
@@ -37,10 +38,9 @@ export function updateMobileBarColor(theme) {
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   if (!metaThemeColor) return;
 
-  // Puedes personalizar colores por tema y contraste
-  let color = '#ffffff'; // light default
+  let color = '#ffffff';
   if (theme.includes('dark')) color = '#0d1117';
-  if (theme.includes('colorblind')) color = '#222'; // ejemplo para colorblind
+  if (theme.includes('colorblind')) color = '#222';
 
   metaThemeColor.setAttribute('content', color);
 }

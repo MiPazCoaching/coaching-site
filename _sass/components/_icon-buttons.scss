@@ -40,6 +40,9 @@
   content: "\f106"; /* flecha arriba */
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
+  font-size: 20px;
+  color: var(--btn-text-color);
+  all: unset;
 }
 
 .scroll-to-top:hover,

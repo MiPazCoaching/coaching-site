@@ -50,9 +50,9 @@
         </ul>
       </div>
 
-      <!-- Menú desplegable de temas -->
+      <!-- Tema -->
       <div class="dropdown" id="themeDropdown">
-        <button class="icon-button dropdown-toggle" id="themeToggle"
+        <button class="dropdown-toggle icon-button"
                 id="theme-toggle"
                 type="button"
                 aria-haspopup="true"
@@ -62,9 +62,9 @@
           <span id="theme-icon"></span>
         </button>
 
-        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="themeToggle">
+        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="theme-toggle" role="menu">
           <li>
-            <button class="dropdown-item" data-theme-choice="light">
+            <button class="dropdown-item" data-theme-choice="light" role="menuitem">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <path d="M12 3v1M12 20v1M5.6 5.6l.7.7M17.7 17.7l.7.7M3 12h1M20 12h1M5.6 18.4l.7-.7M17.7 6.3l.7-.7M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
@@ -74,7 +74,7 @@
             </button>
           </li>
           <li>
-            <button class="dropdown-item" data-theme-choice="dark">
+            <button class="dropdown-item" data-theme-choice="dark" role="menuitem">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 0 0 12 21a9 9 0 0 1 9-8.21z"/>
@@ -84,65 +84,59 @@
             </button>
           </li>
 
-          <!-- Tema colorblind con submenú para tipos y niveles -->
+          <!-- Submenús de Daltonismo -->
+          {% assign themes = "colorblind,colorblind-dark" | split: "," %}
+          {% for theme in themes %}
           <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind" aria-haspopup="true" aria-expanded="false">
+            <button class="dropdown-item dropdown-toggle"
+                    data-theme-choice="{{ theme }}"
+                    aria-haspopup="true"
+                    aria-expanded="false">
               <span class="theme-icon me-2">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <circle cx="12" cy="12" r="6"/>
-                </svg>
-              </span>
-              {% if page.lang == 'es' %}Daltónico{% else %}Colorblind{% endif %}
-            </button>
-            <ul class="dropdown-menu">
-
-              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-default">{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-protanopia">{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-deuteranopia">{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-tritanopia">{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}</button></li>
-
-              <li><hr class="dropdown-divider"></li>
-
-              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-low">{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-medium">{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-high">{% if page.lang == 'es' %}Alto{% else %}High{% endif %}</button></li>
-
-            </ul>
-          </li>
-
-          <!-- Tema colorblind-dark con submenú similar -->
-          <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle" data-theme-choice="colorblind-dark" aria-haspopup="true" aria-expanded="false">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <circle cx="12" cy="12" r="6"/>
+                  {% if theme == 'colorblind-dark' %}
                   <path d="M21 12.79A9 9 0 0 1 11.21 3" fill="none" stroke="currentColor"/>
+                  {% endif %}
                 </svg>
               </span>
+              {% if theme == 'colorblind' %}
+              {% if page.lang == 'es' %}Daltónico{% else %}Colorblind{% endif %}
+              {% else %}
               {% if page.lang == 'es' %}Daltónico Oscuro{% else %}Colorblind Dark{% endif %}
+              {% endif %}
             </button>
-            <ul class="dropdown-menu">
-
-              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-default">{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-protanopia">{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-deuteranopia">{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-tritanopia">{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}</button></li>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header" role="presentation">{% if page.lang == 'es' %}Tipo de Daltonismo{% else %}Colorblind Type{% endif %}</li>
+              {% for type in "default,protanopia,deuteranopia,tritanopia" | split: "," %}
+              <li><button class="dropdown-item" data-theme-choice="{{ theme }}-{{ type }}" role="menuitem">
+                {% case type %}
+                {% when 'default' %}{% if page.lang == 'es' %}Por defecto{% else %}Default{% endif %}
+                {% when 'protanopia' %}{% if page.lang == 'es' %}Protanopía{% else %}Protanopia{% endif %}
+                {% when 'deuteranopia' %}{% if page.lang == 'es' %}Deuteranopía{% else %}Deuteranopia{% endif %}
+                {% when 'tritanopia' %}{% if page.lang == 'es' %}Tritanopía{% else %}Tritanopia{% endif %}
+                {% endcase %}
+              </button></li>
+              {% endfor %}
 
               <li><hr class="dropdown-divider"></li>
 
-              <li><strong class="dropdown-header">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</strong></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-low">{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-medium">{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}</button></li>
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-high">{% if page.lang == 'es' %}Alto{% else %}High{% endif %}</button></li>
-
+              <li class="dropdown-header" role="presentation">{% if page.lang == 'es' %}Nivel de Contraste{% else %}Contrast Level{% endif %}</li>
+              {% for level in "low,medium,high" | split: "," %}
+              <li><button class="dropdown-item" data-theme-choice="{{ theme }}-{{ level }}" role="menuitem">
+                {% case level %}
+                {% when 'low' %}{% if page.lang == 'es' %}Bajo{% else %}Low{% endif %}
+                {% when 'medium' %}{% if page.lang == 'es' %}Medio{% else %}Medium{% endif %}
+                {% when 'high' %}{% if page.lang == 'es' %}Alto{% else %}High{% endif %}
+                {% endcase %}
+              </button></li>
+              {% endfor %}
             </ul>
           </li>
-
+          {% endfor %}
         </ul>
       </div>
+
 
 
       <button class="icon-button" id="menu-toggle" aria-label="Abrir menú" title="Menú"></button>

@@ -25,6 +25,23 @@
       "move": {
         "speed": 2
       }
+    },
+  "interactivity": {
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      }
+    },
+    "modes": {
+      "grab": {
+        "distance": 200,
+        "line_linked": {
+          "opacity": 0.7
+        }
+      }
     }
+  },
+  "retina_detect": true
   }
   

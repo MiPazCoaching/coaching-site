@@ -20,9 +20,14 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+
+  &:focus-visible {
+    outline: 2px dashed var(--focus-outline, #2684ff);
+    outline-offset: 2px;
+  }
 }
 
-/* 📦 Menú desplegable principal y submenús */
+/* 📦 Menú desplegable principal */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -35,43 +40,11 @@
   padding: 0.5rem 0;
   border-radius: 0.5rem;
   box-shadow: var(--info-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
-  /* Para evitar que el menú cambie de tamaño al aparecer */
-  will-change: opacity;
 }
 
-/* Mostrar menú activo */
+/* Mostrar menú principal */
 .dropdown-menu.show {
   display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Submenús dentro del dropdown */
-.dropdown-submenu {
-  position: relative;
-}
-
-/* Submenú (ul) dentro del dropdown-submenu */
-.dropdown-submenu > .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-left: 0.1rem;
-  border-radius: 0.5rem;
-  min-width: 180px;
-  background-color: var(--footer-bg);
-  box-shadow: var(--info-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
-}
-
-/* Flecha para indicar submenú en el botón */
-.dropdown-submenu > .dropdown-toggle::after {
-  content: "▶"; /* Puedes cambiar por una flecha o icono SVG */
-  font-size: 0.65rem;
-  margin-left: auto;
-  color: var(--text-color);
-  user-select: none;
 }
 
 /* 🧱 Elementos del menú */
@@ -81,39 +54,71 @@
   padding: 0.5rem 1rem;
   font-size: 0.95rem;
   color: var(--text-color);
-  transition: background-color 0.2s, color 0.2s;
-  cursor: pointer;
-  white-space: nowrap;
   background: transparent;
   border: none;
   width: 100%;
   text-align: left;
-  /* Para que botones funcionen bien en flexbox */
   font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--summary-bg);
+    color: var(--summary-text);
+    outline: none;
+  }
+
+  &.active {
+    font-weight: bold;
+    background-color: var(--tag-bg-default);
+    color: var(--tag-text-default);
+  }
 }
 
-/* 🎯 Interacciones */
-.dropdown-item:hover,
-.dropdown-item:focus-visible {
-  background-color: var(--summary-bg);
-  color: var(--summary-text);
-  outline: none;
+/* Submenús */
+.dropdown-submenu {
+  position: relative;
+
+  > .dropdown-toggle {
+    cursor: pointer;
+
+    &::after {
+      content: "▶";
+      font-size: 0.65rem;
+      margin-left: auto;
+      color: var(--text-color);
+      user-select: none;
+    }
+
+    &:focus-visible {
+      outline: 2px dashed var(--focus-outline, #2684ff);
+      outline-offset: 2px;
+    }
+  }
+
+  > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 0.2rem;
+    display: none;
+    min-width: 180px;
+    background-color: var(--footer-bg);
+    border: 1px solid var(--navbar-border);
+    border-radius: 0.5rem;
+    box-shadow: var(--info-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
+    z-index: 10001; // sobre el menú padre
+  }
+
+  // Mostrar submenú cuando JS lo activa manualmente
+  > .dropdown-menu[style*="display: block"] {
+    display: block;
+  }
 }
 
-/* ✅ Estado activo */
-.dropdown-item.active {
-  font-weight: bold;
-  background-color: var(--tag-bg-default);
-  color: var(--tag-text-default);
-}
-
-/* Opcional: evitar que el dropdown se cierre si se hace click dentro */
+/* Opcional: evitar que el menú se cierre si haces clic dentro */
 .dropdown-menu,
 .dropdown-submenu > .dropdown-menu {
   user-select: none;
-}
-
-/* Cursor para los dropdown-toggle dentro de submenu */
-.dropdown-submenu > .dropdown-toggle {
-  cursor: pointer;
 }

@@ -3,17 +3,17 @@
    ============================ */
 
 :root {
-  /*  Colores base */
-  --primary-color: #e9a5aa;      /* Rosa suave armonioso */
-  --secondary-color: #d4b8aa;    /* Beige grisáceo elegante */
-  --success-color: #cc7d88;      /* Rosa viejo más vibrante */
-  --danger-color: #e26d6d;       /* Rojo rosado pastel */
-  --warning-color: #f2d3a2;      /* Amarillo beige suave */
-  --info-color: #f0bcd4;         /* Rosa claro tipo blush */
-  --light-color: #fcf8f5;        /* Beige casi blanco */
-  --dark-color: #4d3b3b;         /* Marrón oscuro cálido */
+  /* == Colores base == */
+  --primary-color: #e9a5aa;
+  --secondary-color: #d4b8aa;
+  --success-color: #cc7d88;
+  --danger-color: #e26d6d;
+  --warning-color: #f2d3a2;
+  --info-color: #f0bcd4;
+  --light-color: #fcf8f5;
+  --dark-color: #4d3b3b;
 
-  /* Texto y fondo */
+  /* == Texto y fondo == */
   --text-color: #3a2d2d;
   --muted-text: #a1918f;
   --accent-text: #d57c91;
@@ -23,7 +23,7 @@
   --text-shadow: 0 0 3px rgba(250, 240, 230, 0.8);
   --info-box-shadow: 0 0 3px #e2a9c2;
 
-  /*  UI específica */
+  /* == UI específica == */
   --footer-bg: #f9f4f1;
   --navbar-bg: #f9f4f1;
   --sidebar-bg: #fff;
@@ -35,7 +35,7 @@
   --hover-bg: #f2f2f2;
   --heading-color: #555;
 
-  /* Botones */
+  /* == Botones == */
   --btn-verde-1: #e26d6d;
   --btn-verde-2: #d65c63;
   --btn-verde-3: #c44e57;
@@ -46,7 +46,7 @@
   --btn-background-color: rgba(255, 240, 240, 0.2);
   --btn-text-hover-light: white;
 
-  /* Elementos temáticos */
+  /* == Elementos temáticos == */
   --post-title-color: #d57c91;
   --meta-text-color: #a1918f;
   --summary-bg: #fef1f3;
@@ -55,19 +55,53 @@
   --tag-text-default: #a64f69;
   --title-color: #4d3b3b;
 
-  /* Hero */
+  /* == Hero == */
   --hero-box-bg: #fff;
   --hero-box-text: rgba(0, 0, 0, 0.6);
 
-  /* Cajas */
+  /* == Cajas Rosado / Beige == */
   --box-rosado-bg: #fde9eb;
   --box-rosado-text: #742a3d;
   --box-rosado-border: #f5c7cf;
+
   --box-beige-bg: #f6efe6;
   --box-beige-text: #6b5847;
   --box-beige-border: #e8dac6;
 
-  /* Pasteles */
+  /* == Cajas Temáticas (Sol, Mar, etc.) == */
+  --box-sol-bg: #fff9e6;
+  --box-sol-text: #5f4e00;
+  --box-sol-border: #f2e2b3;
+
+  --box-mar-bg: #e6f3f9;
+  --box-mar-text: #004d66;
+  --box-mar-border: #b3dce6;
+
+  --box-flor-bg: #ffeef5;
+  --box-flor-text: #a03d66;
+  --box-flor-border: #f5c2d4;
+
+  --box-hoja-bg: #edf6e6;
+  --box-hoja-text: #426b2d;
+  --box-hoja-border: #cfe5b7;
+
+  --box-cielo-bg: #eef4ff;
+  --box-cielo-text: #375aa6;
+  --box-cielo-border: #c0d6f0;
+
+  --box-uva-bg: #f6effc;
+  --box-uva-text: #5e2e8d;
+  --box-uva-border: #d7c2eb;
+
+  --box-coral-bg: #fff0ec;
+  --box-coral-text: #c0503d;
+  --box-coral-border: #f1b6a6;
+
+  --box-fuego-bg: #fff2e5;
+  --box-fuego-text: #a3451c;
+  --box-fuego-border: #e8c2a6;
+
+  /* == Pasteles == */
   --pastel-1-bg: #fff4f4; --pastel-1-border: #f8dada; --pastel-1-text: #9b4d4d;
   --pastel-2-bg: #faece3; --pastel-2-border: #eed5c0; --pastel-2-text: #8b5c3e;
   --pastel-3-bg: #fbeef5; --pastel-3-border: #f2d2e2; --pastel-3-text: #a65c84;
@@ -78,48 +112,64 @@
   --pastel-8-bg: #f5f0fa; --pastel-8-border: #dbcce9; --pastel-8-text: #6e3d90;
   --pastel-9-bg: #fff7ea; --pastel-9-border: #f5e1c6; --pastel-9-text: #92713a;
   --pastel-10-bg: #f8f3ef; --pastel-10-border: #e8ded7; --pastel-10-text: #5c4d43;
+
+  /* == Dinámicos para tags y skills == */
+  --tag-hue: 180;
+  --skill-hue: 200;
+
+  /* == Pastel genérico por defecto (si no se usa específico) == */
+  --pastel-box-bg: #f0f0f0;
+  --pastel-box-border: #444;
+  --pastel-box-text: #2a2a2a;
 }
-  /* Navbar y Dropdown */
-  .dropdown-menu {
-    background-color: var(--navbar-bg);
-    border-color: var(--navbar-border);
-  }
+/* ============================
+   2. Estilos Relacionados
+   ============================ */
 
-  .dropdown-item:hover,
-  .dropdown-item:focus {
-    background-color: var(--summary-bg);
-    color: var(--summary-text);
-  }
-  /* Contraste para tags generadas */
-  .tag-badge {
-    background-color: hsl(calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37), 65%, 30%);
-    color: #f0f0f0;
-  }
+/* Navbar y Dropdown */
+.dropdown-menu {
+  background-color: var(--navbar-bg);
+  border-color: var(--navbar-border);
+}
 
-  .skill-item {
-    background-color: hsl(
-                    calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
-                    70%,
-                    25%
-    );
-    color: #f0f0f0;
-  }
-  /* Temas de Box por color*/
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--summary-bg);
+  color: var(--summary-text);
+}
 
-  .box-sol    { background-color: var(--box-sol-bg);    color: var(--box-sol-text);    border-color: var(--box-sol-border); }
-  .box-mar    { background-color: var(--box-mar-bg);    color: var(--box-mar-text);    border-color: var(--box-mar-border); }
-  .box-flor   { background-color: var(--box-flor-bg);   color: var(--box-flor-text);   border-color: var(--box-flor-border); }
-  .box-hoja   { background-color: var(--box-hoja-bg);   color: var(--box-hoja-text);   border-color: var(--box-hoja-border); }
-  .box-cielo  { background-color: var(--box-cielo-bg);  color: var(--box-cielo-text);  border-color: var(--box-cielo-border); }
-  .box-uva    { background-color: var(--box-uva-bg);    color: var(--box-uva-text);    border-color: var(--box-uva-border); }
-  .box-coral  { background-color: var(--box-coral-bg);  color: var(--box-coral-text);  border-color: var(--box-coral-border); }
-  .box-fuego  { background-color: var(--box-fuego-bg);  color: var(--box-fuego-text);  border-color: var(--box-fuego-border); }
+/* Contraste dinámico para tags generadas */
+.tag-badge {
+  background-color: hsl(
+                  calc(var(--tag-hue, 180) + var(--tag-index, 0) * 37),
+                  65%,
+                  30%
+  );
+  color: #f0f0f0;
+}
 
-  /* Box Pastel */
-  .pastel-box {
-    background-color: #f0f0f0;
-    border-color: #444;
-    color: #2a2a2a;
-  }
-  
+.skill-item {
+  background-color: hsl(
+                  calc(var(--skill-hue, 200) + var(--skill-index, 0) * 33),
+                  70%,
+                  25%
+  );
+  color: #f0f0f0;
+}
+
+/* Temas de caja personalizados */
+.box-sol    { background-color: var(--box-sol-bg);    color: var(--box-sol-text);    border-color: var(--box-sol-border); }
+.box-mar    { background-color: var(--box-mar-bg);    color: var(--box-mar-text);    border-color: var(--box-mar-border); }
+.box-flor   { background-color: var(--box-flor-bg);   color: var(--box-flor-text);   border-color: var(--box-flor-border); }
+.box-hoja   { background-color: var(--box-hoja-bg);   color: var(--box-hoja-text);   border-color: var(--box-hoja-border); }
+.box-cielo  { background-color: var(--box-cielo-bg);  color: var(--box-cielo-text);  border-color: var(--box-cielo-border); }
+.box-uva    { background-color: var(--box-uva-bg);    color: var(--box-uva-text);    border-color: var(--box-uva-border); }
+.box-coral  { background-color: var(--box-coral-bg);  color: var(--box-coral-text);  border-color: var(--box-coral-border); }
+.box-fuego  { background-color: var(--box-fuego-bg);  color: var(--box-fuego-text);  border-color: var(--box-fuego-border); }
+
+/* Box pastel genérico */
+.pastel-box {
+  background-color: var(--pastel-box-bg);
+  border: 1px solid var(--pastel-box-border);
+  color: var(--pastel-box-text);
 }

@@ -1,0 +1,120 @@
+:root {
+  /* == Colores base == */
+  --primary-color: #e49ca3;
+  --secondary-color: #d4b8aa;
+  --success-color: #cd7682;
+  --danger-color: #e26d6d;
+  --warning-color: #f4cd93;
+  --info-color: #e9a3bd;
+  --light-color: #fcf8f5;
+  --dark-color: #4a3a3a;
+
+  /* == Texto y fondo == */
+  --text-color: #3a2d2d;
+  --muted-text: #a08988;
+  --accent-text: #c05c78;
+  --icon-color: #3a2d2d;
+  --bg-color: #fffaf7;
+  --overlay-bg: rgba(250, 240, 235, 0.85);
+  --text-shadow: 0 0 3px rgba(220, 190, 180, 0.5);
+  --info-box-shadow: 0 0 3px #e8b4c6;
+
+  /* == UI específica == */
+  --footer-bg: #f7f2ee;
+  --navbar-bg: #f7f2ee;
+  --sidebar-bg: #ffffff;
+  --footer-border: #e0d1cb;
+  --navbar-border: #e0d1cb;
+  --border-color: #d6c4bd;
+  --accent-color: #9e0059;
+  --accent-bg: #f2e8ff;
+  --hover-bg: #f5f0ed;
+  --heading-color: #5c4a4a;
+
+  /* == Botones == */
+  --btn-verde-1: #e48e95;
+  --btn-verde-2: #ce7179;
+  --btn-verde-3: #b45e64;
+  --btn-verde-4: #91494e;
+  --btn-rojo-1: #e67e80;
+  --btn-rojo-2: #cc5c5c;
+  --btn-text-color: #fffaf7;
+  --btn-background-color: rgba(240, 220, 220, 0.25);
+  --btn-text-hover-light: #fffaf7;
+
+  /* == Elementos temáticos == */
+  --post-title-color: #b2556b;
+  --meta-text-color: #9f8686;
+  --summary-bg: #fceff1;
+  --summary-text: #843c52;
+  --tag-bg-default: #fbe6ec;
+  --tag-text-default: #a64f69;
+  --title-color: #493939;
+
+  /* == Hero == */
+  --hero-box-bg: #fff;
+  --hero-box-text: rgba(30, 20, 20, 0.65);
+
+  /* == Cajas Rosado / Beige == */
+  --box-rosado-bg: #fbe5e8;
+  --box-rosado-text: #742a3d;
+  --box-rosado-border: #e8b3c1;
+
+  --box-beige-bg: #f7efe6;
+  --box-beige-text: #6b5847;
+  --box-beige-border: #e0d0bd;
+
+  /* == Cajas Temáticas == */
+  --box-sol-bg: #fff8e0;
+  --box-sol-text: #5f4e00;
+  --box-sol-border: #f0dca5;
+
+  --box-mar-bg: #e3f1f7;
+  --box-mar-text: #005065;
+  --box-mar-border: #afd8e5;
+
+  --box-flor-bg: #ffeef5;
+  --box-flor-text: #a03d66;
+  --box-flor-border: #f3c1d5;
+
+  --box-hoja-bg: #ecf5e8;
+  --box-hoja-text: #426b2d;
+  --box-hoja-border: #cce3b2;
+
+  --box-cielo-bg: #eef4ff;
+  --box-cielo-text: #375aa6;
+  --box-cielo-border: #bfd4f0;
+
+  --box-uva-bg: #f5eefc;
+  --box-uva-text: #5e2e8d;
+  --box-uva-border: #d7c2eb;
+
+  --box-coral-bg: #fff0ec;
+  --box-coral-text: #c0503d;
+  --box-coral-border: #efb4a0;
+
+  --box-fuego-bg: #fff3e8;
+  --box-fuego-text: #a3451c;
+  --box-fuego-border: #e8c2a6;
+
+  /* == Pasteles == */
+  --pastel-1-bg: #fcecec; --pastel-1-border: #f5c9c9; --pastel-1-text: #914040;
+  --pastel-2-bg: #faeee5; --pastel-2-border: #edd1bd; --pastel-2-text: #865132;
+  --pastel-3-bg: #fbe9f2; --pastel-3-border: #eac6da; --pastel-3-text: #a15077;
+  --pastel-4-bg: #f3e9e3; --pastel-4-border: #dec7b9; --pastel-4-text: #754e3d;
+  --pastel-5-bg: #f7f1ec; --pastel-5-border: #e4d9ce; --pastel-5-text: #6f5447;
+  --pastel-6-bg: #fff0ef; --pastel-6-border: #f5c7c2; --pastel-6-text: #9a3d30;
+  --pastel-7-bg: #fce9f7; --pastel-7-border: #e5c8dc; --pastel-7-text: #843d75;
+  --pastel-8-bg: #f5f1fa; --pastel-8-border: #d6c5e8; --pastel-8-text: #6b3d8f;
+  --pastel-9-bg: #fff7ea; --pastel-9-border: #f3e1c8; --pastel-9-text: #8f7139;
+  --pastel-10-bg: #f9f3ef; --pastel-10-border: #e5dad2; --pastel-10-text: #5c4b40;
+
+  /* == Dinámicos == */
+  --tag-hue: 180;
+  --skill-hue: 200;
+
+  /* == Pastel por defecto == */
+  --pastel-box-bg: #f3f3f3;
+  --pastel-box-border: #bca8a8;
+  --pastel-box-text: #352d2d;
+}

@@ -1,0 +1,43 @@
+/* ====================================
+   3. Accesibilidad
+==================================== */
+
+/* 🧠 DALTONISMO: Protanopia, Deuteranopia, Tritanopia */
+
+/* Protanopia */
+[data-theme*="colorblind"][data-colorblind-type="protanopia"] {
+  --primary-color: #8c87aa;
+  --secondary-color: #a29bb2;
+  --success-color: #768f80;
+  --danger-color: #b5866e;
+  --warning-color: #bca55c;
+  --info-color: #9b94b6;
+  --text-color: #2c2c2c;
+  --bg-color: #f8f5f9;
+}
+
+
+/* Deuteranopia */
+[data-theme*="colorblind"][data-colorblind-type="deuteranopia"] {
+  --primary-color: #9b91aa;
+  --secondary-color: #a49b91;
+  --success-color: #6f8f85;
+  --danger-color: #b5746a;
+  --warning-color: #bfa66a;
+  --info-color: #9c92a3;
+  --text-color: #2e2e2e;
+  --bg-color: #f7f5f1;
+}
+
+
+/* Tritanopia */
+[data-theme*="colorblind"][data-colorblind-type="tritanopia"] {
+  --primary-color: #a18f8f;
+  --secondary-color: #948c82;
+  --success-color: #688f70;
+  --danger-color: #b3786e;
+  --warning-color: #b7a85c;
+  --info-color: #a09890;
+  --text-color: #2e2e2e;
+  --bg-color: #f3f2ef;
+}

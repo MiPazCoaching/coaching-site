@@ -1,26 +1,60 @@
 #sidebar-wrapper {
   @extend .sidebar;
+  left: auto;
+  right: 0;
+}
+
+#accessibility-sidebar {
+  @extend .sidebar;
   left: 0;
   right: auto;
 }
 
 .sidebar {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 280px;
-  max-width: 100%;
   background-color: var(--sidebar-bg, #fff);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  width: 280px;
+  max-width: 100%;
   z-index: 10000;
   padding: 1rem;
   overflow-y: auto;
-  right: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
 
-  &.open {
-    transform: translateX(0%);
+  &.sidebar-enter {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, 0);
+  }
+
+  &.sidebar-exit {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  // Default layout (desktop)
+  &#sidebar-wrapper,
+  &#accessibility-sidebar {
+    top: 0;
+    bottom: 0;
+  }
+
+  &#sidebar-wrapper {
+    transform: translateX(100%);
+
+    &.sidebar-exit {
+      transform: translateX(100%);
+    }
+  }
+
+  &#accessibility-sidebar {
+    transform: translateX(-100%);
+
+    &.sidebar-exit {
+      transform: translateX(-100%);
+    }
   }
 
   .sidebar-nav {
@@ -94,7 +128,7 @@
         bottom: 0;
         background-color: #ccc;
         border-radius: 20px;
-        transition: 0.2s;
+        transition: background-color 0.2s;
 
         &:before {
           position: absolute;
@@ -105,7 +139,7 @@
           bottom: 3px;
           background-color: white;
           border-radius: 50%;
-          transition: 0.2s;
+          transition: transform 0.2s;
         }
       }
 
@@ -123,5 +157,44 @@
     margin-left: auto;
     display: block;
     margin-bottom: 1rem;
+  }
+}
+
+// === MEDIA QUERY: Mobile custom directions ===
+@media (max-width: 768px) {
+  #sidebar-wrapper {
+    width: 100%;
+    height: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: auto;
+    transform: translateY(-100%);
+
+    &.sidebar-enter {
+      transform: translateY(0%);
+    }
+
+    &.sidebar-exit {
+      transform: translateY(-100%);
+    }
+  }
+
+  #accessibility-sidebar {
+    width: 100%;
+    height: auto;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    transform: translateY(100%);
+
+    &.sidebar-enter {
+      transform: translateY(0%);
+    }
+
+    &.sidebar-exit {
+      transform: translateY(100%);
+    }
   }
 }

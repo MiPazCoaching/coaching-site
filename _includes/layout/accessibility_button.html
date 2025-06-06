@@ -1,0 +1,226 @@
+<!-- Botón flotante de accesibilidad -->
+<div id="accessibility-fab">
+    <button
+            id="accessibility-toggle"
+            class="icon-button"
+            aria-label="Abrir menú de accesibilidad"
+            aria-controls="accessibility-sidebar"
+            aria-expanded="false"
+            title="Accesibilidad"
+    >
+        🧩
+    </button>
+</div>
+
+<!-- Menú de ajustes -->
+<div id="accessibility-sidebar" tabindex="-1" class="sidebar" aria-hidden="true" role="menu">
+    <button class="icon-button" id="close-accessibility-toggle" aria-label="Cerrar ajustes" title="Cerrar"></button>
+    
+    <ul class="sidebar-nav list-unstyled">
+
+        <!-- TEMA -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Tema
+            {% when 'fr' %}Thème
+            {% else %}Theme
+            {% endcase %}
+        </li>
+        <li><button class="dropdown-item" data-theme-choice="light">
+            {% case page.lang %}
+            {% when 'es' %}Claro
+            {% when 'fr' %}Clair
+            {% else %}Light
+            {% endcase %}
+        </button></li>
+        <li><button class="dropdown-item" data-theme-choice="dark">
+            {% case page.lang %}
+            {% when 'es' %}Oscuro
+            {% when 'fr' %}Sombre
+            {% else %}Dark
+            {% endcase %}
+        </button></li>
+
+        <!-- CONTRASTE -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Contraste
+            {% when 'fr' %}Contraste
+            {% else %}Contrast
+            {% endcase %}
+        </li>
+        {% assign levels = "low,medium,high" | split: "," %}
+        {% for level in levels %}
+        <li><button class="dropdown-item" data-contrast-choice="{{ level }}">
+            {% case level %}
+            {% when 'low' %}
+            {% case page.lang %}
+            {% when 'es' %}Bajo
+            {% when 'fr' %}Faible
+            {% else %}Low
+            {% endcase %}
+            {% when 'medium' %}
+            {% case page.lang %}
+            {% when 'es' %}Medio
+            {% when 'fr' %}Moyen
+            {% else %}Medium
+            {% endcase %}
+            {% when 'high' %}
+            {% case page.lang %}
+            {% when 'es' %}Alto
+            {% when 'fr' %}Élevé
+            {% else %}High
+            {% endcase %}
+            {% endcase %}
+        </button></li>
+        {% endfor %}
+
+        <!-- DALTONISMO -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Daltonismo
+            {% when 'fr' %}Daltonisme
+            {% else %}Colorblind
+            {% endcase %}
+        </li>
+        <li><button class="dropdown-item" data-colorblind-type="none">
+            {% case page.lang %}
+            {% when 'es' %}Ninguno
+            {% when 'fr' %}Aucun
+            {% else %}None
+            {% endcase %}
+        </button></li>
+        <li><button class="dropdown-item" data-colorblind-type="protanopia">Protanopia</button></li>
+        <li><button class="dropdown-item" data-colorblind-type="deuteranopia">Deuteranopia</button></li>
+        <li><button class="dropdown-item" data-colorblind-type="tritanopia">Tritanopia</button></li>
+
+        <!-- TAMAÑO DE TEXTO -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Tamaño de texto
+            {% when 'fr' %}Taille du texte
+            {% else %}Text Size
+            {% endcase %}
+        </li>
+        {% assign sizes = "small,medium,large,xlarge" | split: "," %}
+        {% for size in sizes %}
+        <li><button class="dropdown-item" data-text-size="{{ size }}">
+            {% case size %}
+            {% when 'small' %}
+            {% case page.lang %}
+            {% when 'es' %}Pequeño
+            {% when 'fr' %}Petit
+            {% else %}Small
+            {% endcase %}
+            {% when 'medium' %}
+            {% case page.lang %}
+            {% when 'es' %}Mediano
+            {% when 'fr' %}Moyen
+            {% else %}Medium
+            {% endcase %}
+            {% when 'large' %}
+            {% case page.lang %}
+            {% when 'es' %}Grande
+            {% when 'fr' %}Grand
+            {% else %}Large
+            {% endcase %}
+            {% when 'xlarge' %}
+            {% case page.lang %}
+            {% when 'es' %}Muy grande
+            {% when 'fr' %}Très grand
+            {% else %}Extra Large
+            {% endcase %}
+            {% endcase %}
+        </button></li>
+        {% endfor %}
+
+        <!-- OPCIONES AVANZADAS -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Opciones avanzadas
+            {% when 'fr' %}Options avancées
+            {% else %}Advanced Options
+            {% endcase %}
+        </li>
+
+        <!-- Nivel de animación -->
+        <li class="section-header">
+            {% case page.lang %}
+            {% when 'es' %}Animaciones
+            {% when 'fr' %}Animations
+            {% else %}Animations
+            {% endcase %}
+        </li>
+        <li class="animation-slider-container">
+            <label for="animation-slider">
+                <span id="animation-slider-label">
+                    {% case page.lang %}
+                    {% when 'es' %}Nivel de animación
+                    {% when 'fr' %}Niveau d'animation
+                    {% else %}Animation Level
+                    {% endcase %}
+                </span>
+            </label>
+            <input type="range"
+                   id="animation-slider"
+                   name="animation-slider"
+                   min="0" max="2" step="1"
+                   value="1"
+                   data-animation-choice />
+            <div class="animation-slider-labels">
+                <span>
+                    {% case page.lang %}
+                    {% when 'es' %}Ninguna
+                    {% when 'fr' %}Aucune
+                    {% else %}None
+                    {% endcase %}
+                </span>
+                <span>
+                    {% case page.lang %}
+                    {% when 'es' %}Reducida
+                    {% when 'fr' %}Réduite
+                    {% else %}Reduced
+                    {% endcase %}
+                </span>
+                <span>
+                    {% case page.lang %}
+                    {% when 'es' %}Normal
+                    {% when 'fr' %}Normale
+                    {% else %}Normal
+                    {% endcase %}
+                </span>
+            </div>
+        </li>
+
+        <!-- Reading Mode -->
+        <li class="d-flex align-items-center justify-content-between mt-2">
+            <span>
+                {% case page.lang %}
+                {% when 'es' %}Modo lectura
+                {% when 'fr' %}Mode lecture
+                {% else %}Reading Mode
+                {% endcase %}
+            </span>
+            <label class="switch">
+                <input type="checkbox" id="reading-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </li>
+
+        <!-- Dyslexia Mode -->
+        <li class="d-flex align-items-center justify-content-between">
+            <span>
+                {% case page.lang %}
+                {% when 'es' %}Modo dislexia
+                {% when 'fr' %}Mode dyslexie
+                {% else %}Dyslexia Mode
+                {% endcase %}
+            </span>
+            <label class="switch">
+                <input type="checkbox" id="dyslexia-toggle">
+                <span class="slider"></span>
+            </label>
+        </li>
+
+    </ul>
+</div>

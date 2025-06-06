@@ -85,7 +85,7 @@
            style="width: 20px; height: 20px; border-radius: 50%;">
       
     </div>
-
+    
     <!-- Botones: Idioma, Tema, Menú -->
     <div class="d-flex align-items-center gap-2">
 
@@ -96,8 +96,8 @@
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                aria-label="Cambiar idioma"
-                title="Cambiar idioma">
+                aria-label="Change language"
+                title="Change language">
         </button>
 
         
@@ -106,129 +106,25 @@
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-toggle">
           <li>
             <a href="/coaching-site/thank-you.html" class="dropdown-item ">
-              <img src="/coaching-site/assets/icons/es-variant.svg" alt="Español" class="flag-icon me-2" style="width:16px; height:16px;"> Español
+              <img src="/coaching-site/assets/icons/es-variant.svg" alt="Español" class="flag-icon me-2" style="width:16px; height:16px;">
+              Español
             </a>
           </li>
           <li>
             <a href="/coaching-site/en/thank-you.html" class="dropdown-item active">
-              <img src="/coaching-site/assets/icons/gb.svg" alt="English" class="flag-icon me-2" style="width:16px; height:16px;"> English
+              <img src="/coaching-site/assets/icons/gb.svg" alt="English" class="flag-icon me-2" style="width:16px; height:16px;">
+              English
+            </a>
+          </li>
+          <li>
+            <a href="/coaching-site/fr/thank-you.html" class="dropdown-item ">
+              <img src="/coaching-site/assets/icons/fr.svg" alt="Français" class="flag-icon me-2" style="width:16px; height:16px;">
+              Français
             </a>
           </li>
         </ul>
       </div>
-
-      <!-- Tema -->
-      <div class="dropdown" id="themeDropdown">
-        <button class="dropdown-toggle icon-button"
-                id="theme-toggle"
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="Change theme"
-                title="Change theme">
-          <span id="theme-icon"></span>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-end" id="themeMenu" aria-labelledby="theme-toggle" role="menu">
-          <li>
-            <button class="dropdown-item" data-theme-choice="light" role="menuitem">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M12 3v1M12 20v1M5.6 5.6l.7.7M17.7 17.7l.7.7M3 12h1M20 12h1M5.6 18.4l.7-.7M17.7 6.3l.7-.7M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
-                </svg>
-              </span>
-              Light
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item" data-theme-choice="dark" role="menuitem">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 0 0 12 21a9 9 0 0 1 9-8.21z"/>
-                </svg>
-              </span>
-              Dark
-            </button>
-          </li>
-
-          <!-- Submenús de Daltonismo -->
-          
-          
-          <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle"
-                    data-theme-choice="colorblind"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <circle cx="12" cy="12" r="6"/>
-                  
-                </svg>
-              </span>
-              
-              Colorblind
-              
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header" role="presentation">Colorblind Type</li>
-              
-              <li><button class="dropdown-item" data-theme-choice="colorblind-default,protanopia,deuteranopia,tritanopia" role="menuitem">
-                
-              </button></li>
-              
-
-              <li><hr class="dropdown-divider"></li>
-
-              <li class="dropdown-header" role="presentation">Contrast Level</li>
-              
-              <li><button class="dropdown-item" data-theme-choice="colorblind-low,medium,high" role="menuitem">
-                
-              </button></li>
-              
-            </ul>
-          </li>
-          
-          <li class="dropdown-submenu">
-            <button class="dropdown-item dropdown-toggle"
-                    data-theme-choice="colorblind-dark"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-              <span class="theme-icon me-2">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <circle cx="12" cy="12" r="6"/>
-                  
-                  <path d="M21 12.79A9 9 0 0 1 11.21 3" fill="none" stroke="currentColor"/>
-                  
-                </svg>
-              </span>
-              
-              Colorblind Dark
-              
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header" role="presentation">Colorblind Type</li>
-              
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-default,protanopia,deuteranopia,tritanopia" role="menuitem">
-                
-              </button></li>
-              
-
-              <li><hr class="dropdown-divider"></li>
-
-              <li class="dropdown-header" role="presentation">Contrast Level</li>
-              
-              <li><button class="dropdown-item" data-theme-choice="colorblind-dark-low,medium,high" role="menuitem">
-                
-              </button></li>
-              
-            </ul>
-          </li>
-          
-        </ul>
-      </div>
-
-
-
+      
       <button class="icon-button" id="menu-toggle" aria-label="Abrir menú" title="Menú"></button>
     </div>
   </div>
@@ -236,7 +132,7 @@
 
 <!-- Menú lateral -->
 <div id="sidebar-wrapper" tabindex="-1" class="sidebar" aria-hidden="true" role="menu">
-  <button class="icon-button" id="close-menu-toggle" aria-label="Cerrar menú" title="Cerrar"></button>
+  <button class="icon-button" id="close-menu-toggle" aria-label="Close menu" title="Close"></button>
 
   <ul class="sidebar-nav list-unstyled">
     
@@ -249,6 +145,7 @@
     
   </ul>
 </div>
+      
 
 
 

@@ -1,0 +1,82 @@
+name: Build and Deploy Jekyll Site
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "_config.yml"
+      - "**/*.html"
+      - "**/*.md"
+      - "assets/js/**"
+      - "assets/css/**"
+      - "_includes/**"
+      - "_layouts/**"
+      - "_posts/**"
+      - "_data/**"
+      - "Gemfile*"
+      - "package.json"
+      - "build.js"
+      - ".github/workflows/**"
+
+  pull_request:
+    paths:
+      - "_config.yml"
+      - "**/*.html"
+      - "**/*.md"
+      - "assets/js/**"
+      - "assets/css/**"
+      - "_includes/**"
+      - "_layouts/**"
+      - "_posts/**"
+      - "_data/**"
+      - "Gemfile*"
+      - "package.json"
+      - "build.js"
+      - ".github/workflows/**"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Node.js for JS build
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build JavaScript with esbuild
+        run: npm run build
+
+      # 3. Ruby & Jekyll
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.8
+          bundler-cache: true
+
+      - name: Install bundler dependencies
+        run: bundle install
+
+      - name: Add build platforms (optional)
+        run: |
+          bundle lock --add-platform x86_64-linux
+          bundle lock --add-platform x64-mingw32
+
+      # 4. Build Jekyll site
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site

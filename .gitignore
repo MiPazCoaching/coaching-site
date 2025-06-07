@@ -1,9 +1,13 @@
-# Ruby / Jekyll
-.bundle/
+# Build output
 _site/
-.sass-cache/
+assets/js/dist/
+assets/js/**/*.map
+
+# Jekyll & Ruby
+.bundle/
 .jekyll-cache/
 .jekyll-metadata
+.sass-cache/
 
 # Archivos temporales y de sistema
 *.log
@@ -15,12 +19,11 @@ Thumbs.db
 # Node.js (si usas npm para estilos/scripts)
 node_modules/
 package-lock.json
-yarn.lock
-assets\js\dist/*.map
 npm-debug.log
 
 # Esbuild output
-assets/js/dist/*.map
+assets/js/dist/
+assets/js/**/*.map
 
 # Archivos personales o sensibles
 .env
@@ -28,11 +31,8 @@ assets/js/dist/*.map
 *.key
 *.pem
 
-# Archivos de configuración de editores
-# VS Code
+# Configuración de editores
 .vscode/
-
-# JetBrains / WebStorm / PyCharm / RubyMine
 .idea/
 
 # Otros

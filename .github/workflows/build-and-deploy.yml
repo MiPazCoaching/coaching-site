@@ -43,19 +43,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Node.js for JS build
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install npm dependencies
-        run: npm install
-
-      - name: Build JavaScript with esbuild
-        run: npm run build
-
-      # 3. Ruby & Jekyll
+      # 2. Ruby & Jekyll
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -70,11 +58,11 @@ jobs:
           bundle lock --add-platform x86_64-linux
           bundle lock --add-platform x64-mingw32
 
-      # 4. Build Jekyll site
+      # 3. Build Jekyll site
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
-      # 5. Deploy to GitHub Pages
+      # 4. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

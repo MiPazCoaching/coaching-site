@@ -3,7 +3,7 @@
  * @param {Object} options - Elementos DOM necesarios.
  * @param {HTMLElement} options.popup - Contenedor del popup.
  * @param {HTMLElement} options.closeBtn - Botón para cerrar el popup.
- * @param {HTMLElement} options.actionBtn - Botón para ejecutar acción en el popup.
+ * @param {HTMLElement} options.actionBtn - Botón o enlace para ejecutar acción en el popup.
  * @param {HTMLElement} options.reopenBtn - Botón externo para reabrir el popup.
  */
 export function setupCustomPopup({ popup, closeBtn, actionBtn, reopenBtn }) {
@@ -28,9 +28,14 @@ export function setupCustomPopup({ popup, closeBtn, actionBtn, reopenBtn }) {
     hidePopup();
   });
 
-  actionBtn.addEventListener('click', () => {
+  actionBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // ← evita que el enlace navegue inmediatamente
     alert('Acción del popup ejecutada');
     hidePopup();
+    // Opcional: redirigir tras un retardo
+    setTimeout(() => {
+      window.location.href = actionBtn.href;
+    }, 500);
   });
 
   reopenBtn.addEventListener('click', () => {
@@ -39,6 +44,6 @@ export function setupCustomPopup({ popup, closeBtn, actionBtn, reopenBtn }) {
     }
   });
 
-  // Mostrar popup inicial (puedes modificar el tiempo o la condición)
+  // Mostrar popup inicial
   setTimeout(showPopup, 2000);
 }

@@ -51,6 +51,22 @@
   }
 }
 
+.popup-accent {
+  color: var(--accent-color);
+  background-color: var(--bg-color);
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem; 
+  font-weight: 500; 
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.popup-accent:hover {
+  background-color: var(--secondary-color);
+}
+
+
 .popup-overlay.show .popup-content {
   transform: translateY(0);
 }

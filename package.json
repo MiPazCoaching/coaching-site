@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build.js"
+    "build": "node build.js",
+    "build:css": "sass --load-path=_sass assets/css/main.scss assets/css/style.min.css --style=compressed",
+    "dev:css": "sass --load-path=_sass assets/css/main.scss assets/css/style.css --style=expanded --source-map"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   "homepage": "https://github.com/MiPazCoaching/coaching-site#readme",
   "description": "",
   "devDependencies": {
-    "esbuild": "^0.25.5"
+    "esbuild": "^0.25.5",
+    "sass": "^1.89.2"
   }
 }

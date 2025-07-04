@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll Site
+name: Build and Deploy Jekyll Site with Minified SCSS
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - "**/*.md"
       - "assets/js/**"
       - "assets/css/**"
+      - "_sass/**"
       - "_includes/**"
       - "_layouts/**"
       - "_posts/**"
@@ -25,6 +26,7 @@ on:
       - "**/*.md"
       - "assets/js/**"
       - "assets/css/**"
+      - "_sass/**"
       - "_includes/**"
       - "_layouts/**"
       - "_posts/**"
@@ -42,8 +44,20 @@ jobs:
       # 1. Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      # 2. Setup Node.js for SCSS build
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+    
+      - name: Install npm dependencies
+        run: npm install
+    
+      - name: Compile and minify SCSS
+        run: npm run build:css
 
-      # 2. Ruby & Jekyll
+      # 3. Ruby & Jekyll
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -58,11 +72,11 @@ jobs:
           bundle lock --add-platform x86_64-linux
           bundle lock --add-platform x64-mingw32
 
-      # 3. Build Jekyll site
+      # 4. Build Jekyll site
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
-      # 4. Deploy to GitHub Pages
+      # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -8,7 +8,7 @@
     "build:css": "sass --load-path=_sass assets/css/main.scss assets/css/style.min.css --style=compressed",
     "dev:css": "sass --load-path=_sass assets/css/main.scss assets/css/style.css --style=expanded --source-map",
     "dev:js": "node build-dev.js",
-    "build:js": "node build-prod.js"
+    "build-prod:js": "node build-prod.js"
   },
   "repository": {
     "type": "git",

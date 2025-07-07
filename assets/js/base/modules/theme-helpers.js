@@ -1,5 +1,6 @@
 // modules/theme-helpers.js
-export function loadParticles(selectedTheme) {
+
+export async function loadParticles(selectedTheme) {
     if (window.pJSDom && window.pJSDom.length > 0) {
         window.pJSDom.forEach(p => p.pJS.fn.vendors.destroypJS());
         window.pJSDom = [];
@@ -42,5 +43,23 @@ export function updateTippyTheme(selectedTheme) {
         if (el._tippy) {
             el._tippy.setProps({ theme: selectedTheme });
         }
+    });
+}
+
+// Nueva función para cargar e inicializar Tippy
+export async function initTippy() {
+    if (!window.Popper) {
+        await import('https://unpkg.com/@popperjs/core@2?module');
+    }
+    if (!window.tippy) {
+        await import('https://unpkg.com/tippy.js@6?module');
+    }
+
+    // Inicializar tooltips sólo en elementos que tienen data-tippy-content
+    window.tippy('[data-tippy-content]', {
+        theme: 'light',      // Tema por defecto (puedes cambiarlo o hacerlo dinámico)
+        animation: 'shift-away',
+        delay: [100, 50],
+        duration: [300, 200],
     });
 }

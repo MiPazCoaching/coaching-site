@@ -6,6 +6,7 @@ import { initSidebarMenu } from './modules/sidebar-menu.js';
 import { initAccessibilityPopup } from './modules/accessibility-popup.js';
 import { initAccessibilitySidebar } from './modules/accessibility-sidebar.js';
 import { initPopupManager } from './modules/popup-manager.js';
+import { initCalendlyButton } from './modules/calendly-button.js';
 // Agrega más init... aquí si agregas más módulos
 
 // Aplica tema base antes de que cargue todo (sin esperar DOM)
@@ -19,5 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAccessibilityPopup();
     initAccessibilitySidebar();
     initPopupManager();
+    initCalendlyButton();
     // Llama aquí a más inicializadores si agregas nuevos módulos
 });

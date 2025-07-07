@@ -1,13 +1,15 @@
-// modules/theme-switcher.js
-import { loadParticles, updateImagesForTheme, updateTippyTheme } from './theme-helpers.js';
+import { loadParticles, updateImagesForTheme, updateTippyTheme, initTippy } from './theme-helpers.js';
 
-export function initThemeSwitcher() {
+export async function initThemeSwitcher() {
   const themeMenuBtn = document.getElementById('themeMenuBtn');
   const themeMenu = document.getElementById('themeMenu');
   const themeButtons = themeMenu?.querySelectorAll('[data-theme]');
   const html = document.documentElement;
 
   if (!themeMenuBtn || !themeMenu || !themeButtons) return;
+
+  // Inicializa Tippy solo una vez al inicio
+  await initTippy();
 
   function setActiveTheme(selectedTheme) {
     html.setAttribute('data-theme', selectedTheme);
@@ -31,14 +33,13 @@ export function initThemeSwitcher() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   setActiveTheme(savedTheme);
 
-  // Evento click en botón principal
+  // Resto del código igual...
   themeMenuBtn.addEventListener('click', () => {
     const isExpanded = themeMenuBtn.getAttribute('aria-expanded') === 'true';
     themeMenuBtn.setAttribute('aria-expanded', !isExpanded);
     themeMenu.hidden = isExpanded;
   });
 
-  // Cerrar al hacer clic fuera o presionar Escape
   document.addEventListener('click', (e) => {
     if (!themeMenu.contains(e.target) && e.target !== themeMenuBtn) {
       themeMenu.hidden = true;
@@ -54,7 +55,6 @@ export function initThemeSwitcher() {
     }
   });
 
-  // Navegación con flechas
   themeMenu.addEventListener('keydown', (e) => {
     const buttons = Array.from(themeButtons);
     const index = buttons.indexOf(document.activeElement);
@@ -70,7 +70,6 @@ export function initThemeSwitcher() {
     }
   });
 
-  // Click en cada botón de tema
   themeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedTheme = btn.getAttribute('data-theme');

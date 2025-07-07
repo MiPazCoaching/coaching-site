@@ -1,3 +1,4 @@
+// modules/theme-switcher.js
 import { loadParticles, updateImagesForTheme, updateTippyTheme, initTippy } from './theme-helpers.js';
 
 export async function initThemeSwitcher() {
@@ -7,7 +8,7 @@ export async function initThemeSwitcher() {
   const html = document.documentElement;
 
   if (!themeMenuBtn || !themeMenu || !themeButtons) return;
-
+  
   // Inicializa Tippy solo una vez al inicio
   await initTippy();
 
@@ -28,18 +29,19 @@ export async function initThemeSwitcher() {
 
     document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: selectedTheme } }));
   }
-
+  
   // Inicializar tema guardado
   const savedTheme = localStorage.getItem('theme') || 'light';
   setActiveTheme(savedTheme);
 
-  // Resto del código igual...
+  // Evento click en botón principal
   themeMenuBtn.addEventListener('click', () => {
     const isExpanded = themeMenuBtn.getAttribute('aria-expanded') === 'true';
     themeMenuBtn.setAttribute('aria-expanded', !isExpanded);
     themeMenu.hidden = isExpanded;
   });
 
+  // Cerrar al hacer clic fuera o presionar Escape
   document.addEventListener('click', (e) => {
     if (!themeMenu.contains(e.target) && e.target !== themeMenuBtn) {
       themeMenu.hidden = true;
@@ -55,6 +57,7 @@ export async function initThemeSwitcher() {
     }
   });
 
+  // Navegación con flechas
   themeMenu.addEventListener('keydown', (e) => {
     const buttons = Array.from(themeButtons);
     const index = buttons.indexOf(document.activeElement);
@@ -70,6 +73,7 @@ export async function initThemeSwitcher() {
     }
   });
 
+  // Click en cada botón de tema
   themeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedTheme = btn.getAttribute('data-theme');

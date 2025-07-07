@@ -56,6 +56,9 @@ jobs:
     
       - name: Compile and minify SCSS
         run: npm run build:css
+        
+      - name: Build JS
+        run: npm run build-prod:js
 
       # 3. Ruby & Jekyll
       - name: Setup Ruby

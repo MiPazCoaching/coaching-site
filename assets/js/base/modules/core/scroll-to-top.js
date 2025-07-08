@@ -1,5 +1,5 @@
 // modules/scroll-to-top.js
-import { fadeIn, fadeOut } from './helpers.js';
+import { fadeIn, fadeOut } from '../utils/helpers.js';
 
 export function initScrollToTop() {
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');

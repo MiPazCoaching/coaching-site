@@ -1,6 +1,6 @@
 // assets/js/base/modules/sidebar-menu.js
 
-import { trapFocus } from './helpers.js';
+import { trapFocus } from '../utils/helpers.js';
 
 export function initSidebarMenu() {
   const menuToggle = document.getElementById('menu-toggle');

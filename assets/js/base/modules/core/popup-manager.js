@@ -1,6 +1,6 @@
 // assets/js/base/modules/popup-manager.js
 
-import { trapFocus } from './helpers.js';
+import { trapFocus } from '../utils/helpers.js';
 
 export function initPopupManager() {
   const popups = document.querySelectorAll('.popup');

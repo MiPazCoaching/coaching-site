@@ -1,5 +1,12 @@
-// modules/theme-switcher.js
-import { loadParticles, updateImagesForTheme, updateTippyTheme, initTippy } from './theme-helpers.js';
+// modules/theme/theme-switcher.js
+import {
+  loadParticles,
+  updateImagesForTheme,
+  updateTippyTheme,
+  initTippy
+} from '../utils/theme-helpers.js';
+
+import { applyTheme } from './theme.js';
 
 export async function initThemeSwitcher() {
   const themeMenuBtn = document.getElementById('themeMenuBtn');
@@ -8,12 +15,11 @@ export async function initThemeSwitcher() {
   const html = document.documentElement;
 
   if (!themeMenuBtn || !themeMenu || !themeButtons) return;
-  
-  // Inicializa Tippy solo una vez al inicio
+
   await initTippy();
 
   function setActiveTheme(selectedTheme) {
-    html.setAttribute('data-theme', selectedTheme);
+    applyTheme(selectedTheme); // Usa lógica centralizada
     localStorage.setItem('theme', selectedTheme);
 
     themeButtons.forEach(btn => {
@@ -27,21 +33,23 @@ export async function initThemeSwitcher() {
     updateImagesForTheme(selectedTheme);
     updateTippyTheme(selectedTheme);
 
-    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: selectedTheme } }));
+    document.dispatchEvent(new CustomEvent('themeChanged', {
+      detail: { theme: selectedTheme }
+    }));
   }
-  
-  // Inicializar tema guardado
+
+  // Aplica el tema guardado al iniciar
   const savedTheme = localStorage.getItem('theme') || 'light';
   setActiveTheme(savedTheme);
 
-  // Evento click en botón principal
+  // Alternar menú
   themeMenuBtn.addEventListener('click', () => {
     const isExpanded = themeMenuBtn.getAttribute('aria-expanded') === 'true';
-    themeMenuBtn.setAttribute('aria-expanded', !isExpanded);
+    themeMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
     themeMenu.hidden = isExpanded;
   });
 
-  // Cerrar al hacer clic fuera o presionar Escape
+  // Cerrar al hacer clic fuera
   document.addEventListener('click', (e) => {
     if (!themeMenu.contains(e.target) && e.target !== themeMenuBtn) {
       themeMenu.hidden = true;
@@ -49,6 +57,7 @@ export async function initThemeSwitcher() {
     }
   });
 
+  // Escape para cerrar
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       themeMenu.hidden = true;
@@ -73,7 +82,7 @@ export async function initThemeSwitcher() {
     }
   });
 
-  // Click en cada botón de tema
+  // Click en botón de tema
   themeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedTheme = btn.getAttribute('data-theme');

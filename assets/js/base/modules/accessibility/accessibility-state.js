@@ -19,11 +19,12 @@ export function restoreAccessibilitySettings() {
 
     if (key === 'readingMode' || key === 'dyslexia') {
       html.toggleAttribute(attr, saved === 'true');
-      const toggle = document.getElementById(`${key === 'readingMode' ? 'reading-mode' : 'dyslexia'}-toggle`);
+      const toggleId = key === 'readingMode' ? 'reading-mode-toggle' : 'dyslexia-toggle';
+      const toggle = document.getElementById(toggleId);
       if (toggle) toggle.checked = saved === 'true';
     } else {
       html.setAttribute(attr, saved);
-      setOptionActive(`[data-${key}-type], [data-${key}]`, saved);
+      setOptionActive(`[data-contrast-choice], [data-colorblind-type], [data-text-size]`, saved);
     }
 
     if (key === 'animation') {
@@ -34,13 +35,10 @@ export function restoreAccessibilitySettings() {
 }
 
 // Marca visualmente los botones activos
+
 export function setOptionActive(selector, value) {
   document.querySelectorAll(selector).forEach((el) => {
-    const match =
-        el.dataset.contrastChoice === value ||
-        el.dataset.colorblindType === value ||
-        el.dataset.textSize === value;
-
-    el.classList.toggle('active', match);
+    const datasetKey = Object.keys(el.dataset).find(key => el.dataset[key] === value);
+    el.classList.toggle('active', !!datasetKey);
   });
 }

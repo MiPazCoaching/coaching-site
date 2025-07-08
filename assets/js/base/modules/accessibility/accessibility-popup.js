@@ -1,8 +1,11 @@
 // assets/js/base/modules/accessibility-popup.js
 
+import { restoreAccessibilitySettings } from './accessibility-state.js';
+
 export function initAccessibilityPopup() {
   const popup = document.getElementById('accessibility-popup');
   const closeBtn = document.getElementById('accessibility-popup-close');
+  const openPanelBtn = document.getElementById('accessibility-popup-open');
   const storageKey = 'hasSeenAccessibilityPopup';
 
   if (!popup || !closeBtn) return;
@@ -28,4 +31,17 @@ export function initAccessibilityPopup() {
     e.stopPropagation();
     hidePopup();
   });
+
+  if (openPanelBtn) {
+    openPanelBtn.addEventListener('click', () => {
+      const sidebarToggle = document.getElementById('accessibility-toggle');
+      if (sidebarToggle) sidebarToggle.click();
+
+      popup.setAttribute('data-visible', 'false');
+      popup.hidden = true;
+    });
+  }
+
+  // Aplica estados guardados para asegurar que la configuración se refleje en el popup si es necesario
+  restoreAccessibilitySettings();
 }

@@ -1,6 +1,7 @@
 // assets/js/base/modules/accessibility-sidebar.js
 
 import { trapFocus } from './helpers.js';
+import { restoreAccessibilitySettings, setOptionActive } from './accessibility-state.js';
 
 export function initAccessibilitySidebar() {
   const toggleBtn = document.getElementById('accessibility-toggle');
@@ -19,7 +20,7 @@ export function initAccessibilitySidebar() {
   sidebar.setAttribute('tabindex', '-1');
 
   function openSidebar() {
-    sidebar.classList.add('active');
+    sidebar.setAttribute('data-visible', 'true');
     sidebar.setAttribute('aria-hidden', 'false');
     toggleBtn.setAttribute('aria-expanded', 'true');
     document.body.classList.add('no-scroll');
@@ -29,7 +30,7 @@ export function initAccessibilitySidebar() {
   }
 
   function closeSidebar() {
-    sidebar.classList.remove('active');
+    sidebar.setAttribute('data-visible', 'false');
     sidebar.setAttribute('aria-hidden', 'true');
     toggleBtn.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('no-scroll');
@@ -40,41 +41,19 @@ export function initAccessibilitySidebar() {
   closeBtn.addEventListener('click', closeSidebar);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+    if (e.key === 'Escape' && sidebar.getAttribute('data-visible') === 'true') {
       closeSidebar();
     }
   });
 
-  // Restaurar configuración del localStorage
-  const settings = {
-    colorblind: 'data-colorblind',
-    textSize: 'data-text-size',
-    animation: 'data-animation',
-    readingMode: 'data-reading',
-    dyslexia: 'data-dyslexia',
-  };
+  restoreAccessibilitySettings();
 
-  for (const [key, attr] of Object.entries(settings)) {
-    const saved = localStorage.getItem(key);
-    if (saved) {
-      if (key === 'readingMode' || key === 'dyslexia') {
-        html.toggleAttribute(attr, saved === 'true');
-        const toggle = document.getElementById(`${key}-toggle`);
-        if (toggle) toggle.checked = saved === 'true';
-      } else {
-        html.setAttribute(attr, saved);
-        const input = document.querySelector(`[data-${key}-type="${saved}"], [data-${key}="${saved}"]`);
-        if (input) input.checked = true;
-      }
-    }
-  }
-
-  // Eventos para cada tipo de ajuste accesible
   document.querySelectorAll('[data-contrast-choice]').forEach((btn) =>
       btn.addEventListener('click', () => {
         const value = btn.dataset.contrastChoice;
         html.setAttribute('data-contrast', value);
         localStorage.setItem('contrast', value);
+        setOptionActive('[data-contrast-choice]', value);
       })
   );
 
@@ -83,6 +62,7 @@ export function initAccessibilitySidebar() {
         const type = btn.dataset.colorblindType;
         html.setAttribute('data-colorblind', type);
         localStorage.setItem('colorblind', type);
+        setOptionActive('[data-colorblind-type]', type);
       })
   );
 
@@ -91,17 +71,17 @@ export function initAccessibilitySidebar() {
         const size = btn.dataset.textSize;
         html.setAttribute('data-text-size', size);
         localStorage.setItem('textSize', size);
+        setOptionActive('[data-text-size]', size);
       })
   );
 
   const animationSlider = document.getElementById('animation-slider');
   if (animationSlider) {
     animationSlider.addEventListener('input', (e) => {
-      html.setAttribute('data-animation', e.target.value);
-      localStorage.setItem('animation', e.target.value);
+      const value = e.target.value;
+      html.setAttribute('data-animation', value);
+      localStorage.setItem('animation', value);
     });
-    const saved = localStorage.getItem('animation');
-    if (saved) animationSlider.value = saved;
   }
 
   const readingToggle = document.getElementById('reading-mode-toggle');

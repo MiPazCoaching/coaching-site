@@ -9,29 +9,23 @@ export function initAccessibilityPopup() {
 
   const hasSeenPopup = localStorage.getItem(storageKey) === 'true';
 
-  if (!hasSeenPopup) {
-    popup.hidden = false;
-    popup.setAttribute('data-visible', 'true');
-
-    setTimeout(() => {
-      popup.setAttribute('data-visible', 'false');
-      popup.addEventListener('transitionend', function handler() {
-        popup.hidden = true;
-        popup.removeEventListener('transitionend', handler);
-      }, { once: true });
-
-      localStorage.setItem(storageKey, 'true');
-    }, 5000);
-  }
-
-  closeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
+  function hidePopup() {
     popup.setAttribute('data-visible', 'false');
     popup.addEventListener('transitionend', function handler() {
       popup.hidden = true;
       popup.removeEventListener('transitionend', handler);
     }, { once: true });
-
     localStorage.setItem(storageKey, 'true');
+  }
+
+  if (!hasSeenPopup) {
+    popup.hidden = false;
+    popup.setAttribute('data-visible', 'true');
+    setTimeout(hidePopup, 5000);
+  }
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hidePopup();
   });
 }

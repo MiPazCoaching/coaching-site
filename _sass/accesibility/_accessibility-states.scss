@@ -1,0 +1,17 @@
+// Sidebar visible
+#accessibility-sidebar[data-visible='true'] {
+  left: 0;
+}
+
+// Popup visible
+#accessibility-popup[data-visible='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Opción activa
+.accessibility-option .option-controls button.active {
+  background-color: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}

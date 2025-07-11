@@ -241,9 +241,214 @@
 
 
 <!-- Footer -->
-<footer class="text-center py-4">
-    <div class="container">
-  
+<footer class="text-center py-4 position-relative">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <!-- Botón de accesibilidad a la izquierda -->
+      <div class="footer-accessibility">
+        <!-- Botón flotante de accesibilidad -->
+<div id="accessibility-fab">
+    <button
+            id="accessibility-toggle"
+            class="icon-button"
+            type="button"
+            aria-label="Abrir menú de accesibilidad"
+            aria-controls="accessibility-sidebar"
+            aria-expanded="false"
+            title="Accesibilidad"
+    >
+        🧩
+    </button>
+</div>
+
+<!-- Menú de ajustes de accesibilidad -->
+<div id="accessibility-sidebar" tabindex="-1" class="sidebar" role="dialog" aria-label="Panel de accesibilidad">
+    <button
+            id="close-accessibility-toggle"
+            class="icon-button"
+            type="button"
+            aria-label="Cerrar ajustes" 
+            title="Cerrar"
+    ></button>
+    
+    <ul class="sidebar-nav list-unstyled">
+
+        <!-- TEMA -->
+        <li class="section-header">
+            Tema
+                
+        </li>
+        <li><button type="button" class="dropdown-item" data-theme-choice="light">
+            Claro
+                
+        </button></li>
+        <li><button type="button" class="dropdown-item" data-theme-choice="dark">
+            Oscuro
+                
+        </button></li>
+
+        <!-- CONTRASTE -->
+        <li class="section-header">
+            Contraste
+                
+        </li>
+        
+        
+        <li>
+            <button type="button" class="dropdown-item" data-contrast-choice="low">
+                
+                        Bajo
+                            
+                    
+            </button>
+        </li>
+        
+        <li>
+            <button type="button" class="dropdown-item" data-contrast-choice="medium">
+                
+                        Medio
+                            
+                    
+            </button>
+        </li>
+        
+        <li>
+            <button type="button" class="dropdown-item" data-contrast-choice="high">
+                
+                        Alto
+                        
+                    
+            </button>
+        </li>
+        
+
+        <!-- DALTONISMO -->
+        <li class="section-header">
+            Daltonismo
+                
+        </li>
+        <li><button type="button" class="dropdown-item" data-colorblind-type="none">
+            Ninguno
+                
+        </button></li>
+        <li><button class="dropdown-item" data-colorblind-type="protanopia">Protanopia</button></li>
+        <li><button class="dropdown-item" data-colorblind-type="deuteranopia">Deuteranopia</button></li>
+        <li><button class="dropdown-item" data-colorblind-type="tritanopia">Tritanopia</button></li>
+
+        <!-- TAMAÑO DE TEXTO -->
+        <li class="section-header">
+            Tamaño de texto
+                
+        </li>
+        
+        
+        <li>
+            <button class="dropdown-item" data-text-size="small">
+                
+                        Pequeño
+                            
+                    
+            </button>
+        </li>
+        
+        <li>
+            <button class="dropdown-item" data-text-size="medium">
+                
+                        Mediano
+                            
+                    
+            </button>
+        </li>
+        
+        <li>
+            <button class="dropdown-item" data-text-size="large">
+                
+                        Grande
+                            
+                    
+            </button>
+        </li>
+        
+        <li>
+            <button class="dropdown-item" data-text-size="xlarge">
+                
+                        Muy grande
+                        
+                    
+            </button>
+        </li>
+        
+
+        <!-- OPCIONES AVANZADAS -->
+        <li class="section-header">
+            Opciones avanzadas
+                
+        </li>
+
+        <!-- Nivel de animación -->
+        <li class="section-header">
+            Animaciones
+                
+        </li>
+        
+        <li class="animation-slider-container">
+            <label for="animation-slider">
+                <span id="animation-slider-label">
+                    Nivel de animación
+                        
+                </span>
+            </label>
+            <input type="range"
+                   id="animation-slider"
+                   name="animation-slider"
+                   min="0" max="2" step="1"
+                   value="1"
+                   data-animation-choice />
+            <div class="animation-slider-labels">
+                <span>
+                    Ninguna
+                        
+                </span>
+                <span>
+                    Reducida
+                        
+                </span>
+                <span>
+                    Normal
+                        
+                </span>
+            </div>
+        </li>
+
+        <!-- Reading Mode -->
+        <li class="d-flex align-items-center justify-content-between mt-2">
+            <span>
+                Modo lectura
+                    
+            </span>
+            <label class="switch">
+                <input type="checkbox" id="reading-mode-toggle">
+                <span class="slider"></span>
+            </label>
+        </li>
+
+        <!-- Dyslexia Mode -->
+        <li class="d-flex align-items-center justify-content-between">
+            <span>
+                Modo dislexia
+                    
+            </span>
+            <label class="switch">
+                <input type="checkbox" id="dyslexia-toggle">
+                <span class="slider"></span>
+            </label>
+        </li>
+
+    </ul>
+</div>
+
+      </div>
+      
       <!-- Redes Sociales -->
       <div class="mb-3">
         <!--<a href="https://bsky.app/profile/cristinafg-it.bsky.social" target="_blank" class="text-success mx-2">
@@ -270,8 +475,7 @@
       </div>
   
       <!-- Texto pequeño -->
-      <small>© 2025 Marta Paz Coaching. Todos los derechos reservados.</small>
-
+      <small class="ms-auto">© 2025 Marta Paz Coaching. Todos los derechos reservados.</small>
       
     </div>
   </footer>

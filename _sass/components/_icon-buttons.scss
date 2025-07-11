@@ -37,11 +37,11 @@
 }
 
 .scroll-to-top::before {
-  content: "\f106"; /* flecha arriba */
   font-family: "Font Awesome 6 Free";
+  content: "\f106"; /* flecha arriba */
   font-weight: 900;
   font-size: 20px;
-  color: var(--btn-text-color);
+  color: var(--icon-color);
   all: unset;
 }
 

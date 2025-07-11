@@ -65,7 +65,7 @@ span[tabindex="0"]:focus-visible,
   z-index: 1100;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 }
 #accessibility-fab #accessibility-toggle {
   background-color: var(--color-accent, #444);

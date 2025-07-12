@@ -1,7 +1,6 @@
 # Build output
 _site/
-assets/js/dist/
-assets/js/**/*.map
+assets/js/dist/*.map
 
 # Jekyll & Ruby
 .bundle/
@@ -16,14 +15,10 @@ assets/js/**/*.map
 .DS_Store
 Thumbs.db
 
-# Node.js (si usas npm para estilos/scripts)
+# Node.js
 node_modules/
 package-lock.json
 npm-debug.log
-
-# Esbuild output
-assets/js/dist/
-assets/js/**/*.map
 
 # Archivos personales o sensibles
 .env

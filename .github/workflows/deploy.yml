@@ -29,57 +29,42 @@ jobs:
           npm ci --no-audit
           echo "✅ Dependencias instaladas"
 
-      - name: 🔍 Verificar estructura del proyecto
-        run: |
-          echo "=== ESTRUCTURA DEL PROYECTO ==="
-          find . -type f -name "*.scss" -o -name "*.css" | sort
-          echo ""
-          echo "=== CONTENIDO src/scss/ ==="
-          ls -la src/scss/ || echo "❌ Directorio src/scss/ no existe"
-          echo ""
-          echo "=== VERIFICANDO main.scss ==="
-          if [ -f "src/scss/main.scss" ]; then
-            echo "✅ main.scss encontrado"
-            head -20 src/scss/main.scss
-          else
-            echo "❌ main.scss NO encontrado"
-            echo "Creando archivo main.scss básico..."
-            mkdir -p src/scss
-            echo "/* Main SCSS File */" > src/scss/main.scss
-            echo "@import 'components/profile';" >> src/scss/main.scss
-            echo "@import 'components/hero';" >> src/scss/main.scss
-            echo "@import 'components/footer';" >> src/scss/main.scss
-            echo "@import 'components/intro';" >> src/scss/main.scss
-          fi
-
-      - name: 🎨 Compilar SCSS (Desarrollo)
+      - name: 🎨 Compilar SCSS
         run: |
           echo "=== COMPILANDO SCSS ==="
-          npx gulp styles 2>&1 || {
-            echo "❌ Error durante la compilación"
-            exit 1
-          }
-
-      - name: 📄 Verificar archivos generados
-        run: |
-          echo "=== ARCHIVOS GENERADOS ==="
-          if [ -d "assets/css" ]; then
-            echo "✅ Directorio assets/css existe"
-            ls -la assets/css/
-            echo ""
-            echo "=== CONTENIDO DE main.css ==="
-            if [ -f "assets/css/main.css" ]; then
-              echo "✅ main.css generado correctamente"
-              echo "Tamaño: $(wc -l < assets/css/main.css) líneas"
-              echo "Primeras 10 líneas:"
-              head -10 assets/css/main.css
-            else
-              echo "❌ main.css NO generado"
-              exit 1
-            fi
+          npx gulp styles 2>&1
+          
+          # Verificar que se generó el CSS
+          if [ -f "assets/css/main.css" ]; then
+            echo "✅ CSS compilado correctamente"
+            echo "📊 Tamaño: $(wc -l < assets/css/main.css) líneas"
           else
-            echo "❌ Directorio assets/css NO existe"
+            echo "❌ ERROR: No se generó main.css"
             exit 1
+          fi
+
+      - name: 💾 Subir CSS compilado al repositorio
+        run: |
+          echo "=== SUBIENDO CSS AL REPOSITORIO ==="
+          
+          # Configurar git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Verificar cambios
+          git status
+          
+          # Agregar solo el CSS compilado
+          if git diff --name-only | grep -q "assets/css/main.css"; then
+            echo "📦 CSS modificado, subiendo cambios..."
+            git add assets/css/main.css
+            git commit -m "🔄 Actualizar CSS compilado [skip ci]"
+          
+            # Subir cambios
+            git push origin HEAD:${{ github.ref }}
+            echo "✅ CSS subido al repositorio"
+          else
+            echo "📭 No hay cambios en el CSS"
           fi
 
       - name: 🗂️ Preparar archivos para Pages
@@ -98,358 +83,75 @@ jobs:
             # Español (es)
             if [ -d "src/pages/es" ]; then
               mkdir -p _site/es
-              # Copiar todos los archivos HTML
               cp src/pages/es/*.html _site/es/ 2>/dev/null || true
-              # Copiar otros recursos si existen (subcarpetas, imágenes, etc.)
-              find src/pages/es -maxdepth 1 -type d ! -name '.' ! -name 'es' | while read dir; do
-                dir_name=$(basename "$dir")
-                cp -r "$dir" _site/es/ 2>/dev/null || true
-              done
-              echo "✅ Español copiado: $(ls _site/es/*.html 2>/dev/null | wc -l) archivos HTML"
+              echo "✅ Español copiado"
             fi
           
             # Inglés (en)
             if [ -d "src/pages/en" ]; then
               mkdir -p _site/en
               cp src/pages/en/*.html _site/en/ 2>/dev/null || true
-              find src/pages/en -maxdepth 1 -type d ! -name '.' ! -name 'en' | while read dir; do
-                dir_name=$(basename "$dir")
-                cp -r "$dir" _site/en/ 2>/dev/null || true
-              done
-              echo "✅ Inglés copiado: $(ls _site/en/*.html 2>/dev/null | wc -l) archivos HTML"
+              echo "✅ Inglés copiado"
             fi
           
             # Francés (fr)
             if [ -d "src/pages/fr" ]; then
               mkdir -p _site/fr
               cp src/pages/fr/*.html _site/fr/ 2>/dev/null || true
-              find src/pages/fr -maxdepth 1 -type d ! -name '.' ! -name 'fr' | while read dir; do
-                dir_name=$(basename "$dir")
-                cp -r "$dir" _site/fr/ 2>/dev/null || true
-              done
-              echo "✅ Francés copiado: $(ls _site/fr/*.html 2>/dev/null | wc -l) archivos HTML"
+              echo "✅ Francés copiado"
             fi
-          else
-            echo "⚠️ No se encontró la estructura src/pages/"
           fi
           
-          # 2. COPIAR LANDING PAGE DE REDIRECCIÓN
-          echo ""
-          echo "=== COPIANDO LANDING PAGE ==="
-          
-          # Verificar si ya existe un index.html en la raíz del proyecto
+          # 2. COPIAR LANDING PAGE
           if [ -f "index.html" ]; then
-            # Copiar la landing page existente
             cp index.html _site/
-            echo "✅ Landing page copiada desde index.html"
-          elif [ -f "src/index.html" ]; then
-            # O si está en src/
-            cp src/index.html _site/
-            echo "✅ Landing page copiada desde src/index.html"
-          else
-            # Crear una landing page básica si no existe
-            echo "⚠️ No se encontró landing page, creando una básica..."
-            cat > _site/index.html << 'EOF'
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coaching Site | Selecciona Idioma</title>
-  <link rel="stylesheet" href="assets/css/main.css">
-  <style>
-  :root {
---primary-color: #667eea;
---secondary-color: #764ba2;
-}
-  
-  .language-landing {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-color: white;
-text-align: center;
-padding: 2rem;
-}
-  
-  .language-landing h1 {
-font-size: 3rem;
-margin-bottom: 1rem;
-}
-  
-  .language-landing p {
-font-size: 1.2rem;
-margin-bottom: 3rem;
-max-width: 600px;
-opacity: 0.9;
-}
-  
-  .language-options {
-display: flex;
-gap: 1.5rem;
-flex-wrap: wrap;
-justify-content: center;
-margin-bottom: 2rem;
-}
-  
-  .language-card {
-background: rgba(255, 255, 255, 0.1);
-backdrop-filter: blur(10px);
-border-radius: 15px;
-padding: 2rem;
-min-width: 200px;
-text-decoration: none;
-color: white;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-border: 1px solid rgba(255, 255, 255, 0.2);
-}
-  
-  .language-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-background: rgba(255, 255, 255, 0.15);
-}
-  
-  .language-flag {
-font-size: 3rem;
-margin-bottom: 1rem;
-}
-  
-  .language-name {
-font-size: 1.5rem;
-font-weight: bold;
-margin-bottom: 0.5rem;
-}
-  
-  .auto-redirect {
-margin-top: 2rem;
-font-size: 0.9rem;
-opacity: 0.8;
-}
-  
-  .redirect-timer {
-font-weight: bold;
-color: #ffd700;
-}
-  
-  @media (max-width: 768px) {
-     .language-landing h1 {
-     font-size: 2rem;
-}
-     
-     .language-card {
-     padding: 1.5rem;
-     min-width: 150px;
-}
-}
-  </style>
-  </head>
-  <body>
-  <div class="language-landing">
-  <h1>🌍 Coaching Internacional</h1>
-  <p>Selecciona tu idioma preferido para acceder a los recursos de coaching personalizado</p>
-  
-  <div class="language-options">
-  <a href="es/index.html" class="language-card">
-  <div class="language-flag">🇪🇸</div>
-  <div class="language-name">Español</div>
-  <div>Acceder al sitio en español</div>
-  </a>
-  
-  <a href="en/index.html" class="language-card">
-  <div class="language-flag">🇬🇧</div>
-  <div class="language-name">English</div>
-  <div>Access the site in English</div>
-  </a>
-  
-  <a href="fr/index.html" class="language-card">
-  <div class="language-flag">🇫🇷</div>
-  <div class="language-name">Français</div>
-  <div>Accéder au site en français</div>
-  </a>
-  </div>
-  
-  <div class="auto-redirect">
-  Redirigiendo automáticamente al idioma de tu navegador en <span class="redirect-timer" id="countdown">5</span> segundos...
-  </div>
-  </div>
-  
-  <script>
-  // Detectar idioma del navegador
-  const userLang = navigator.language || navigator.userLanguage;
-  const supportedLangs = ['es', 'en', 'fr'];
-  const defaultLang = 'es';
+            echo "✅ Landing page copiada"
+          fi
+          
+          # 3. COPIAR ASSETS
+          if [ -d "assets" ]; then
+            cp -r assets _site/
+            echo "✅ Assets copiados"
+          fi
+          
+          # 4. VERIFICAR
+          echo ""
+          echo "=== ESTRUCTURA FINAL ==="
+          find _site -type f | sort
 
-// Extraer código de idioma (ej: "es-ES" -> "es")
-  const langCode = userLang.split('-')[0];
-const targetLang = supportedLangs.includes(langCode) ? langCode : defaultLang;
-  
-  // Contador para redirección automática
-  let seconds = 5;
-  const countdownEl = document.getElementById('countdown');
-  
-  const countdown = setInterval(() => {
-  seconds--;
-  countdownEl.textContent = seconds;
-  
-  if (seconds <= 0) {
-  clearInterval(countdown);
-  window.location.href = `${targetLang}/index.html`;
-  }
-}, 1000);
-  
-  // Cancelar redirección si el usuario interactúa
-  document.querySelectorAll('.language-card').forEach(link => {
-  link.addEventListener('click', () => {
-  clearInterval(countdown);
-  countdownEl.textContent = '0';
-  });
-});
-  </script>
-  </body>
-  </html>
-  EOF
-  echo "✅ Landing page básica creada"
-  fi
-  
-  # 3. COPIAR ASSETS COMPILADOS (CSS, JS, IMÁGENES)
-  echo ""
-  echo "=== COPIANDO ASSETS ==="
-  
-  # CSS compilado
-  if [ -d "assets/css" ]; then
-  mkdir -p _site/assets/css
-  cp assets/css/*.css _site/assets/css/ 2>/dev/null || true
-echo "✅ CSS copiado: $(ls _site/assets/css/*.css 2>/dev/null | wc -l) archivos"
+      - name: 📦 Crear artifact de compilación
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: _site/
+          retention-days: 7
 
-# Verificar el contenido del CSS copiado
-  echo "=== VERIFICANDO CSS COPIADO ==="
-  if [ -f "_site/assets/css/main.css" ]; then
-  echo "✅ main.css encontrado en _site"
-echo "📊 Tamaño: $(wc -l < _site/assets/css/main.css) líneas"
-  echo "📄 Primeras 5 líneas:"
-  head -5 _site/assets/css/main.css
-  else
-echo "❌ ERROR: main.css no se copió a _site/"
-  ls -la _site/assets/css/ 2>/dev/null || echo "❌ Directorio _site/assets/css/ no existe"
-  exit 1
-  fi
-  else
-echo "❌ ERROR: No se encontró assets/css/"
-  exit 1
-  fi
-  
-  # JS si existe
-  if [ -d "assets/js" ]; then
-  mkdir -p _site/assets/js
-  cp assets/js/*.js _site/assets/js/ 2>/dev/null || true
-  echo "✅ JavaScript copiado"
-  elif [ -d "js" ]; then
-  cp -r js _site/ 2>/dev/null || true
-  echo "✅ JavaScript copiado desde js/"
-  fi
-  
-  # Imágenes
-  if [ -d "assets/images" ]; then
-  mkdir -p _site/assets/images
-  cp -r assets/images/* _site/assets/images/ 2>/dev/null || true
-  echo "✅ Imágenes copiadas"
-  elif [ -d "images" ]; then
-  cp -r images _site/ 2>/dev/null || true
-  echo "✅ Imágenes copiadas desde images/"
-  fi
-  
-  # Iconos (CORREGIDO: tenía 'iconss' en lugar de 'icons')
-  if [ -d "assets/icons" ]; then
-  mkdir -p _site/assets/icons
-  cp -r assets/icons/* _site/assets/icons/ 2>/dev/null || true
-  echo "✅ Iconos copiados"
-  elif [ -d "icons" ]; then
-  cp -r icons _site/ 2>/dev/null || true
-  echo "✅ Iconos copiados desde icons/"
-  fi
-  
-  # Fuentes
-  if [ -d "assets/fonts" ]; then
-  mkdir -p _site/assets/fonts
-  cp -r assets/fonts/* _site/assets/fonts/ 2>/dev/null || true
-  echo "✅ Fuentes copiadas"
-  elif [ -d "fonts" ]; then
-  cp -r fonts _site/ 2>/dev/null || true
-  echo "✅ Fuentes copiadas desde fonts/"
-  fi
-  
-  # 4. VERIFICAR ESTRUCTURA FINAL
-  echo ""
-  echo "=== ESTRUCTURA FINAL DEL SITIO ==="
-  echo "_site/"
-  find _site -type f | sort
-  
-  echo ""
-  echo "=== RESUMEN ==="
-echo "📄 Landing page: _site/index.html"
-echo "🇪🇸 Español: $(ls _site/es/*.html 2>/dev/null | wc -l) páginas"
-echo "🇬🇧 Inglés: $(ls _site/en/*.html 2>/dev/null | wc -l) páginas"
-echo "🇫🇷 Francés: $(ls _site/fr/*.html 2>/dev/null | wc -l) páginas"
-echo "🎨 CSS: $(ls _site/assets/css/*.css 2>/dev/null | wc -l) archivos"
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: 🛎️ Checkout repository
+        uses: actions/checkout@v4
 
-- name: 📦 Crear artifact de compilación
-  uses: actions/upload-artifact@v4
-  with:
-    name: site-build
-    path: _site/
-    retention-days: 7
-  if: success()
+      - name: 📦 Descargar artifact del build
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: _site/
 
-deploy:
-  needs: build-and-test
-  if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-  runs-on: ubuntu-latest
-  permissions:
-    contents: write
-  
-  steps:
-    - name: 🛎️ Checkout repository
-      uses: actions/checkout@v4
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          force_orphan: true
+          publish_branch: gh-pages
 
-    - name: 📦 Descargar artifact del build
-      uses: actions/download-artifact@v4
-      with:
-        name: site-build
-        path: _site/
-
-    - name: ✅ Verificar archivos para deploy
-      run: |
-        echo "=== ARCHIVOS PARA DEPLOY ==="
-        ls -la _site/
-        echo ""
-        echo "=== VERIFICANDO CSS ==="
-        if [ -f "_site/assets/css/main.css" ]; then
-          echo "✅ main.css presente"
-          echo "📊 Tamaño: $(wc -l < _site/assets/css/main.css) líneas"
-        else
-          echo "❌ ERROR: main.css no encontrado"
-          echo "Contenido de _site/assets/css/:"
-          ls -la _site/assets/css/ 2>/dev/null || echo "Directorio no existe"
-          exit 1
-        fi
-        
-        echo ""
-        echo "=== ESTRUCTURA COMPLETA ==="
-        find _site -type f | sort
-
-    - name: 🚀 Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site
-        force_orphan: true
-        publish_branch: gh-pages
-
-    - name: 📢 Notificar despliegue
-      run: |
-        echo "✅ Sitio desplegado en GitHub Pages"
-        echo "🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+      - name: 📢 Notificar despliegue
+        run: |
+          echo "✅ Sitio desplegado en GitHub Pages"
+          echo "🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marta Paz Ogle – Coaching Personal y Profesional</title>
+    <meta name="description" content="Coaching personal y profesional en tres idiomas. Sesiones en español, inglés y francés para tu bienestar y éxito.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- FAVICON -->
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Marta Paz Ogle – Coaching Personal y Profesional">
+    <meta property="og:description" content="Coaching personal y profesional en tres idiomas">
+    <meta property="og:image" content="assets/images/marta-paz-ogle.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+</head>
+<body>
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">
+    <span class="skip-icon">⚡</span>
+    <span class="skip-text">Saltar al contenido principal</span>
+</a>
+
+<!-- Navegación -->
+<nav class="navbar" aria-label="Navegación principal">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+                <h1>Marta Paz Ogle</h1>
+                <img src="assets/icons/es-variant.svg" alt="Español" class="language-flag">
+            </a>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#main-content" aria-current="page">Inicio</a></li>
+            <li><a href="src/pages/es/about.html">Sobre mí</a></li>
+            <li><a href="src/pages/es/services.html">Servicios</a></li>
+            <li><a href="src/pages/es/contact.html">Contacto</a></li>
+            <li><a href="src/pages/es/blog.html">Blog</a></li>
+        </ul>
+
+        <!-- Menú hamburguesa -->
+        <div class="nav-controls">
+            <button class="nav-button menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Abrir menú"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Menú Móvil -->
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+        <button class="close-button" id="close-menu-toggle" aria-label="Cerrar menú">
+            <span class="close-icon">×</span>
+        </button>
+    </div>
+    <ul class="mobile-nav">
+        <li><a href="#main-content" aria-current="page">Inicio</a></li>
+        <li><a href="src/pages/es/about.html">Sobre mí</a></li>
+        <li><a href="src/pages/es/services.html">Servicios</a></li>
+        <li><a href="src/pages/es/contact.html">Contacto</a></li>
+        <li><a href="src/pages/es/blog.html">Blog</a></li>
+        <li class="language-switcher-mobile">
+            <span>Idioma:</span>
+            <a href="src/pages/es/index.html" class="lang-active">ES</a>
+            <a href="src/pages/en/index.html">EN</a>
+            <a href="src/pages/fr/index.html">FR</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Overlay para menú móvil -->
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+
+<!-- Contenido principal -->
+<main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-background" data-theme="light">
+            <!-- Se usará CSS para la imagen de fondo -->
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-image-wrapper">
+                    <img src="assets/images/marta-paz-ogle.jpg"
+                         alt="Marta Paz Ogle - Coach profesional"
+                         class="hero-image"
+                         loading="eager"
+                         width="400"
+                         height="400">
+                </div>
+                <div class="hero-text">
+                    <h1 id="hero-title" class="hero-title">
+                        Hola, soy <span class="text-accent">Marta Paz Ogle</span>
+                    </h1>
+                    <p class="hero-subtitle">Coaching personal y profesional en tres idiomas</p>
+                    <p class="hero-description">
+                        Te acompaño en tu camino hacia el bienestar y el éxito,
+                        combinando psicología, recursos humanos y coaching.
+                        Sesiones en español, inglés y francés.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="src/pages/es/contact.html" class="btn btn-primary">
+                            Reserva tu sesión
+                        </a>
+                        <a href="src/pages/es/services.html" class="btn btn-secondary">
+                            Conoce mis servicios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de idiomas -->
+    <section class="languages-section" aria-labelledby="languages-title">
+        <div class="container">
+            <h2 id="languages-title" class="section-title">Sesiones en tu idioma</h2>
+            <p class="section-subtitle">Elige el idioma en el que te sientas más cómodo/a</p>
+
+            <div class="language-cards">
+                <div class="language-card" data-lang="es">
+                    <div class="language-flag-container">
+                        <img src="assets/icons/es-variant.svg" alt="Español" class="language-flag-large">
+                    </div>
+                    <h3>Español</h3>
+                    <p>Sesiones en español nativo con enfoque cultural hispano</p>
+                    <ul class="language-features">
+                        <li>Comunicación fluida y natural</li>
+                        <li>Entendimiento cultural profundo</li>
+                        <li>Recursos en español</li>
+                    </ul>
+                </div>
+
+                <div class="language-card" data-lang="en">
+                    <div class="language-flag-container">
+                        <img src="assets/icons/gb.svg" alt="English" class="language-flag-large">
+                    </div>
+                    <h3>English</h3>
+                    <p>Professional coaching sessions in fluent English</p>
+                    <ul class="language-features">
+                        <li>International perspective</li>
+                        <li>Business and career focus</li>
+                        <li>Global resources</li>
+                    </ul>
+                </div>
+
+                <div class="language-card" data-lang="fr">
+                    <div class="language-flag-container">
+                        <img src="assets/icons/fr.svg" alt="Français" class="language-flag-large">
+                    </div>
+                    <h3>Français</h3>
+                    <p>Accompagnement professionnel en français</p>
+                    <ul class="language-features">
+                        <li>Approche à la française</li>
+                        <li>Suivi personnalisé</li>
+                        <li>Ressources francophones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de servicios destacados -->
+    <section class="services-highlight" aria-labelledby="services-title">
+        <div class="container">
+            <h2 id="services-title" class="section-title">Descubre cómo puedo ayudarte</h2>
+            <p class="section-subtitle">Sesiones individuales o grupales para ayudarte a ganar claridad, bienestar y confianza en tu vida personal o profesional.</p>
+
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Coaching Profesional</h3>
+                    <p>Desarrollo de carrera, liderazgo, gestión del estrés laboral y transiciones profesionales.</p>
+                    <a href="src/pages/es/services.html#profesional" class="service-link">Saber más →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Coaching Personal</h3>
+                    <p>Autoconocimiento, gestión emocional, relaciones personales y desarrollo del bienestar.</p>
+                    <a href="src/pages/es/services.html#personal" class="service-link">Saber más →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Coaching de Bienestar</h3>
+                    <p>Equilibrio vida-trabajo, mindfulness, hábitos saludables y gestión del tiempo.</p>
+                    <a href="src/pages/es/services.html#bienestar" class="service-link">Saber más →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🤝</div>
+                    <h3>Sesiones Grupales</h3>
+                    <p>Talleres y programas grupales para equipos, organizaciones y comunidades.</p>
+                    <a href="src/pages/es/services.html#grupales" class="service-link">Saber más →</a>
+                </article>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="src/pages/es/services.html" class="btn btn-primary btn-large">
+                    Ver todos los servicios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de enfoque -->
+    <section class="approach-section" aria-labelledby="approach-title">
+        <div class="container">
+            <div class="approach-content">
+                <div class="approach-text">
+                    <h2 id="approach-title" class="section-title">Mi Enfoque</h2>
+                    <p class="approach-description">
+                        Combino <strong>psicología</strong>, <strong>recursos humanos</strong> y <strong>coaching</strong>
+                        para ofrecerte una experiencia integral y personalizada.
+                    </p>
+                    <div class="approach-points">
+                        <div class="approach-point">
+                            <span class="point-icon">🧠</span>
+                            <h4>Base Psicológica</h4>
+                            <p>Fundamentos científicos y técnicas validadas.</p>
+                        </div>
+                        <div class="approach-point">
+                            <span class="point-icon">👥</span>
+                            <h4>Experiencia en RRHH</h4>
+                            <p>Conocimiento profundo del mundo laboral y organizacional.</p>
+                        </div>
+                        <div class="approach-point">
+                            <span class="point-icon">🎯</span>
+                            <h4>Metodología de Coaching</h4>
+                            <p>Herramientas prácticas para resultados tangibles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="approach-image">
+                    <img src="assets/img/coaching-approach.jpg"
+                         alt="Enfoque integral de coaching"
+                         loading="lazy"
+                         width="500"
+                         height="400">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="cta-content">
+                <h2 id="cta-title" class="cta-title">¿Listo para comenzar tu transformación?</h2>
+                <p class="cta-text">
+                    Agenda una sesión de descubrimiento gratuita para hablar sobre tus objetivos
+                    y cómo puedo ayudarte a alcanzarlos.
+                </p>
+                <div class="cta-actions">
+                    <a href="src/pages/es/contact.html" class="btn btn-primary btn-large">
+                        Agenda tu sesión gratuita
+                    </a>
+                    <a href="src/pages/es/about.html" class="btn btn-secondary">
+                        Conoce más sobre mí
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Marta Paz Ogle</h3>
+                <p>Coaching Personal y Profesional</p>
+                <p class="footer-languages">
+                    <span class="lang-badge">ES</span>
+                    <span class="lang-badge">EN</span>
+                    <span class="lang-badge">FR</span>
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Enlaces rápidos</h4>
+                    <ul>
+                        <li><a href="#main-content">Inicio</a></li>
+                        <li><a href="src/pages/es/about.html">Sobre mí</a></li>
+                        <li><a href="src/pages/es/services.html">Servicios</a></li>
+                        <li><a href="src/pages/es/blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="src/pages/es/contact.html">Formulario de contacto</a></li>
+                        <li><a href="mailto:info@martapazogle.com">info@martapazogle.com</a></li>
+                        <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Idiomas</h4>
+                    <ul class="language-switcher-footer">
+                        <li><a href="src/pages/es/index.html" class="lang-active">Español</a></li>
+                        <li><a href="src/pages/en/index.html">English</a></li>
+                        <li><a href="src/pages/fr/index.html">Français</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2025</span> Marta Paz Ogle. Todos los derechos reservados.</p>
+            <p class="footer-accessibility">
+                <span>♿</span> Sitio diseñado con accesibilidad
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

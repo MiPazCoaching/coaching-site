@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Marta Paz Ogle</title>
+    <meta name="description" content="Contact Marta Paz Ogle to book personal and professional coaching sessions in Spanish, English, or French.">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">
+    <span class="skip-icon">⚡</span>
+    <span class="skip-text">Skip to content</span>
+</a>
+
+<!-- Navigation -->
+<nav class="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+
+        <!-- Branding with flag -->
+        <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+                <h1>Marta Paz Ogle</h1>
+                <img src="../../../assets/icons/gb.svg" alt="English" class="language-flag">
+            </a>
+        </div>
+
+        <!-- Main menu -->
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+
+        <!-- Controls: Language, Theme, Accessibility, Hamburger Menu -->
+        <div class="nav-controls">
+            <!-- Language Selector -->
+            <div class="dropdown language-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="language-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Change language">
+                    <span class="button-text">Language</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="language-toggle">
+                    <li>
+                        <a href="../es/contact.html" class="dropdown-item" data-lang="es">
+                            <img src="../../../assets/icons/es-variant.svg" alt="Spanish" class="flag-icon">
+                            Español
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="dropdown-item active" data-lang="en">
+                            <img src="../../../assets/icons/gb.svg" alt="English" class="flag-icon">
+                            English
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../fr/contact.html" class="dropdown-item" data-lang="fr">
+                            <img src="../../../assets/icons/fr.svg" alt="French" class="flag-icon">
+                            Français
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Theme Selector -->
+            <div class="dropdown theme-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="theme-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Change color theme">
+                    <span class="button-text">Theme</span>
+                </button>
+                <ul class="dropdown-menu theme-menu" aria-labelledby="theme-toggle">
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="light">
+                            <span class="theme-preview light-theme" data-theme="light"></span>
+                            🌞 Light
+                        </button></li>
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="dark">
+                            <span class="theme-preview dark-theme" data-theme="dark"></span>
+                            🌙 Dark
+                        </button></li>
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="high-contrast">
+                            <span class="theme-preview contrast-theme" data-theme="high-contrast"></span>
+                            ⚫ High Contrast
+                        </button></li>
+                </ul>
+            </div>
+
+            <!-- Accessibility Selector -->
+            <div class="dropdown accessibility-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="accessibility-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Accessibility options">
+                    <span class="button-text">Accessibility</span>
+                </button>
+                <ul class="dropdown-menu accessibility-menu" aria-labelledby="accessibility-toggle">
+                    <!-- Reduced Motion -->
+                    <li class="accessibility-option motion-intensity">
+                        <div class="option-header">
+                            <span class="option-title">Reduced Motion</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="reduced-motion-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" id="motion-intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensity:</span>
+                            <input type="range" min="1" max="4" value="1" class="intensity-slider" id="motion-intensity">
+                            <span class="intensity-value">1</span>
+                        </div>
+                    </li>
+
+                    <!-- Dyslexia Mode -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Dyslexia Mode</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="dyslexia-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensity:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="dyslexia-intensity">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+
+                    <!-- Reading Mode -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Reading Mode</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="reading-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensity:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="reading-intensity">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+
+                    <!-- Photophobia Mode -->
+                    <li class="accessibility-option photophobia-option">
+                        <div class="option-header">
+                            <span class="option-title">Photophobia Mode</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="photophobia-mode-toggle" class="toggle-input">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div id="photophobia-controls" class="photophobia-controls" style="display: none;">
+                            <div class="slider-container">
+                                <label>
+                                    Color Temperature
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="color-temperature" class="slider" min="0" max="10" value="5">
+                            </div>
+
+                            <div class="slider-container">
+                                <label>
+                                    Brightness Intensity
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="brightness" class="slider" min="0" max="10" value="5">
+                            </div>
+
+                            <div class="slider-container">
+                                <label>
+                                    Refresh Rate
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="refresh-rate" class="slider" min="0" max="10" value="5">
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Font Size -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Font Size</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="font-size-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Size:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="font-size">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <button class="nav-button menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+        <button class="close-button" id="close-menu-toggle" aria-label="Close menu">
+            <span class="close-icon">×</span>
+        </button>
+    </div>
+    <ul class="mobile-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+    </ul>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+
+<!-- Main Content -->
+<main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero hero--minimal" aria-labelledby="hero-title">
+        <div class="container">
+            <h1 id="hero-title" class="hero-title">Contact</h1>
+            <p class="hero-subtitle">Would you like to work with me or have a question? Write to me or book your session directly.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="intro" id="contact" aria-labelledby="contact-heading">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2 id="contact-heading" class="section-title">Write to Me</h2>
+                    <form action="https://formspree.io/f/mrbqbklp" method="POST" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text"
+                                   name="name"
+                                   id="name"
+                                   required
+                                   minlength="2"
+                                   maxlength="100"
+                                   placeholder="Your name"
+                                   class="form-control">
+                            <div class="form-error" id="name-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   required
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                   placeholder="your@email.com"
+                                   class="form-control">
+                            <div class="form-error" id="email-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea name="message"
+                                      id="message"
+                                      rows="5"
+                                      required
+                                      minlength="10"
+                                      placeholder="Write your message here"
+                                      class="form-control"></textarea>
+                            <div class="form-error" id="message-error"></div>
+                        </div>
+
+                        <!-- Hidden fields -->
+                        <input type="text" name="_gotcha" style="display:none">
+                        <input type="hidden" name="_subject" value="New message from MartaPazOgle.com">
+                        <input type="hidden" name="_next" value="thank-you.html">
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information and Calendly -->
+                <div class="contact-info-container">
+                    <div class="contact-info">
+                        <h3 class="section-title">Contact Information</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <div>
+                                    <h4>Email</h4>
+                                    <a href="mailto:info@martapazogle.com">info@martapazogle.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <a href="tel:+34600000000">+34 600 000 000</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-icon">🌍</span>
+                                <div>
+                                    <h4>Languages</h4>
+                                    <p>Spanish, English, French</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <span class="contact-icon">⏰</span>
+                                <div>
+                                    <h4>Contact Hours</h4>
+                                    <p>Monday to Friday: 9:00 - 19:00</p>
+                                    <p>Sessions via video call or in person in Madrid</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="booking-container">
+                        <h3 class="section-title">Book Your Session</h3>
+                        <p>You can book a coaching session with me directly. Choose the time that suits you best:</p>
+
+                        <div class="booking-actions">
+                            <button id="calendly-button" class="btn btn-primary btn-large">
+                                📅 Book Session on Calendly
+                            </button>
+                            <p class="booking-note">A new window will open to select date and time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="intro intro--alternate" aria-labelledby="faq-heading">
+        <div class="container">
+            <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-grid">
+                <details class="faq-item">
+                    <summary class="faq-question">How do coaching sessions work?</summary>
+                    <div class="faq-answer">
+                        <p>Sessions are conducted via video call or in person in Madrid. The first session is a discovery session (free) to get to know each other and define objectives. Subsequent sessions last 60 minutes.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">In what languages do you offer sessions?</summary>
+                    <div class="faq-answer">
+                        <p>I offer sessions in Spanish, English, and French. You can choose the language you feel most comfortable with.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long do coaching programs last?</summary>
+                    <div class="faq-answer">
+                        <p>Programs typically last between 4 and 12 sessions, depending on your goals. I also offer individual sessions without commitment.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What payment methods do you accept?</summary>
+                    <div class="faq-answer">
+                        <p>I accept bank transfer, Bizum, and credit/debit card. We issue invoices for all services.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do you offer group sessions or for companies?</summary>
+                    <div class="faq-answer">
+                        <p>Yes, I offer group workshops and programs for companies. Contact me to customize a proposal.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Marta Paz Ogle</h3>
+                <p>Personal & Professional Coaching</p>
+                <p class="footer-languages">
+                    <span class="lang-badge">ES</span>
+                    <span class="lang-badge">EN</span>
+                    <span class="lang-badge">FR</span>
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Me</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Form</a></li>
+                        <li><a href="mailto:info@martapazogle.com">info@martapazogle.com</a></li>
+                        <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Languages</h4>
+                    <ul class="language-switcher-footer">
+                        <li><a href="../es/contact.html">Español</a></li>
+                        <li><a href="contact.html" class="lang-active">English</a></li>
+                        <li><a href="../fr/contact.html">Français</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2025</span> Marta Paz Ogle. All rights reserved.</p>
+            <p class="footer-accessibility">
+                <span>♿</span> Website designed with accessibility
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script type="module" src="../../../assets/js/main.js"></script>
+<!-- Calendly script -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    document.getElementById('calendly-button').addEventListener('click', function() {
+        Calendly.initPopupWidget({url: 'https://calendly.com/martapazogle'});
+        return false;
+    });
+</script>
+</body>
+</html>

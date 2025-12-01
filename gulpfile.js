@@ -68,18 +68,33 @@ function checkDestDir() {
     });
 }
 
-// Compilar SCSS con mejor manejo de errores
+// Función para limpiar cache
+function clearCache() {
+    console.log('🗑️  Limpiando cache de Node/Sass...');
+    // Esto ayuda cuando hay problemas de cache con sass
+    delete require.cache[require.resolve('sass')];
+    delete require.cache[require.resolve('gulp-sass')];
+}
+
+// Función compileSCSS
 function compileSCSS() {
     console.log('\n🎨 COMPILANDO SCSS...');
     console.log(`📁 Entrada: ${config.styles.src}`);
     console.log(`📁 Salida: ${config.styles.dest}`);
     console.log(`🏭 Modo: ${config.production ? 'PRODUCCIÓN' : 'DESARROLLO'}`);
 
+    // Limpiar cache antes de compilar
+    clearCache();
+
     return checkSourceFile()
         .then(() => checkDestDir())
         .then(() => {
             return new Promise((resolve, reject) => {
+                // Agrega sourcemaps para debugging
+                const sourcemaps = require('gulp-sourcemaps');
+
                 gulp.src(config.styles.src)
+                    .pipe(sourcemaps.init())
                     .pipe(sass({
                         outputStyle: config.production ? 'compressed' : 'expanded',
                         includePaths: ['node_modules']
@@ -88,50 +103,61 @@ function compileSCSS() {
                         console.error(`   📄 Archivo: ${error.file}`);
                         console.error(`   📍 Línea: ${error.line}, Columna: ${error.column}`);
                         console.error(`   💬 Mensaje: ${error.message}`);
-                        console.error(`   🔍 Formateado: ${error.formatted}`);
 
-                        // Mostrar contenido del archivo problemático si es posible
+                        // Mostrar contexto más detallado
                         if (error.file && fs.existsSync(error.file)) {
                             try {
                                 const content = fs.readFileSync(error.file, 'utf8');
                                 const lines = content.split('\n');
-                                const startLine = Math.max(0, error.line - 3);
-                                const endLine = Math.min(lines.length, error.line + 2);
+                                const problematicLine = lines[error.line - 1];
 
-                                console.error('\n📄 Fragmento del archivo:');
-                                for (let i = startLine; i < endLine; i++) {
-                                    const indicator = (i + 1 === error.line) ? '>>>' : '   ';
-                                    console.error(`${indicator} ${i + 1}: ${lines[i]}`);
+                                console.error('\n📄 Línea problemática:');
+                                console.error(`${error.line}: ${problematicLine}`);
+
+                                // Mostrar líneas alrededor
+                                console.error('\n📄 Contexto (5 líneas alrededor):');
+                                const start = Math.max(0, error.line - 3);
+                                const end = Math.min(lines.length, error.line + 2);
+
+                                for (let i = start; i < end; i++) {
+                                    const prefix = i + 1 === error.line ? '>>>' : '   ';
+                                    console.error(`${prefix} ${i + 1}: ${lines[i]}`);
                                 }
                             } catch (readError) {
-                                console.error('❌ No se pudo leer el archivo para mostrar contexto');
+                                console.error('❌ No se pudo leer el archivo');
                             }
                         }
 
                         this.emit('end');
                         reject(error);
                     }))
+                    .pipe(sourcemaps.write('.'))
                     .pipe(gulp.dest(config.styles.dest))
                     .on('end', () => {
                         console.log('\n✅ COMPILACIÓN COMPLETADA');
 
-                        // Verificar que se creó el archivo
                         const outputFile = path.join(config.styles.dest, 'main.css');
                         if (fs.existsSync(outputFile)) {
                             const stats = fs.statSync(outputFile);
-                            console.log(`📊 main.css generado: ${stats.size} bytes`);
+                            console.log(`📊 main.css: ${stats.size} bytes`);
                             console.log(`📁 Ubicación: ${outputFile}`);
 
-                            // Mostrar primeras líneas para verificación
+                            // Mostrar más información
                             const content = fs.readFileSync(outputFile, 'utf8');
-                            const lines = content.split('\n').slice(0, 5);
-                            console.log('\n📄 Primeras líneas del CSS:');
-                            lines.forEach(line => console.log(`   ${line}`));
+                            console.log(`📄 Líneas: ${content.split('\n').length}`);
+                            console.log(`🔤 Caracteres: ${content.length}`);
+
+                            // Mostrar primeras líneas
+                            console.log('\n📄 Primeras 10 líneas:');
+                            content.split('\n').slice(0, 10).forEach((line, i) => {
+                                console.log(`${i + 1}: ${line}`);
+                            });
 
                             resolve();
                         } else {
-                            const error = `❌ Archivo no generado: ${outputFile}`;
+                            const error = `❌ Archivo no generado en: ${outputFile}`;
                             console.error(error);
+                            console.error(`Directorio existe: ${fs.existsSync(config.styles.dest)}`);
                             reject(new Error(error));
                         }
                     })

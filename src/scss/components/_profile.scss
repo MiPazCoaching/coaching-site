@@ -1,0 +1,336 @@
+// src/scss/components/_profile.scss
+
+.profile {
+  // Contenedor de perfil hero
+  &-hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+
+  // Contenedor de imagen de perfil circular
+  &-image-container {
+    flex-shrink: 0;
+    position: relative;
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-primary);
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-base);
+      background: var(--bg-primary);
+
+      @media (min-width: 768px) {
+        width: 250px;
+        height: 250px;
+      }
+
+      @media (min-width: 992px) {
+        width: 300px;
+        height: 300px;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+        border-color: var(--accent-secondary);
+        box-shadow: var(--shadow-xl);
+      }
+
+      // Para modo de movimiento reducido
+      .reduced-motion &,
+      [data-refresh-rate="0"] &,
+      [data-refresh-rate="1"] &,
+      [data-refresh-rate="2"] & {
+        transition: none;
+        transform: none;
+
+        &:hover {
+          transform: none;
+        }
+      }
+    }
+
+    // Efecto de anillo decorativo (solo en movimiento normal)
+    &:not(.no-animation)::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-primary);
+      opacity: 0.3;
+      animation: pulse-ring 2s ease-in-out infinite;
+
+      // Desactivar animación en movimiento reducido
+      .reduced-motion &,
+      [data-refresh-rate="0"] &,
+      [data-refresh-rate="1"] &,
+      [data-refresh-rate="2"] &,
+      [data-refresh-rate="3"] & {
+        animation: none;
+        opacity: 0.2;
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+  }
+
+  // Contenido hero al lado de la foto
+  &-content {
+    flex: 1;
+    text-align: center;
+
+    @media (min-width: 992px) {
+      text-align: left;
+    }
+
+    h1 {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: var(--font-weight-bold);
+    }
+
+    .profile-subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .profile-description {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+  }
+
+  // Selección de idiomas en landing
+  &-language-selection {
+    margin-top: 2rem;
+  }
+}
+
+// Componente de selección de idiomas
+.language-selection {
+  margin-top: 3rem;
+}
+
+.language-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.language-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: var(--transition-base);
+  text-align: center;
+  display: block;
+  height: 100%;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-4px);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-lg);
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+
+  // Para modo de movimiento reducido
+  .reduced-motion &,
+  [data-refresh-rate="0"] &,
+  [data-refresh-rate="1"] &,
+  [data-refresh-rate="2"] & {
+    transition: none;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .language-flag-container {
+    margin-bottom: 1rem;
+  }
+
+  .language-flag-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    transition: border-color var(--transition-base);
+    object-fit: cover;
+  }
+
+  &:hover .language-flag-large {
+    border-color: var(--accent-primary);
+  }
+
+  h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+// Características en landing
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition-base);
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-primary);
+  }
+
+  // Para modo de movimiento reducido
+  .reduced-motion &,
+  [data-refresh-rate="0"] &,
+  [data-refresh-rate="1"] &,
+  [data-refresh-rate="2"] & {
+    transition: none;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+    color: var(--accent-primary);
+  }
+
+  h3 {
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+// Etiquetas de habilidades
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+}
+
+.skill-tag {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-fast);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+
+  // Para modo de movimiento reducido
+  .reduced-motion &,
+  [data-refresh-rate="0"] &,
+  [data-refresh-rate="1"] &,
+  [data-refresh-rate="2"] & {
+    transition: none;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

@@ -1,34 +1,27 @@
-# Build output
-_site/
-assets/js/dist/*.map
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Jekyll & Ruby
-.bundle/
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
+# Compilaciones
+assets/css/
+!.gitkeep
 
-# Archivos temporales y de sistema
-*.log
-*.tmp
-*.swp
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Sistema
 .DS_Store
 Thumbs.db
 
-# Node.js
-node_modules/
-package-lock.json
-npm-debug.log
-
-# Archivos personales o sensibles
-.env
-*.local
-*.key
-*.pem
-
-# Configuración de editores
+# Editor
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Otros
-*.bak
+# Sistema operativo
+*.log

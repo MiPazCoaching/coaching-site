@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Marta Paz Ogle</title>
+    <meta name="description" content="Découvrez Marta Paz Ogle - Psychologue, coach personnel et professionnel trilingue avec plus de 7 ans d'expérience.">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+<!-- Lien de saut -->
+<a href="#main-content" class="skip-link">
+    <span class="skip-icon">⚡</span>
+    <span class="skip-text">Passer au contenu</span>
+</a>
+
+<!-- Navigation -->
+<nav class="navbar" aria-label="Navigation principale">
+    <div class="nav-container">
+
+        <!-- Branding avec drapeau -->
+        <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+                <h1>Marta Paz Ogle</h1>
+                <img src="../../../assets/icons/fr.svg" alt="Français" class="language-flag">
+            </a>
+        </div>
+
+        <!-- Menu principal -->
+        <ul class="nav-menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html" aria-current="page">À propos</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+
+        <!-- Contrôles : Langue, Thème, Accessibilité, Menu Hamburger -->
+        <div class="nav-controls">
+            <!-- Sélecteur de Langue -->
+            <div class="dropdown language-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="language-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Changer de langue">
+                    <span class="button-text">Langue</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="language-toggle">
+                    <li>
+                        <a href="../es/about.html" class="dropdown-item" data-lang="es">
+                            <img src="../../../assets/icons/es-variant.svg" alt="Espagnol" class="flag-icon">
+                            Español
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../en/about.html" class="dropdown-item" data-lang="en">
+                            <img src="../../../assets/icons/gb.svg" alt="Anglais" class="flag-icon">
+                            English
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="dropdown-item active" data-lang="fr">
+                            <img src="../../../assets/icons/fr.svg" alt="Français" class="flag-icon">
+                            Français
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sélecteur de Thème -->
+            <div class="dropdown theme-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="theme-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Changer le thème de couleur">
+                    <span class="button-text">Thème</span>
+                </button>
+                <ul class="dropdown-menu theme-menu" aria-labelledby="theme-toggle">
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="light">
+                            <span class="theme-preview light-theme" data-theme="light"></span>
+                            🌞 Clair
+                        </button></li>
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="dark">
+                            <span class="theme-preview dark-theme" data-theme="dark"></span>
+                            🌙 Sombre
+                        </button></li>
+                    <li>
+                        <button class="dropdown-item theme-option" data-theme="high-contrast">
+                            <span class="theme-preview contrast-theme" data-theme="high-contrast"></span>
+                            ⚫ Haut Contraste
+                        </button></li>
+                </ul>
+            </div>
+
+            <!-- Sélecteur d'Accessibilité -->
+            <div class="dropdown accessibility-dropdown">
+                <button class="nav-button dropdown-toggle"
+                        id="accessibility-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-label="Options d'accessibilité">
+                    <span class="button-text">Accessibilité</span>
+                </button>
+                <ul class="dropdown-menu accessibility-menu" aria-labelledby="accessibility-toggle">
+                    <!-- Mouvement Réduit -->
+                    <li class="accessibility-option motion-intensity">
+                        <div class="option-header">
+                            <span class="option-title">Mouvement Réduit</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="reduced-motion-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" id="motion-intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensité:</span>
+                            <input type="range" min="1" max="4" value="1" class="intensity-slider" id="motion-intensity">
+                            <span class="intensity-value">1</span>
+                        </div>
+                    </li>
+
+                    <!-- Mode Dyslexie -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Mode Dyslexie</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="dyslexia-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensité:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="dyslexia-intensity">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+
+                    <!-- Mode Lecture -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Mode Lecture</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="reading-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Intensité:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="reading-intensity">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+
+                    <!-- Mode Photophobie -->
+                    <li class="accessibility-option photophobia-option">
+                        <div class="option-header">
+                            <span class="option-title">Mode Photophobie</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="photophobia-mode-toggle" class="toggle-input">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div id="photophobia-controls" class="photophobia-controls" style="display: none;">
+                            <div class="slider-container">
+                                <label>
+                                    Température de Couleur
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="color-temperature" class="slider" min="0" max="10" value="5">
+                            </div>
+
+                            <div class="slider-container">
+                                <label>
+                                    Intensité de Luminosité
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="brightness" class="slider" min="0" max="10" value="5">
+                            </div>
+
+                            <div class="slider-container">
+                                <label>
+                                    Taux de Rafraîchissement
+                                    <span class="slider-value">5</span>
+                                </label>
+                                <input type="range" id="refresh-rate" class="slider" min="0" max="10" value="5">
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Taille de Police -->
+                    <li class="accessibility-option">
+                        <div class="option-header">
+                            <span class="option-title">Taille de Police</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="font-size-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="intensity-control" style="display: none;">
+                            <span class="intensity-label">Taille:</span>
+                            <input type="range" min="1" max="5" value="3" class="intensity-slider" id="font-size">
+                            <span class="intensity-value">3</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Menu Hamburger -->
+            <button class="nav-button menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Ouvrir le menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Menu Mobile -->
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+        <button class="close-button" id="close-menu-toggle" aria-label="Fermer le menu">
+            <span class="close-icon">×</span>
+        </button>
+    </div>
+    <ul class="mobile-nav">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="about.html" aria-current="page">À propos</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+    </ul>
+</div>
+
+<!-- Overlay pour menu mobile -->
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+
+<!-- Contenu principal -->
+<main id="main-content">
+    <!-- Section Hero -->
+    <section class="hero hero--minimal" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="text-center mb-10">
+                <div class="profile-image-container">
+                    <img src="../../../assets/img/marta-paz-ogle.jpg" alt="Marta Paz Ogle" class="profile-image">
+                </div>
+                <h1 id="hero-title" class="hero-title">À propos</h1>
+                <p class="hero-subtitle">Psychologue | Coach Personnel et Professionnel | Trilingue</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu À propos -->
+    <section class="intro" id="about-me" aria-labelledby="about-heading">
+        <div class="container">
+            <div class="intro-content">
+                <p>Je suis diplômée en Psychologie de l'Université Complutense de Madrid et titulaire d'un Master en Ressources Humaines. Je suis également Experte Universitaire en Coaching Personnel et de Groupe certifiée par l'Ordre Officiel des Psychologues de Madrid.</p>
+
+                <p>Pendant plus de sept ans, j'ai travaillé dans des entreprises multinationales, spécialisée dans la sélection de personnel. Cette expérience en ressources humaines m'a permis de comprendre profondément les dynamiques professionnelles et personnelles qui influencent notre bien-être.</p>
+
+                <div class="intro-features mt-8">
+                    <article class="intro-feature">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Formation Académique</h3>
+                        <p>Licence en Psychologie (UCM), Master en RH, Experte en Coaching (COP Madrid).</p>
+                    </article>
+
+                    <article class="intro-feature">
+                        <div class="feature-icon">💼</div>
+                        <h3>Expérience Professionnelle</h3>
+                        <p>7+ années en sélection de personnel dans des entreprises multinationales.</p>
+                    </article>
+
+                    <article class="intro-feature">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Langues</h3>
+                        <p>Séances en espagnol, anglais et français avec perspective culturelle.</p>
+                    </article>
+                </div>
+
+                <div class="mt-10">
+                    <h3 class="section-title">Formation Complémentaire</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Communication efficace (UCM)</span>
+                        <span class="skill-tag">Compétences pour le succès professionnel (UCM)</span>
+                        <span class="skill-tag">Pleine conscience en environnement personnel et professionnel (CEF)</span>
+                        <span class="skill-tag">Empathie et Intelligence Émotionnelle (UC Berkeley)</span>
+                        <span class="skill-tag">Productivité au travail (Google)</span>
+                    </div>
+                </div>
+
+                <div class="mt-10 text-center">
+                    <p class="text-lg"><strong>Mon approche est proche et professionnelle.</strong> Je peux vous accompagner dans votre chemin de développement personnel et professionnel en <strong>espagnol, anglais et français</strong>.</p>
+                    <div class="intro-actions mt-6">
+                        <a href="contact.html" class="btn btn-primary">Réserver votre séance</a>
+                        <a href="services.html" class="btn btn-secondary">Voir mes services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section d'approche personnelle -->
+    <section class="intro intro--alternate" aria-labelledby="approach-heading">
+        <div class="container">
+            <h2 id="approach-heading" class="section-title">Ma Philosophie de Coaching</h2>
+
+            <div class="approach-content">
+                <div class="approach-text">
+                    <div class="approach-points">
+                        <div class="approach-point">
+                            <span class="point-icon">🤝</span>
+                            <div>
+                                <h4>Approche Personnalisée</h4>
+                                <p>Chaque personne est unique, donc j'adapte ma méthodologie à vos besoins spécifiques.</p>
+                            </div>
+                        </div>
+                        <div class="approach-point">
+                            <span class="point-icon">🎯</span>
+                            <div>
+                                <h4>Résultats Tangibles</h4>
+                                <p>Nous travaillons avec des objectifs clairs et mesurables pour que vous puissiez voir votre progrès.</p>
+                            </div>
+                        </div>
+                        <div class="approach-point">
+                            <span class="point-icon">🧠</span>
+                            <div>
+                                <h4>Fondation Scientifique</h4>
+                                <p>J'utilise des techniques basées sur des preuves psychologiques et des études actualisées.</p>
+                            </div>
+                        </div>
+                        <div class="approach-point">
+                            <span class="point-icon">❤️</span>
+                            <div>
+                                <h4>Empathie et Confidentialité</h4>
+                                <p>Je crée un espace sûr où vous pouvez vous exprimer librement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="approach-image">
+                    <img src="../../../assets/img/coaching-philosophy.jpg"
+                         alt="Philosophie de coaching personnalisé"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Marta Paz Ogle</h3>
+                <p>Coaching Personnel et Professionnel</p>
+                <p class="footer-languages">
+                    <span class="lang-badge">ES</span>
+                    <span class="lang-badge">EN</span>
+                    <span class="lang-badge">FR</span>
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="contact.html">Formulaire de contact</a></li>
+                        <li><a href="mailto:info@martapazogle.com">info@martapazogle.com</a></li>
+                        <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Langues</h4>
+                    <ul class="language-switcher-footer">
+                        <li><a href="../es/about.html">Español</a></li>
+                        <li><a href="../en/about.html">English</a></li>
+                        <li><a href="about.html" class="lang-active">Français</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2025</span> Marta Paz Ogle. Tous droits réservés.</p>
+            <p class="footer-accessibility">
+                <span>♿</span> Site conçu avec accessibilité
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script type="module" src="../../../assets/js/main.js"></script>
+</body>
+</html>

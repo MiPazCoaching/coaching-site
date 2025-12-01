@@ -1,0 +1,50 @@
+// src/scss/themes/accessibility/_dark-theme.scss
+[data-theme="dark"] {
+  // ========== COLORES BASE ==========
+  // Fondos (tonos más oscuros manteniendo la paleta rosa/beige)
+  --bg-primary: #1e1515;
+  --bg-secondary: #2a1f1f;
+  --bg-tertiary: #362929;
+  --bg-inverse: #f8e9e5;
+
+  // Textos
+  --text-primary: #f8e9e5;
+  --text-secondary: #d4b8aa;
+  --text-muted: #a08988;
+  --text-inverse: #1e1515;
+  --text-on-accent: #1e1515;
+
+  // Acentos (más vibrantes en oscuro)
+  --accent-primary: #e48e95;
+  --accent-secondary: #d4a6a1;
+  --accent-success: #d58e99;
+  --accent-danger: #e67e80;
+  --accent-warning: #f4cd93;
+  --accent-info: #e9a3bd;
+
+  // Bordes
+  --border-color: #4a3a3a;
+  --border-light: #5c4a4a;
+  --border-dark: #362929;
+
+  // ========== EFECTOS ==========
+  --focus-ring: 0 0 0 3px rgba(228, 142, 149, 0.5);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --shadow-intensity: 1.2;
+
+  // ========== COMPONENTES ==========
+  --navbar-bg: #1e1515;
+  --card-bg: #2a1f1f;
+  --button-bg: #e48e95;
+  --button-text: #1e1515;
+  --button-hover-bg: #ce7179;
+  --input-bg: #2a1f1f;
+  --input-border: #4a3a3a;
+  --link-color: #e48e95;
+
+  // ========== ACCESIBILIDAD ==========
+  --particles-opacity: 0.4;
+  --image-opacity: 0.9;
+}

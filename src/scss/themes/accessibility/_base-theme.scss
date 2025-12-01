@@ -1,0 +1,81 @@
+// src/scss/themes/accessibility/_base-theme.scss
+:root {
+  // Colores base
+  --bg-primary: #fffaf7;
+  --bg-secondary: #f7f2ee;
+  --bg-tertiary: #f5f0ed;
+  --bg-inverse: #4a3a3a;
+
+  --text-primary: #3a2d2d;
+  --text-secondary: #9f8686;
+  --text-muted: #a08988;
+  --text-inverse: #fffaf7;
+  --text-on-accent: #fffaf7; // Texto sobre fondos de acento
+
+  --accent-primary: #c05c78;
+  --accent-secondary: #e49ca3;
+  --accent-success: #cd7682;
+  --accent-danger: #e26d6d;
+  --accent-warning: #f4cd93;
+  --accent-info: #e9a3bd;
+
+  // Estados y bordes
+  --border-color: #d6c4bd;
+  --border-light: #e0d1cb;
+  --border-dark: #bca8a8;
+  
+  // Efectos
+  --focus-ring: 0 0 0 3px rgba(192, 92, 120, 0.25);
+  --shadow-sm: 0 1px 2px 0 rgba(74, 58, 58, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(74, 58, 58, 0.1), 0 2px 4px -1px rgba(74, 58, 58, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(74, 58, 58, 0.1), 0 4px 6px -2px rgba(74, 58, 58, 0.05);
+  
+  // Tipografía
+  --font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-family-heading: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  // Componentes
+  --navbar-bg: #f7f2ee;
+  --card-bg: #ffffff;
+  --button-bg: #e48e95;
+  --button-text: #fffaf7;
+  --button-hover-bg: #ce7179;
+  --input-bg: #ffffff;
+  --input-border: #d6c4bd;
+  --link-color: #c05c78;
+  --link-underline: none;
+
+  // Transiciones base
+  --transition-base: all 0.3s ease;
+  --transition-fast: all 0.15s ease;
+  
+  // Partículas (serán sobrescritas por los temas de partículas)
+  --particles-opacity: 0.6;
+  --particles-count: 80;
+  --image-opacity: 1;
+  --animation-speed: 1;
+
+  // Fotofobia (10 niveles)
+  --photophobia-intensity: 10; // Por defecto: normal (10/10)
+}
+
+// Clases de utilidad para temas específicos
+.dyslexia-friendly {
+  --font-family-base: 'OpenDyslexic', 'Comic Sans MS', sans-serif;
+  --font-size-base: 1.1rem;
+  --line-height-base: 1.8;
+  letter-spacing: 0.05em;
+}
+
+.reading-optimized {
+  --font-family-base: 'Merriweather', 'Georgia', serif;
+  --font-size-base: 1.15rem;
+  --line-height-base: 1.8;
+  max-width: 65ch;
+  margin: 0 auto;
+}

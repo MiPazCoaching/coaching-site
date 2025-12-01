@@ -5,113 +5,12 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch:  # Permite ejecución manual
-
-# Evitar ejecuciones concurrentes en el mismo commit
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  workflow_dispatch:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
-    steps:
-      - name: 🛎️ Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Para tener todo el historial de git
-
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
-
-      - name: 📦 Install dependencies
-        run: |
-          npm ci --no-audit --prefer-offline
-          echo "✅ Dependencias instaladas"
-
-      - name: 🔍 Check dependencies
-        run: |
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-          echo "Gulp version: $(npx gulp --version)"
-          npm list gulp gulp-sass sass --depth=0 || echo "Algunas dependencias pueden faltar"
-
-      - name: 🧹 Clean previous builds
-        run: |
-          if [ -d "assets/css" ]; then
-            rm -rf assets/css/*
-            echo "✅ Directorio CSS limpiado"
-          else
-            mkdir -p assets/css
-            echo "✅ Directorio CSS creado"
-          fi
-
-      - name: 🎨 Compile SCSS (Development)
-        run: npm run build
-        env:
-          NODE_ENV: development
-
-      - name: 📄 Verify development build
-        run: |
-          if [ -f "assets/css/main.css" ]; then
-            echo "✅ main.css generado"
-            echo "Tamaño: $(wc -l < assets/css/main.css) líneas"
-          else
-            echo "❌ main.css no generado"
-            exit 1
-          fi
-
-      - name: 🧹 Clean for production
-        run: |
-          rm -rf assets/css/*
-
-      - name: 🏭 Compile SCSS (Production)
-        run: npm run build:prod
-        env:
-          NODE_ENV: production
-
-      - name: ✅ Verify production build
-        run: |
-          echo "=== Verificando build de producción ==="
-          
-          # Verificar archivos principales
-          if [ ! -f "assets/css/main.css" ]; then
-            echo "❌ main.css no existe"
-            exit 1
-          fi
-          
-          if [ ! -f "assets/css/main.min.css" ]; then
-            echo "⚠️  main.min.css no generado (puede ser normal si no hay PostCSS)"
-          fi
-          
-          # Mostrar información de los archivos
-          echo "📁 Contenido del directorio CSS:"
-          ls -la assets/css/
-          
-          echo "📊 Tamaño de main.css:"
-          wc -l assets/css/main.css || echo "No se pudo contar líneas"
-          
-          echo "✅ Build de producción verificado"
-
-      - name: 📦 Create build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: compiled-css
-          path: assets/css/
-          retention-days: 7
-
-  deploy:
-    needs: build-and-test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Necesario para hacer push a gh-pages
     
     steps:
       - name: 🛎️ Checkout repository
@@ -126,28 +25,112 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Install dependencies
-        run: npm ci --no-audit
+        run: |
+          npm ci --no-audit
+          echo "✅ Dependencias instaladas"
 
-      - name: 🏭 Build for production
-        run: npm run build:prod
-        env:
-          NODE_ENV: production
+      - name: 🔍 Verificar estructura del proyecto
+        run: |
+          echo "=== ESTRUCTURA DEL PROYECTO ==="
+          find . -type f -name "*.scss" -o -name "*.css" | sort
+          echo ""
+          echo "=== CONTENIDO src/scss/ ==="
+          ls -la src/scss/ || echo "❌ Directorio src/scss/ no existe"
+          echo ""
+          echo "=== VERIFICANDO main.scss ==="
+          if [ -f "src/scss/main.scss" ]; then
+            echo "✅ main.scss encontrado"
+            head -20 src/scss/main.scss
+          else
+            echo "❌ main.scss NO encontrado"
+            echo "Creando archivo main.scss básico..."
+            mkdir -p src/scss
+            echo "/* Main SCSS File */" > src/scss/main.scss
+            echo "@import 'components/profile';" >> src/scss/main.scss
+            echo "@import 'components/hero';" >> src/scss/main.scss
+            echo "@import 'components/footer';" >> src/scss/main.scss
+            echo "@import 'components/intro';" >> src/scss/main.scss
+          fi
+
+      - name: 🎨 Compilar SCSS (Desarrollo)
+        run: |
+          echo "=== COMPILANDO SCSS ==="
+          npx gulp styles 2>&1 || {
+            echo "❌ Error durante la compilación"
+            exit 1
+          }
+
+      - name: 📄 Verificar archivos generados
+        run: |
+          echo "=== ARCHIVOS GENERADOS ==="
+          if [ -d "assets/css" ]; then
+            echo "✅ Directorio assets/css existe"
+            ls -la assets/css/
+            echo ""
+            echo "=== CONTENIDO DE main.css ==="
+            if [ -f "assets/css/main.css" ]; then
+              echo "✅ main.css generado correctamente"
+              echo "Tamaño: $(wc -l < assets/css/main.css) líneas"
+              echo "Primeras 10 líneas:"
+              head -10 assets/css/main.css
+            else
+              echo "❌ main.css NO generado"
+              exit 1
+            fi
+          else
+            echo "❌ Directorio assets/css NO existe"
+            exit 1
+          fi
+
+      - name: 📦 Crear artifact de compilación
+        uses: actions/upload-artifact@v4
+        with:
+          name: css-build
+          path: assets/css/
+          retention-days: 7
+        if: success()
+
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: 🛎️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 📦 Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: css-build
+          path: assets/css/
+
+      - name: ✅ Verificar archivos antes del deploy
+        run: |
+          echo "=== ARCHIVOS PARA DEPLOY ==="
+          ls -la assets/css/
+          if [ ! -f "assets/css/main.css" ]; then
+            echo "❌ ERROR: main.css no encontrado para deploy"
+            exit 1
+          fi
+          echo "✅ Todo listo para deploy"
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Publica todo el repositorio
-          destination_dir: .  # No cambia la estructura
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: '🚀 Deploy: ${{ github.event.head_commit.message || github.sha }}'
-          force_orphan: true  # Mantiene limpia la rama gh-pages
-          # Excluir archivos que no necesitan estar en Pages
+          publish_dir: ./
+          force_orphan: true
           exclude_assets: 'node_modules/,.github/,.git/,src/,*.md,package*.json,gulpfile.js'
 
-      - name: 📢 Notify deployment
+      - name: 📢 Notificar despliegue
         run: |
           echo "✅ Sitio desplegado en GitHub Pages"
           echo "🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-          echo "📅 Fecha: $(date)"

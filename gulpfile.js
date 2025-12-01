@@ -1,8 +1,7 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
-
-// Importaciones condicionales con manejo de errores mejorado
-let postcss, autoprefixer, cssnano, sourcemaps, rename, gulpif;
+const fs = require('fs');
+const path = require('path');
 
 // Configuración
 const config = {
@@ -14,124 +13,142 @@ const config = {
     }
 };
 
-// Función para cargar dependencias opcionales
-function loadOptionalDeps() {
-    try {
-        postcss = require('gulp-postcss');
-        autoprefixer = require('autoprefixer');
-        cssnano = require('cssnano');
-        sourcemaps = require('gulp-sourcemaps');
-        rename = require('gulp-rename');
-        gulpif = require('gulp-if');
-        return true;
-    } catch (error) {
-        console.log('⚠️  Dependencias opcionales no instaladas: PostCSS y optimizaciones no disponibles');
-        console.log('ℹ️  Para todas las funciones ejecuta: npm install --save-dev gulp-postcss autoprefixer cssnano gulp-sourcemaps gulp-rename gulp-if');
-        return false;
-    }
-}
+// Verificar que el archivo fuente existe
+function checkSourceFile() {
+    return new Promise((resolve, reject) => {
+        console.log('🔍 Verificando archivo fuente...');
+        console.log(`📁 Ruta: ${config.styles.src}`);
 
-const hasOptionalDeps = loadOptionalDeps();
+        if (!fs.existsSync(config.styles.src)) {
+            const error = `❌ Archivo fuente no encontrado: ${config.styles.src}`;
+            console.error(error);
+            console.log('📋 Archivos disponibles en src/scss/:');
 
-function compileSCSS() {
-    console.log('🎨 Compilando SCSS...');
-    console.log(`📁 Entrada: ${config.styles.src}`);
-    console.log(`📁 Salida: ${config.styles.dest}`);
-    console.log(`🏭 Modo: ${config.production ? 'Producción' : 'Desarrollo'}`);
+            try {
+                const files = fs.readdirSync('src/scss/');
+                files.forEach(file => console.log(`   - ${file}`));
+            } catch (err) {
+                console.error('❌ No se puede leer el directorio src/scss/');
+            }
 
-    let stream = gulp.src(config.styles.src);
-
-    // Sourcemaps solo en desarrollo y si está disponible
-    if (!config.production && hasOptionalDeps) {
-        stream = stream.pipe(sourcemaps.init());
-        console.log('📝 Sourcemaps habilitados');
-    }
-
-    // Compilar Sass
-    stream = stream.pipe(sass({
-        outputStyle: config.production ? 'compressed' : 'expanded'
-    }).on('error', function(error) {
-        console.error('❌ Error en Sass:');
-        console.error('   Mensaje:', error.message);
-        console.error('   Archivo:', error.file);
-        console.error('   Línea:', error.line);
-        console.error('   Columna:', error.column);
-        console.error('   Formatted:', error.formatted);
-        this.emit('end');
-    }));
-
-    // PostCSS solo si está disponible
-    if (hasOptionalDeps) {
-        const processors = [autoprefixer()];
-        if (config.production) {
-            processors.push(cssnano({ preset: 'default' }));
-            console.log('⚡ CSS minificado habilitado');
+            reject(new Error(error));
+        } else {
+            console.log('✅ Archivo fuente encontrado');
+            resolve();
         }
-        stream = stream.pipe(postcss(processors));
-        console.log('🎯 Autoprefixer habilitado');
-    }
-
-    // Sourcemaps solo en desarrollo y si está disponible
-    if (!config.production && hasOptionalDeps) {
-        stream = stream.pipe(sourcemaps.write('.'));
-    }
-
-    // Guardar archivo principal
-    stream = stream.pipe(gulp.dest(config.styles.dest))
-        .on('end', () => {
-            console.log(`✅ main.css compilado en: ${config.styles.dest}/main.css`);
-        });
-
-    // Minificar solo en producción y si está disponible
-    if (config.production && hasOptionalDeps) {
-        console.log('📦 Generando versión minificada...');
-        const minStream = gulp.src(config.styles.src)
-            .pipe(sass({
-                outputStyle: 'compressed'
-            }).on('error', function(error) {
-                console.error('❌ Error al minificar:', error.message);
-                this.emit('end');
-            }))
-            .pipe(postcss([autoprefixer(), cssnano()]))
-            .pipe(rename({ suffix: '.min' }))
-            .pipe(gulp.dest(config.styles.dest))
-            .on('end', () => {
-                console.log(`✅ main.min.css generado en: ${config.styles.dest}/main.min.css`);
-            });
-    }
-
-    return stream;
-}
-
-function watch() {
-    console.log('🔍 Buscando archivos SCSS...');
-    console.log('📁 Observando:', config.styles.watch);
-
-    // Compilar primero
-    compileSCSS();
-
-    return gulp.watch(config.styles.watch, {
-        ignoreInitial: false,
-        delay: 500 // Evitar múltiples compilaciones rápidas
-    }, function(done) {
-        console.log('\n🔄 Cambio detectado en SCSS, recompilando...');
-        compileSCSS().on('end', () => {
-            console.log('✅ Recompilación completada');
-            done();
-        });
     });
 }
 
-function cleanCSS(done) {
-    const fs = require('fs');
-    const path = require('path');
+// Verificar/crear directorio de destino
+function checkDestDir() {
+    return new Promise((resolve, reject) => {
+        console.log('📁 Verificando directorio de destino...');
 
+        const destDir = config.styles.dest;
+        const destPath = path.dirname(destDir);
+
+        try {
+            // Crear directorios si no existen
+            if (!fs.existsSync(destPath)) {
+                console.log(`📁 Creando directorio: ${destPath}`);
+                fs.mkdirSync(destPath, { recursive: true });
+            }
+
+            if (!fs.existsSync(destDir)) {
+                console.log(`📁 Creando directorio: ${destDir}`);
+                fs.mkdirSync(destDir, { recursive: true });
+            }
+
+            console.log(`✅ Directorio listo: ${destDir}`);
+            resolve();
+        } catch (error) {
+            console.error(`❌ Error creando directorio: ${error.message}`);
+            reject(error);
+        }
+    });
+}
+
+// Compilar SCSS con mejor manejo de errores
+function compileSCSS() {
+    console.log('\n🎨 COMPILANDO SCSS...');
+    console.log(`📁 Entrada: ${config.styles.src}`);
+    console.log(`📁 Salida: ${config.styles.dest}`);
+    console.log(`🏭 Modo: ${config.production ? 'PRODUCCIÓN' : 'DESARROLLO'}`);
+
+    return checkSourceFile()
+        .then(() => checkDestDir())
+        .then(() => {
+            return new Promise((resolve, reject) => {
+                gulp.src(config.styles.src)
+                    .pipe(sass({
+                        outputStyle: config.production ? 'compressed' : 'expanded',
+                        includePaths: ['node_modules']
+                    }).on('error', function(error) {
+                        console.error('\n❌ ERROR EN SASS:');
+                        console.error(`   📄 Archivo: ${error.file}`);
+                        console.error(`   📍 Línea: ${error.line}, Columna: ${error.column}`);
+                        console.error(`   💬 Mensaje: ${error.message}`);
+                        console.error(`   🔍 Formateado: ${error.formatted}`);
+
+                        // Mostrar contenido del archivo problemático si es posible
+                        if (error.file && fs.existsSync(error.file)) {
+                            try {
+                                const content = fs.readFileSync(error.file, 'utf8');
+                                const lines = content.split('\n');
+                                const startLine = Math.max(0, error.line - 3);
+                                const endLine = Math.min(lines.length, error.line + 2);
+
+                                console.error('\n📄 Fragmento del archivo:');
+                                for (let i = startLine; i < endLine; i++) {
+                                    const indicator = (i + 1 === error.line) ? '>>>' : '   ';
+                                    console.error(`${indicator} ${i + 1}: ${lines[i]}`);
+                                }
+                            } catch (readError) {
+                                console.error('❌ No se pudo leer el archivo para mostrar contexto');
+                            }
+                        }
+
+                        this.emit('end');
+                        reject(error);
+                    }))
+                    .pipe(gulp.dest(config.styles.dest))
+                    .on('end', () => {
+                        console.log('\n✅ COMPILACIÓN COMPLETADA');
+
+                        // Verificar que se creó el archivo
+                        const outputFile = path.join(config.styles.dest, 'main.css');
+                        if (fs.existsSync(outputFile)) {
+                            const stats = fs.statSync(outputFile);
+                            console.log(`📊 main.css generado: ${stats.size} bytes`);
+                            console.log(`📁 Ubicación: ${outputFile}`);
+
+                            // Mostrar primeras líneas para verificación
+                            const content = fs.readFileSync(outputFile, 'utf8');
+                            const lines = content.split('\n').slice(0, 5);
+                            console.log('\n📄 Primeras líneas del CSS:');
+                            lines.forEach(line => console.log(`   ${line}`));
+
+                            resolve();
+                        } else {
+                            const error = `❌ Archivo no generado: ${outputFile}`;
+                            console.error(error);
+                            reject(new Error(error));
+                        }
+                    })
+                    .on('error', reject);
+            });
+        });
+}
+
+// Tarea para limpiar CSS
+function cleanCSS() {
     console.log('🧹 Limpiando archivos CSS...');
+
     const cssDir = config.styles.dest;
 
     if (!fs.existsSync(cssDir)) {
-        console.log('📁 Directorio no existe:', cssDir);
-        return done();
+        console.log('📁 Directorio no existe, omitiendo limpieza');
+        return Promise.resolve();
     }
 
     try {
@@ -152,50 +169,85 @@ function cleanCSS(done) {
         } else {
             console.log(`✅ Limpieza completada: ${deletedCount} archivos eliminados`);
         }
+
+        return Promise.resolve();
     } catch (error) {
         console.error('❌ Error al limpiar CSS:', error.message);
+        return Promise.reject(error);
     }
-
-    done();
 }
 
-// Función para verificar que todo está configurado correctamente
-function checkSetup(done) {
-    console.log('🔍 Verificando configuración...');
+// Tarea para verificar estructura del proyecto
+function checkProjectStructure() {
+    console.log('📋 VERIFICANDO ESTRUCTURA DEL PROYECTO...');
 
-    const fs = require('fs');
-    const path = require('path');
+    const requiredDirs = [
+        'src/scss',
+        'assets'
+    ];
 
-    // Verificar archivo de entrada
-    if (!fs.existsSync(config.styles.src)) {
-        console.error(`❌ Archivo fuente no encontrado: ${config.styles.src}`);
-        console.error('   Crea el archivo o ajusta la ruta en el gulpfile.js');
-        process.exit(1);
-    }
+    const requiredFiles = [
+        'src/scss/main.scss',
+        'package.json',
+        'gulpfile.js'
+    ];
+
+    let allOk = true;
+
+    // Verificar directorios
+    requiredDirs.forEach(dir => {
+        if (fs.existsSync(dir)) {
+            console.log(`✅ Directorio: ${dir}`);
+        } else {
+            console.error(`❌ Directorio faltante: ${dir}`);
+            allOk = false;
+        }
+    });
+
+    // Verificar archivos
+    requiredFiles.forEach(file => {
+        if (fs.existsSync(file)) {
+            console.log(`✅ Archivo: ${file}`);
+        } else {
+            console.error(`❌ Archivo faltante: ${file}`);
+            allOk = false;
+        }
+    });
 
     // Verificar dependencias
-    if (!hasOptionalDeps) {
-        console.warn('⚠️  Dependencias opcionales no instaladas');
-        console.log('   Para instalar: npm install --save-dev gulp-postcss autoprefixer cssnano gulp-sourcemaps gulp-rename gulp-if');
+    try {
+        const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+        const requiredDeps = ['gulp', 'sass', 'gulp-sass'];
+
+        console.log('\n📦 VERIFICANDO DEPENDENCIAS...');
+        requiredDeps.forEach(dep => {
+            if (packageJson.devDependencies && packageJson.devDependencies[dep]) {
+                console.log(`✅ Dependencia: ${dep}@${packageJson.devDependencies[dep]}`);
+            } else if (packageJson.dependencies && packageJson.dependencies[dep]) {
+                console.log(`✅ Dependencia: ${dep}@${packageJson.dependencies[dep]}`);
+            } else {
+                console.error(`❌ Dependencia faltante: ${dep}`);
+                allOk = false;
+            }
+        });
+    } catch (error) {
+        console.error('❌ Error leyendo package.json:', error.message);
+        allOk = false;
     }
 
-    // Verificar directorio de salida
-    const destDir = config.styles.dest;
-    if (!fs.existsSync(destDir)) {
-        console.log(`📁 Creando directorio de salida: ${destDir}`);
-        fs.mkdirSync(destDir, { recursive: true });
+    if (!allOk) {
+        return Promise.reject(new Error('Estructura del proyecto incompleta'));
     }
 
-    console.log('✅ Configuración verificada correctamente');
-    done();
+    console.log('\n✅ ESTRUCTURA VERIFICADA CORRECTAMENTE');
+    return Promise.resolve();
 }
 
 // Tareas específicas
-exports.check = checkSetup;
-exports.styles = gulp.series(checkSetup, compileSCSS);
-exports.watch = gulp.series(checkSetup, watch);
+exports.check = checkProjectStructure;
+exports.styles = gulp.series(checkProjectStructure, compileSCSS);
 exports.clean = cleanCSS;
-exports.build = gulp.series(checkSetup, cleanCSS, compileSCSS);
+exports.build = gulp.series(cleanCSS, compileSCSS);
 
 // Tarea por defecto
-exports.default = gulp.series(checkSetup, compileSCSS, watch);
+exports.default = compileSCSS;

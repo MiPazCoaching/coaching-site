@@ -82,11 +82,308 @@ jobs:
             exit 1
           fi
 
+      - name: 🗂️ Preparar archivos para Pages
+          run: |
+            echo "=== PREPARANDO PARA GITHUB PAGES ==="
+            
+            # Crear directorio para el deploy
+            mkdir -p _site
+            
+            # 1. COPIAR PÁGINAS HTML ORGANIZADAS POR IDIOMAS
+            echo "=== COPIANDO PÁGINAS POR IDIOMAS ==="
+            
+            if [ -d "src/pages" ]; then
+              echo "📁 Estructura encontrada: src/pages/"
+            
+              # Español (es)
+              if [ -d "src/pages/es" ]; then
+                mkdir -p _site/es
+                # Copiar todos los archivos HTML
+                cp src/pages/es/*.html _site/es/ 2>/dev/null || true
+                # Copiar otros recursos si existen (subcarpetas, imágenes, etc.)
+                find src/pages/es -maxdepth 1 -type d ! -name '.' ! -name 'es' | while read dir; do
+                  dir_name=$(basename "$dir")
+                  cp -r "$dir" _site/es/ 2>/dev/null || true
+                done
+                echo "✅ Español copiado: $(ls _site/es/*.html 2>/dev/null | wc -l) archivos HTML"
+              fi
+            
+              # Inglés (en)
+              if [ -d "src/pages/en" ]; then
+                mkdir -p _site/en
+                cp src/pages/en/*.html _site/en/ 2>/dev/null || true
+                find src/pages/en -maxdepth 1 -type d ! -name '.' ! -name 'en' | while read dir; do
+                  dir_name=$(basename "$dir")
+                  cp -r "$dir" _site/en/ 2>/dev/null || true
+                done
+                echo "✅ Inglés copiado: $(ls _site/en/*.html 2>/dev/null | wc -l) archivos HTML"
+              fi
+            
+              # Francés (fr)
+              if [ -d "src/pages/fr" ]; then
+                mkdir -p _site/fr
+                cp src/pages/fr/*.html _site/fr/ 2>/dev/null || true
+                find src/pages/fr -maxdepth 1 -type d ! -name '.' ! -name 'fr' | while read dir; do
+                  dir_name=$(basename "$dir")
+                  cp -r "$dir" _site/fr/ 2>/dev/null || true
+                done
+                echo "✅ Francés copiado: $(ls _site/fr/*.html 2>/dev/null | wc -l) archivos HTML"
+              fi
+            else
+              echo "⚠️ No se encontró la estructura src/pages/"
+            fi
+            
+            # 2. COPIAR LANDING PAGE DE REDIRECCIÓN
+            echo ""
+            echo "=== COPIANDO LANDING PAGE ==="
+            
+            # Verificar si ya existe un index.html en la raíz del proyecto
+            if [ -f "index.html" ]; then
+              # Copiar la landing page existente
+              cp index.html _site/
+              echo "✅ Landing page copiada desde index.html"
+            elif [ -f "src/index.html" ]; then
+              # O si está en src/
+              cp src/index.html _site/
+              echo "✅ Landing page copiada desde src/index.html"
+            else
+              # Crear una landing page básica si no existe
+              echo "⚠️ No se encontró landing page, creando una básica..."
+              cat > _site/index.html << 'EOF'
+                  <!DOCTYPE html>
+                  <html lang="es">
+                  <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Coaching Site | Selecciona Idioma</title>
+                  <link rel="stylesheet" href="assets/css/main.css">
+                  <style>
+                  :root {
+                  --primary-color: #667eea;
+                  --secondary-color: #764ba2;
+              }
+                
+                .language-landing {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+                color: white;
+                text-align: center;
+                padding: 2rem;
+              }
+                
+                .language-landing h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+              }
+                
+                .language-landing p {
+                font-size: 1.2rem;
+                margin-bottom: 3rem;
+                max-width: 600px;
+                opacity: 0.9;
+              }
+                
+                .language-options {
+                display: flex;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 2rem;
+              }
+                
+                .language-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 2rem;
+                min-width: 200px;
+                text-decoration: none;
+                color: white;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+              }
+                
+                .language-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.15);
+              }
+                
+                .language-flag {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+              }
+                
+                .language-name {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+              }
+                
+                .auto-redirect {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                opacity: 0.8;
+              }
+                
+                .redirect-timer {
+                font-weight: bold;
+                color: #ffd700;
+              }
+                
+                @media (max-width: 768px) {
+                   .language-landing h1 {
+                   font-size: 2rem;
+              }
+                
+                .language-card {
+                padding: 1.5rem;
+                min-width: 150px;
+              }
+              }
+                </style>
+                </head>
+                <body>
+                <div class="language-landing">
+                <h1>🌍 Coaching Internacional</h1>
+                <p>Selecciona tu idioma preferido para acceder a los recursos de coaching personalizado</p>
+                
+                <div class="language-options">
+                <a href="es/index.html" class="language-card">
+                <div class="language-flag">🇪🇸</div>
+                <div class="language-name">Español</div>
+                <div>Acceder al sitio en español</div>
+                </a>
+                
+                <a href="en/index.html" class="language-card">
+                <div class="language-flag">🇬🇧</div>
+                <div class="language-name">English</div>
+                <div>Access the site in English</div>
+                </a>
+                
+                <a href="fr/index.html" class="language-card">
+                <div class="language-flag">🇫🇷</div>
+                <div class="language-name">Français</div>
+                <div>Accéder au site en français</div>
+                </a>
+                </div>
+                
+                <div class="auto-redirect">
+                Redirigiendo automáticamente al idioma de tu navegador en <span class="redirect-timer" id="countdown">5</span> segundos...
+                </div>
+                </div>
+                
+                <script>
+                // Detectar idioma del navegador
+                const userLang = navigator.language || navigator.userLanguage;
+                const supportedLangs = ['es', 'en', 'fr'];
+                const defaultLang = 'es';
+                
+                // Extraer código de idioma (ej: "es-ES" -> "es")
+                const langCode = userLang.split('-')[0];
+                const targetLang = supportedLangs.includes(langCode) ? langCode: defaultLang;
+                
+                // Contador para redirección automática
+                let seconds = 5;
+                const countdownEl = document.getElementById('countdown');
+                
+                const countdown = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                
+                if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = `${targetLang}/index.html`;
+              }
+              }, 1000);
+                
+                // Cancelar redirección si el usuario interactúa
+                document.querySelectorAll('.language-card').forEach(link => {
+                link.addEventListener('click', () => {
+                clearInterval(countdown);
+                countdownEl.textContent = '0';
+              });
+              });
+                </script>
+                </body>
+                </html>
+    EOF
+    echo "✅ Landing page básica creada"
+    fi
+    
+    # 3. COPIAR ASSETS COMPILADOS (CSS, JS, IMÁGENES)
+    echo ""
+    echo "=== COPIANDO ASSETS ==="
+    
+    # CSS compilado
+    if [ -d "assets/css" ]; then
+    mkdir -p _site/assets/css
+    cp assets/css/*.css _site/assets/css/ 2>/dev/null || true
+    echo "✅ CSS copiado: $(ls _site/assets/css/*.css 2>/dev/null | wc -l) archivos"
+    fi
+    
+    # JS si existe
+    if [ -d "assets/js" ]; then
+    mkdir -p _site/assets/js
+    cp assets/js/*.js _site/assets/js/ 2>/dev/null || true
+    echo "✅ JavaScript copiado"
+    elif [ -d "js" ]; then
+    cp -r js _site/ 2>/dev/null || true
+    echo "✅ JavaScript copiado desde js/"
+    fi
+    
+    # Imágenes
+    if [ -d "assets/images" ]; then
+    mkdir -p _site/assets/images
+    cp -r assets/images/* _site/assets/images/ 2>/dev/null || true
+    echo "✅ Imágenes copiadas"
+    elif [ -d "images" ]; then
+    cp -r images _site/ 2>/dev/null || true
+    echo "✅ Imágenes copiadas desde images/"
+    fi
+    
+    # Iconos
+    if [ -d "assets/icons" ]; then
+    mkdir -p _site/assets/iconss
+    cp -r assets/icons/* _site/assets/icons/ 2>/dev/null || true
+    echo "✅ Iconos copiadas"
+    elif [ -d "icons" ]; then
+    cp -r icons _site/ 2>/dev/null || true
+    echo "✅ Iconos copiadas desde images/"
+    fi
+    
+    # Fuentes
+    if [ -d "assets/fonts" ]; then
+    mkdir -p _site/assets/fonts
+    cp -r assets/fonts/* _site/assets/fonts/ 2>/dev/null || true
+    echo "✅ Fuentes copiadas"
+    elif [ -d "fonts" ]; then
+    cp -r fonts _site/ 2>/dev/null || true
+    echo "✅ Fuentes copiadas desde fonts/"
+    fi
+    
+    # 4. VERIFICAR ESTRUCTURA FINAL
+    echo ""
+    echo "=== ESTRUCTURA FINAL DEL SITIO ==="
+    echo "_site/"
+    find _site -type f | sort
+    
+    echo ""
+    echo "=== RESUMEN ==="
+    echo "📄 Landing page: _site/index.html"
+    echo "🇪🇸 Español: $(ls _site/es/*.html 2>/dev/null | wc -l) páginas"
+    echo "🇬🇧 Inglés: $(ls _site/en/*.html 2>/dev/null | wc -l) páginas"
+    echo "🇫🇷 Francés: $(ls _site/fr/*.html 2>/dev/null | wc -l) páginas"
+    echo "🎨 CSS: $(ls _site/assets/css/*.css 2>/dev/null | wc -l) archivos"
       - name: 📦 Crear artifact de compilación
         uses: actions/upload-artifact@v4
         with:
-          name: css-build
-          path: assets/css/
+          name: site-build
+          path: _site/
           retention-days: 7
         if: success()
 
@@ -101,34 +398,30 @@ jobs:
       - name: 🛎️ Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: 📦 Download build artifact
+      - name: 📦 Descargar artifact del build
         uses: actions/download-artifact@v4
         with:
-          name: css-build
-          path: assets/css/
+          name: site-build
+          path: _site/
 
-      - name: ✅ Verificar archivos antes del deploy
+      - name: ✅ Verificar archivos para deploy
         run: |
           echo "=== ARCHIVOS PARA DEPLOY ==="
-          ls -la assets/css/
-          if [ ! -f "assets/css/main.css" ]; then
-            echo "❌ ERROR: main.css no encontrado para deploy"
-            exit 1
+          ls -la _site/
+          if [ ! -d "_site/assets" ] && [ ! -f "_site/index.html" ]; then
+            echo "⚠️ Advertencia: No hay index.html ni assets"
           fi
-          echo "✅ Todo listo para deploy"
+          echo ""
+          echo "=== ESTRUCTURA COMPLETA ==="
+          find _site -type f | sort
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          force_orphan: true
-          exclude_assets: 'node_modules/,.github/,.git/,src/,*.md,package*.json,gulpfile.js'
+          publish_dir: ./_site  # ✅ CAMBIO IMPORTANTE: Solo la carpeta preparada
+          force_orphan: true    # ✅ Ahora sí funciona porque _site no tiene .git
+          publish_branch: gh-pages
 
       - name: 📢 Notificar despliegue
         run: |

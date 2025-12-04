@@ -1,0 +1,36 @@
+<!-- /src/templates/partials/theme-switcher.njk -->
+<div class="dropdown theme-dropdown" data-dropdown="theme">
+    <button class="dropdown-button"
+            aria-expanded="false"
+            aria-label="{{ t.ui.theme }}"
+            data-dropdown-toggle="theme">
+        🎨 {{ t.ui.theme }}
+    </button>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="theme-toggle">
+        <li role="none">
+            <button type="button"
+                    role="menuitem"
+                    data-theme-option="light"
+                    class="theme-option {% if not user_theme or user_theme == 'light' %}active{% endif %}">
+                {{ t.ui.theme_light }}
+            </button>
+        </li>
+        <li role="none">
+            <button type="button"
+                    role="menuitem"
+                    data-theme-option="dark"
+                    class="theme-option {% if user_theme == 'dark' %}active{% endif %}">
+                {{ t.ui.theme_dark }}
+            </button>
+        </li>
+        <li role="none">
+            <button type="button"
+                    role="menuitem"
+                    data-theme-option="high-contrast"
+                    class="theme-option {% if user_theme == 'high-contrast' %}active{% endif %}">
+                {{ t.ui.theme_highcontrast }}
+            </button>
+        </li>
+    </ul>
+</div>

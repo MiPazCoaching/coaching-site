@@ -1,0 +1,14 @@
+<!-- /src/templates/partials/scripts.njk -->
+{# JavaScript principal #}
+<script src="/assets/js/main.js" type="module" defer></script>
+
+{# Módulo de contacto #}
+<script src="/assets/js/utils/contact-manager.js" type="module" defer></script>
+
+{# Calendly (opcional - solo en páginas de contacto) #}
+{% if slug == 'contact' %}
+<script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+{% endif %}
+
+{# Inline scripts específicos de página #}
+{% block page_scripts %}{% endblock %}

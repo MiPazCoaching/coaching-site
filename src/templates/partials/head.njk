@@ -1,0 +1,38 @@
+<!-- /src/templates/partials/head.njk -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+
+    {# SEO multilenguaje #}
+    <link rel="alternate" hreflang="es" href="/es/{{ slug }}.html">
+    <link rel="alternate" hreflang="en" href="/en/{{ slug }}.html">
+    <link rel="alternate" hreflang="fr" href="/fr/{{ slug }}.html">
+    <link rel="alternate" hreflang="x-default" href="/en/{{ slug }}.html">
+
+    {# Open Graph / Facebook #}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:locale" content="{{ lang }}_{{ lang | upper }}">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+
+    {# Twitter #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+
+    {# CSS #}
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    {# Favicon #}
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/favicon/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+</head>

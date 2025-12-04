@@ -1,0 +1,42 @@
+<!-- /src/templates/layout.njk -->
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+{% include "partials/head.njk" %}
+
+<body data-theme="light" data-lang="{{ lang }}">
+    {% include "partials/skip-link.njk" %}
+    {% include "partials/navbar.njk" %}
+    {% include "partials/mobile-menu.njk" %}
+    
+    <main id="main-content" class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% include "partials/footer.njk" %}
+    {% include "partials/scripts.njk" %}
+
+
+    {# ================================================ #}
+    {# GOOGLE ANALYTICS 4 - Configuración básica #}
+    {# ================================================ #}
+    {% if env.production and googleAnalyticsId %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ googleAnalyticsId }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // Configuración básica
+        gtag('config', '{{ googleAnalyticsId }}', {
+            'debug_mode': {{ env.development ? 'true' : 'false' }},
+            'page_title': '{{ title | escape }}',
+            'page_location': window.location.href,
+            'language': '{{ lang }}'
+        });
+    </script>
+    {% endif %}
+</body>
+</html>
+
+

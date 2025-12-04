@@ -1,0 +1,212 @@
+<!-- src/templates/pages/en/contact.njk -->
+---
+lang: "en"
+slug: "contact"
+title: "Contact - Marta Paz Ogle"
+description: "Contact Marta Paz Ogle to book personal and professional coaching sessions in Spanish, English, or French."
+current_page: "contact"
+---
+
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero hero--minimal" aria-labelledby="hero-title">
+    <div class="container">
+        <h1 id="hero-title" class="hero-title">{{ t.contact.title }}</h1>
+        <p class="hero-subtitle">{{ t.contact.subtitle }}</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="intro" id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2 id="contact-heading" class="section-title">{{ t.contact.write_to_me }}</h2>
+                <form action="https://formspree.io/f/mrbqbklp" method="POST" class="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">{{ t.contact.name }}</label>
+                        <input type="text"
+                               name="name"
+                               id="name"
+                               required
+                               minlength="2"
+                               maxlength="100"
+                               placeholder="{{ t.contact.name }}"
+                               class="form-control">
+                        <div class="form-error" id="name-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">{{ t.contact.email }}</label>
+                        <input type="email"
+                               name="email"
+                               id="email"
+                               required
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                               placeholder="your@email.com"
+                               class="form-control">
+                        <div class="form-error" id="email-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">{{ t.contact.message }}</label>
+                        <textarea name="message"
+                                  id="message"
+                                  rows="5"
+                                  required
+                                  minlength="10"
+                                  placeholder="{{ t.contact.message }}"
+                                  class="form-control"></textarea>
+                        <div class="form-error" id="message-error"></div>
+                    </div>
+
+                    <!-- Hidden fields -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    <input type="hidden" name="_subject" value="New message from MartaPazOgle.com">
+                    <input type="hidden" name="_next" value="thank-you.html">
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">{{ t.contact.send_message }}</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Contact Information and Calendly -->
+            <div class="contact-info-container">
+                <div class="contact-info">
+                    <h3 class="section-title">{{ t.contact.contact_info }}</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>{{ t.contact.email }}</h4>
+                                <a href="#" data-contact="email" class="contact-link">
+                                    Click to send an email
+                                </a>
+                            </div>
+                        </div>
+            
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <h4>{{ t.contact.phone }}</h4>
+                                <a href="#" data-contact="phone" class="contact-link">
+                                    Click to call
+                                </a>
+                            </div>
+                        </div>
+            
+                        <div class="contact-item">
+                            <span class="contact-icon">💬</span>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <a href="#" data-contact="whatsapp" class="contact-link">
+                                    Open WhatsApp
+                                </a>
+                            </div>
+                        </div>
+            
+                        <div class="contact-item">
+                            <span class="contact-icon">💼</span>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="#" data-contact="linkedin" class="contact-link">
+                                    Connect on LinkedIn
+                                </a>
+                            </div>
+                        </div>
+            
+                        <div class="contact-item">
+                            <span class="contact-icon">🌍</span>
+                            <div>
+                                <h4>{{ t.contact.languages }}</h4>
+                                <p>{{ t.contact.languages_list }}</p>
+                            </div>
+                        </div>
+            
+                        <div class="contact-item">
+                            <span class="contact-icon">⏰</span>
+                            <div>
+                                <h4>{{ t.contact.contact_hours }}</h4>
+                                <p>{{ t.contact.hours_week }}</p>
+                                <p>{{ t.contact.hours_location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="booking-container">
+                    <h3 class="section-title">{{ t.contact.book_session }}</h3>
+                    <p>{{ t.contact.booking_note }}</p>
+            
+                    <div class="booking-actions">
+                        <button id="calendly-button" class="btn btn-primary btn-large">
+                            📅 {{ t.contact.book_calendly }}
+                        </button>
+                        <p class="booking-note">{{ t.contact.booking_instructions }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Frequently Asked Questions -->
+<section class="intro intro--alternate" aria-labelledby="faq-heading">
+    <div class="container">
+        <h2 id="faq-heading" class="section-title">{{ t.contact.faq }}</h2>
+
+        <div class="faq-grid">
+            <details class="faq-item">
+                <summary class="faq-question">{{ t.contact.faq_1_q }}</summary>
+                <div class="faq-answer">
+                    <p>{{ t.contact.faq_1_a }}</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">{{ t.contact.faq_2_q }}</summary>
+                <div class="faq-answer">
+                    <p>{{ t.contact.faq_2_a }}</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">{{ t.contact.faq_3_q }}</summary>
+                <div class="faq-answer">
+                    <p>{{ t.contact.faq_3_a }}</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">{{ t.contact.faq_4_q }}</summary>
+                <div class="faq-answer">
+                    <p>{{ t.contact.faq_4_a }}</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">{{ t.contact.faq_5_q }}</summary>
+                <div class="faq-answer">
+                    <p>{{ t.contact.faq_5_a }}</p>
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ asset('assets/js/contact-manager.js') }}"></script>
+<!-- Calendly script -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    document.getElementById('calendly-button').addEventListener('click', function() {
+        Calendly.initPopupWidget({url: 'https://calendly.com/martapazogle'});
+        return false;
+    });
+</script>
+{% endblock %}

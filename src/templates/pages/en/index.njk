@@ -1,0 +1,168 @@
+---
+lang: "en"
+slug: ""
+title: "Marta Paz Ogle – Personal and Professional Coaching"
+description: "Trilingual personal and professional coach. Sessions in Spanish, English, and French for your wellbeing and success."
+current_page: "home"
+---
+
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section with photo -->
+<section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+        <div class="hero-profile">
+            <div class="profile-image-container">
+                <img src="{{ asset('assets/img/marta-paz-ogle.jpg') }}" alt="Marta Paz Ogle - Personal and professional coach" class="profile-image" loading="eager">
+            </div>
+            <div class="hero-content">
+                <h1 id="hero-title" class="hero-title">
+                    <span class="title-line">{{ t.index.hero_line_1 }}</span>
+                    <span class="title-line">{{ t.index.hero_line_2 }}</span>
+                </h1>
+                <p class="hero-subtitle">{{ t.index.hero_subtitle }}</p>
+                <p class="hero-description">{{ t.index.hero_description }}</p>
+                <div class="hero-actions">
+                    <a href="{{ url('contact') }}" class="btn btn-primary">{{ t.index.book_session }}</a>
+                    <a href="{{ url('about') }}" class="btn btn-secondary">{{ t.index.learn_more }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Services Section -->
+<section class="intro" aria-labelledby="services-title">
+    <div class="container">
+        <h2 id="services-title" class="section-title">{{ t.index.discover_services }}</h2>
+        <p class="intro-description">{{ t.index.services_description }}</p>
+
+        <div class="intro-features">
+            <article class="intro-feature">
+                <div class="feature-icon">💼</div>
+                <h3>{{ t.index.service_1_title }}</h3>
+                <p>{{ t.index.service_1_description }}</p>
+            </article>
+
+            <article class="intro-feature">
+                <div class="feature-icon">❤️</div>
+                <h3>{{ t.index.service_2_title }}</h3>
+                <p>{{ t.index.service_2_description }}</p>
+            </article>
+
+            <article class="intro-feature">
+                <div class="feature-icon">🌱</div>
+                <h3>{{ t.index.service_3_title }}</h3>
+                <p>{{ t.index.service_3_description }}</p>
+            </article>
+
+            <article class="intro-feature">
+                <div class="feature-icon">🤝</div>
+                <h3>{{ t.index.service_4_title }}</h3>
+                <p>{{ t.index.service_4_description }}</p>
+            </article>
+        </div>
+
+        <div class="intro-actions">
+            <a href="{{ url('services') }}" class="btn btn-primary btn-large">{{ t.index.view_all_services }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Languages Section -->
+<section class="intro intro--alternate" aria-labelledby="languages-title">
+    <div class="container">
+        <h2 id="languages-title" class="section-title">{{ t.index.sessions_language }}</h2>
+        <p class="intro-subtitle">{{ t.index.choose_language }}</p>
+
+        <div class="language-cards">
+            <a href="#" class="language-card" data-lang="es">
+                <div class="language-flag-container">
+                    <img src="{{ asset('assets/icons/es-variant.svg') }}" alt="Spanish" class="language-flag-large">
+                </div>
+                <h3>{{ t.index.spanish }}</h3>
+                <p>{{ t.index.spanish_description }}</p>
+            </a>
+
+            <a href="#" class="language-card" data-lang="en">
+                <div class="language-flag-container">
+                    <img src="{{ asset('assets/icons/gb.svg') }}" alt="English" class="language-flag-large">
+                </div>
+                <h3>{{ t.index.english }}</h3>
+                <p>{{ t.index.english_description }}</p>
+            </a>
+
+            <a href="#" class="language-card" data-lang="fr">
+                <div class="language-flag-container">
+                    <img src="{{ asset('assets/icons/fr.svg') }}" alt="French" class="language-flag-large">
+                </div>
+                <h3>{{ t.index.french }}</h3>
+                <p>{{ t.index.french_description }}</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Approach Section -->
+<section class="intro" aria-labelledby="approach-title">
+    <div class="container">
+        <div class="approach-content">
+            <div class="approach-text">
+                <h2 id="approach-title" class="section-title">{{ t.index.my_approach }}</h2>
+                <p class="approach-description">
+                    {{ t.index.approach_description | safe }}
+                </p>
+                <div class="approach-points">
+                    <div class="approach-point">
+                        <span class="point-icon">🧠</span>
+                        <div>
+                            <h4>{{ t.index.approach_1_title }}</h4>
+                            <p>{{ t.index.approach_1_description }}</p>
+                        </div>
+                    </div>
+                    <div class="approach-point">
+                        <span class="point-icon">👥</span>
+                        <div>
+                            <h4>{{ t.index.approach_2_title }}</h4>
+                            <p>{{ t.index.approach_2_description }}</p>
+                        </div>
+                    </div>
+                    <div class="approach-point">
+                        <span class="point-icon">🎯</span>
+                        <div>
+                            <h4>{{ t.index.approach_3_title }}</h4>
+                            <p>{{ t.index.approach_3_description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="approach-image">
+                <img src="{{ asset('assets/img/coaching-approach.jpg') }}"
+                     alt="Comprehensive coaching approach"
+                     loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="intro intro--accent" aria-labelledby="cta-title">
+    <div class="container">
+        <div class="intro-content">
+            <h2 id="cta-title" class="intro-title">{{ t.index.ready_transform }}</h2>
+            <p class="intro-description">
+                {{ t.index.cta_description }}
+            </p>
+            <div class="intro-actions">
+                <a href="{{ url('contact') }}" class="btn btn-primary btn-large">
+                    {{ t.index.schedule_free_session }}
+                </a>
+                <a href="{{ url('about') }}" class="btn btn-secondary">
+                    {{ t.index.learn_about_me }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,131 @@
+<!-- src/templates/pages/es/about.njk -->
+---
+lang: "es"
+slug: "about"
+title: "Sobre mí - Marta Paz Ogle"
+description: "Conoce a Marta Paz Ogle - Psicóloga, coach personal y profesional trilingüe con más de 7 años de experiencia."
+current_page: "about"
+---
+
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero hero--minimal" aria-labelledby="hero-title">
+    <div class="container">
+        <div class="text-center mb-10">
+            <div class="profile-image-container">
+                <img src="/assets/img/marta-paz-ogle.jpg" alt="Marta Paz Ogle" class="profile-image">
+            </div>
+            <h1 id="hero-title" class="hero-title">{{ t.about.title }}</h1>
+            <p class="hero-subtitle">{{ t.about.subtitle }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Me Content -->
+<section class="intro" id="sobre-mi" aria-labelledby="about-heading">
+    <div class="container">
+        <div class="intro-content">
+            <p>{{ t.about.intro_1 }}</p>
+
+            <p>{{ t.about.intro_2 }}</p>
+
+            <div class="intro-features mt-8">
+                <article class="intro-feature">
+                    <div class="feature-icon">🎓</div>
+                    <h3>{{ t.about.academic_background }}</h3>
+                    <p>{{ t.about.academic_details }}</p>
+                </article>
+
+                <article class="intro-feature">
+                    <div class="feature-icon">💼</div>
+                    <h3>{{ t.about.professional_experience }}</h3>
+                    <p>{{ t.about.professional_details }}</p>
+                </article>
+
+                <article class="intro-feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>{{ t.about.languages }}</h3>
+                    <p>{{ t.about.languages_details }}</p>
+                </article>
+            </div>
+
+            <div class="mt-10">
+                <h3 class="section-title">{{ t.about.additional_training }}</h3>
+                <div class="skills-tags">
+                    <span class="skill-tag">{{ t.about.training_1 }}</span>
+                    <span class="skill-tag">{{ t.about.training_2 }}</span>
+                    <span class="skill-tag">{{ t.about.training_3 }}</span>
+                    <span class="skill-tag">{{ t.about.training_4 }}</span>
+                    <span class="skill-tag">{{ t.about.training_5 }}</span>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <p class="text-lg">{{ t.about.approach_phrase | safe }}</p>
+                <div class="intro-actions mt-6">
+                    <a href="/{{ lang }}/contact.html" class="btn btn-primary">{{ t.about.book_session }}</a>
+                    <a href="/{{ lang }}/services.html" class="btn btn-secondary">{{ t.about.view_services }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Personal Approach Section -->
+<section class="intro intro--alternate" aria-labelledby="approach-heading">
+    <div class="container">
+        <h2 id="approach-heading" class="section-title">{{ t.about.coaching_philosophy }}</h2>
+
+        <div class="approach-content">
+            <div class="approach-text">
+                <div class="approach-points">
+                    <div class="approach-point">
+                        <span class="point-icon">🤝</span>
+                        <div>
+                            <h4>{{ t.about.personalized_approach }}</h4>
+                            <p>{{ t.about.personalized_desc }}</p>
+                        </div>
+                    </div>
+                    <div class="approach-point">
+                        <span class="point-icon">🎯</span>
+                        <div>
+                            <h4>{{ t.about.tangible_results }}</h4>
+                            <p>{{ t.about.tangible_desc }}</p>
+                        </div>
+                    </div>
+                    <div class="approach-point">
+                        <span class="point-icon">🧠</span>
+                        <div>
+                            <h4>{{ t.about.scientific_foundation }}</h4>
+                            <p>{{ t.about.scientific_desc }}</p>
+                        </div>
+                    </div>
+                    <div class="approach-point">
+                        <span class="point-icon">❤️</span>
+                        <div>
+                            <h4>{{ t.about.empathy_confidentiality }}</h4>
+                            <p>{{ t.about.empathy_desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="approach-image">
+                <img src="/assets/img/coaching-philosophy.jpg"
+                     alt="Filosofía de coaching personalizado"
+                     loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block page_scripts %}
+<script>
+    // Scripts específicos para la página About
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Página About cargada');
+    });
+</script>
+{% endblock %}
+{% endblock %}

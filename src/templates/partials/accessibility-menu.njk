@@ -1,0 +1,36 @@
+<!-- /src/templates/partials/accessibility-menu.njk -->
+<div class="dropdown accessibility-dropdown" data-dropdown="accessibility">
+    <button class="dropdown-button"
+            aria-expanded="false"
+            aria-label="{{ t.ui.accessibility }}"
+            data-dropdown-toggle="accessibility">
+        ♿ {{ t.ui.accessibility }}
+    </button>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="accessibility-toggle">
+        <li role="none" class="accessibility-option">
+            <button type="button"
+                    role="menuitemcheckbox"
+                    aria-checked="false"
+                    data-accessibility="dyslexia">
+                {{ t.accessibility.dyslexia_mode }}
+            </button>
+        </li>
+        <li role="none" class="accessibility-option">
+            <button type="button"
+                    role="menuitemcheckbox"
+                    aria-checked="false"
+                    data-accessibility="reading">
+                {{ t.accessibility.reading_mode }}
+            </button>
+        </li>
+        <li role="none" class="accessibility-option">
+            <button type="button"
+                    role="menuitemcheckbox"
+                    aria-checked="false"
+                    data-accessibility="reduce-motion">
+                {{ t.accessibility.reduce_motion }}
+            </button>
+        </li>
+    </ul>
+</div>

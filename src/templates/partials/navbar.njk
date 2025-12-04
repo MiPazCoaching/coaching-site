@@ -1,0 +1,22 @@
+<!-- /src/templates/partials/navbar.njk -->
+<nav class="navbar" aria-label="{{ t.nav.main_navigation }}" role="navigation">
+    <div class="nav-container">
+        {# Brand/Logo #}
+        <a href="/{{ lang }}/index.html" class="nav-brand">
+            <span class="brand-text">{{ t.site.brand }}</span>
+            {% if lang == 'es' %}
+            <span class="sr-only">- Español</span>
+            {% elseif lang == 'en' %}
+            <span class="sr-only">- English</span>
+            {% elseif lang == 'fr' %}
+            <span class="sr-only">- Français</span>
+            {% endif %}
+        </a>
+
+        {# Desktop Navigation #}
+        {% include "partials/navbar-menu.njk" %}
+
+        {# Controls #}
+        {% include "partials/navbar-controls.njk" %}
+    </div>
+</nav>

@@ -1,0 +1,15 @@
+<!-- /src/templates/partials/navbar-controls.njk -->
+<div class="nav-controls">
+    {% include "partials/language-switcher.njk" %}
+    {% include "partials/theme-switcher.njk" %}
+    {% include "partials/accessibility-menu.njk" %}
+
+    <button class="menu-toggle"
+            id="menu-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="{{ t.nav.open_menu }}">
+        <span class="hamburger-icon" aria-hidden="true"></span>
+        <span class="sr-only">{{ t.nav.open_menu }}</span>
+    </button>
+</div>

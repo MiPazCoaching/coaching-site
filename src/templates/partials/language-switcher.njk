@@ -1,0 +1,41 @@
+<!-- /src/templates/partials/language-switcher.njk -->
+<div class="dropdown language-dropdown" data-dropdown="language">
+    <button class="dropdown-button"
+            aria-expanded="false"
+            aria-label="{{ t.ui.language }}"
+            data-dropdown-toggle="language">
+        🌐 {{ lang | upper }}
+    </button>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="language-toggle">
+        <li role="none">
+            <a href="/es/{{ slug }}.html"
+               role="menuitem"
+               lang="es"
+               hreflang="es"
+               class="{% if lang == 'es' %}active{% endif %}">
+                🇪🇸 {{ t.footer.spanish }}
+            </a>
+        </li>
+
+        <li role="none">
+            <a href="/en/{{ slug }}.html"
+               role="menuitem"
+               lang="en"
+               hreflang="en"
+               class="{% if lang == 'en' %}active{% endif %}">
+                🇬🇧 {{ t.footer.english }}
+            </a>
+        </li>
+
+        <li role="none">
+            <a href="/fr/{{ slug }}.html"
+               role="menuitem"
+               lang="fr"
+               hreflang="fr"
+               class="{% if lang == 'fr' %}active{% endif %}">
+                🇫🇷 {{ t.footer.french }}
+            </a>
+        </li>
+    </ul>
+</div>

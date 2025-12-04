@@ -1,0 +1,47 @@
+<!-- /src/templates/partials/navbar-menu.njk -->
+<ul class="nav-menu" role="menubar" aria-label="{{ t.nav.main_navigation }}">
+    <li role="none">
+        <a href="/{{ lang }}/index.html"
+           role="menuitem"
+           {% if slug == 'index' %}aria-current="page"{% endif %}
+        class="{% if slug == 'index' %}active{% endif %}">
+        {{ t.nav.home }}
+        </a>
+    </li>
+
+    <li role="none">
+        <a href="/{{ lang }}/about.html"
+           role="menuitem"
+           {% if slug == 'about' %}aria-current="page"{% endif %}
+        class="{% if slug == 'about' %}active{% endif %}">
+        {{ t.nav.about }}
+        </a>
+    </li>
+
+    <li role="none">
+        <a href="/{{ lang }}/services.html"
+           role="menuitem"
+           {% if slug == 'services' %}aria-current="page"{% endif %}
+        class="{% if slug == 'services' %}active{% endif %}">
+        {{ t.nav.services }}
+        </a>
+    </li>
+
+    <li role="none">
+        <a href="/{{ lang }}/blog.html"
+           role="menuitem"
+           {% if slug == 'blog' %}aria-current="page"{% endif %}
+        class="{% if slug == 'blog' %}active{% endif %}">
+        {{ t.nav.blog }}
+        </a>
+    </li>
+
+    <li role="none">
+        <a href="/{{ lang }}/contact.html"
+           role="menuitem"
+           {% if slug == 'contact' %}aria-current="page"{% endif %}
+        class="{% if slug == 'contact' %}active{% endif %}">
+        {{ t.nav.contact }}
+        </a>
+    </li>
+</ul>

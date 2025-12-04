@@ -1,0 +1,76 @@
+<!-- /src/templates/partials/mobile-menu.njk -->
+<div id="mobile-menu"
+     class="mobile-menu"
+     aria-hidden="true"
+     aria-label="{{ t.nav.main_navigation }}"
+     role="dialog"
+     aria-modal="true">
+
+    <div class="mobile-menu-header">
+        <button class="close-button"
+                id="close-menu-toggle"
+                aria-label="{{ t.ui.close }}"
+                aria-controls="mobile-menu">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">{{ t.ui.close }}</span>
+        </button>
+    </div>
+
+    <nav role="navigation">
+        <ul class="mobile-nav" role="menu">
+            <li role="none">
+                <a href="/{{ lang }}/index.html"
+                   role="menuitem"
+                   {% if slug == 'index' %}aria-current="page"{% endif %}
+                class="{% if slug == 'index' %}active{% endif %}">
+                {{ t.nav.home }}
+                </a>
+            </li>
+            <li role="none">
+                <a href="/{{ lang }}/about.html"
+                   role="menuitem"
+                   {% if slug == 'about' %}aria-current="page"{% endif %}
+                class="{% if slug == 'about' %}active{% endif %}">
+                {{ t.nav.about }}
+                </a>
+            </li>
+            <li role="none">
+                <a href="/{{ lang }}/services.html"
+                   role="menuitem"
+                   {% if slug == 'services' %}aria-current="page"{% endif %}
+                class="{% if slug == 'services' %}active{% endif %}">
+                {{ t.nav.services }}
+                </a>
+            </li>
+            <li role="none">
+                <a href="/{{ lang }}/blog.html"
+                   role="menuitem"
+                   {% if slug == 'blog' %}aria-current="page"{% endif %}
+                class="{% if slug == 'blog' %}active{% endif %}">
+                {{ t.nav.blog }}
+                </a>
+            </li>
+            <li role="none">
+                <a href="/{{ lang }}/contact.html"
+                   role="menuitem"
+                   {% if slug == 'contact' %}aria-current="page"{% endif %}
+                class="{% if slug == 'contact' %}active{% endif %}">
+                {{ t.nav.contact }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    {# Mobile Controls #}
+    <div class="mobile-controls">
+        {% include "partials/language-switcher.njk" %}
+        {% include "partials/theme-switcher.njk" %}
+        {% include "partials/accessibility-menu.njk" %}
+    </div>
+</div>
+
+{# Mobile Menu Overlay #}
+<div id="menu-overlay"
+     class="menu-overlay"
+     aria-hidden="true"
+     role="presentation"></div>

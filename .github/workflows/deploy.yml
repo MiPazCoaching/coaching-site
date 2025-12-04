@@ -65,7 +65,92 @@ jobs:
             echo "✅ CSS subido al repositorio"
           else
             echo "📭 No hay cambios en el CSS"
+          
+      - name: 🔨 Compilar Nunjucks a HTML
+        run: |
+          echo "=== COMPILANDO NUNJUCKS A HTML ==="
+          
+          # Crear directorio para páginas HTML
+          mkdir -p src/pages
+          
+          # Instalar nunjucks si no está en package.json
+          if ! npm list nunjucks >/dev/null 2>&1; then
+            npm install nunjucks --no-save
           fi
+          
+          # Crear script de compilación
+          cat > compile-njk.js << 'EOF'
+          const nunjucks = require('nunjucks');
+          const fs = require('fs');
+          const path = require('path');
+
+          // Configurar Nunjucks
+          const templatesDir = 'src/templates';
+          const outputDir = 'src/pages';
+          
+          // Crear entorno de Nunjucks
+          const env = nunjucks.configure(templatesDir, {
+            autoescape: false,
+            throwOnUndefined: false,
+            trimBlocks: true,
+            lstripBlocks: true
+          });
+
+          // Función para procesar todas las páginas
+          function compilePages() {
+            const languages = ['es', 'en', 'fr'];
+            const pages = ['index', 'about', 'services', 'contact', 'blog'];
+          
+            languages.forEach(lang => {
+              const langDir = path.join(outputDir, lang);
+              if (!fs.existsSync(langDir)) {
+                fs.mkdirSync(langDir, { recursive: true });
+              }
+          
+              pages.forEach(page => {
+                const templatePath = path.join(templatesDir, 'pages', lang, `${page}.njk`);
+          
+                if (fs.existsSync(templatePath)) {
+                  try {
+                    // Cargar datos de traducción
+                    const translations = require(`./locales/${lang}.json`);
+          
+                    // Datos para la plantilla
+                    const data = {
+                      lang: lang,
+                      slug: page === 'index' ? '' : page,
+                      title: `${page.charAt(0).toUpperCase() + page.slice(1)} - Marta Paz Ogle`,
+                      t: translations,
+                      asset: (filepath) => `../${filepath}`,
+                      url: (pageName, pageLang = lang) => `/${pageLang}/${pageName === 'home' ? '' : pageName}.html`
+                    };
+          
+                    // Renderizar plantilla
+                    const html = env.render(`pages/${lang}/${page}.njk`, data);
+          
+                    // Guardar HTML
+                    const outputPath = path.join(langDir, `${page === 'index' ? 'index' : page}.html`);
+                    fs.writeFileSync(outputPath, html);
+          
+                    console.log(`✅ ${lang}/${page}.njk -> ${lang}/${page}.html`);
+                  } catch (error) {
+                    console.error(`❌ Error compilando ${templatePath}:`, error.message);
+                  }
+                }
+              });
+            });
+          }
+
+          compilePages();
+          EOF
+          
+          # Ejecutar compilación
+          node compile-njk.js
+          
+          # Verificar que se generaron los HTML
+          echo ""
+          echo "=== ARCHIVOS GENERADOS ==="
+          find src/pages -name "*.html" | sort
 
       - name: 🗂️ Preparar archivos para Pages
         run: |
@@ -74,50 +159,62 @@ jobs:
           # Crear directorio para el deploy
           mkdir -p _site
           
-          # 1. COPIAR PÁGINAS HTML ORGANIZADAS POR IDIOMAS
-          echo "=== COPIANDO PÁGINAS POR IDIOMAS ==="
+          # 1. COPIAR PÁGINAS HTML COMPILADAS
+          echo "=== COPIANDO PÁGINAS COMPILADAS ==="
           
           if [ -d "src/pages" ]; then
-            echo "📁 Estructura encontrada: src/pages/"
+            echo "📁 Copiando estructura de páginas..."
           
-            # Español (es)
-            if [ -d "src/pages/es" ]; then
-              mkdir -p _site/es
-              cp src/pages/es/*.html _site/es/ 2>/dev/null || true
-              echo "✅ Español copiado"
-            fi
+            # Copiar todas las páginas HTML
+            cp -r src/pages/* _site/ 2>/dev/null || true
           
-            # Inglés (en)
-            if [ -d "src/pages/en" ]; then
-              mkdir -p _site/en
-              cp src/pages/en/*.html _site/en/ 2>/dev/null || true
-              echo "✅ Inglés copiado"
-            fi
+            # Crear redirección desde root
+            cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="es">
+          <head>
+              <meta charset="UTF-8">
+              <meta http-equiv="refresh" content="0; url=/es/">
+              <title>Redireccionando...</title>
+              <script>
+                  // Detectar idioma del navegador
+                  const userLang = navigator.language || navigator.userLanguage;
+                  const supportedLangs = ['es', 'en', 'fr'];
+                  let defaultLang = 'es';
           
-            # Francés (fr)
-            if [ -d "src/pages/fr" ]; then
-              mkdir -p _site/fr
-              cp src/pages/fr/*.html _site/fr/ 2>/dev/null || true
-              echo "✅ Francés copiado"
-            fi
+                  if (userLang.startsWith('en')) defaultLang = 'en';
+                  if (userLang.startsWith('fr')) defaultLang = 'fr';
+          
+                  window.location.href = `/${defaultLang}/`;
+              </script>
+          </head>
+          <body>
+              <p>Redireccionando a tu idioma preferido...</p>
+              <p>Si no eres redireccionado automáticamente, haz clic en:</p>
+              <ul>
+                  <li><a href="/es/">Español</a></li>
+                  <li><a href="/en/">English</a></li>
+                  <li><a href="/fr/">Français</a></li>
+              </ul>
+          </body>
+          </html>
+          EOF
           fi
           
-          # 2. COPIAR LANDING PAGE
-          if [ -f "index.html" ]; then
-            cp index.html _site/
-            echo "✅ Landing page copiada"
-          fi
-          
-          # 3. COPIAR ASSETS
+          # 2. COPIAR ASSETS
           if [ -d "assets" ]; then
             cp -r assets _site/
             echo "✅ Assets copiados"
           fi
           
+          # 3. AGREGAR .nojekyll PARA DESHABILITAR JEKYLL
+          touch _site/.nojekyll
+          echo "✅ Archivo .nojekyll creado"
+          
           # 4. VERIFICAR
           echo ""
           echo "=== ESTRUCTURA FINAL ==="
-          find _site -type f | sort
+          find _site -type f | sort | head -20
 
       - name: 📦 Crear artifact de compilación
         uses: actions/upload-artifact@v4
@@ -150,6 +247,7 @@ jobs:
           publish_dir: ./_site
           force_orphan: true
           publish_branch: gh-pages
+          cname: # Agregar aquí dominio
 
       - name: 📢 Notificar despliegue
         run: |

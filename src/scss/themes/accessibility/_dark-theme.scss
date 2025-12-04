@@ -1,50 +1,52 @@
 // src/scss/themes/accessibility/_dark-theme.scss
 [data-theme="dark"] {
-  // ========== COLORES BASE ==========
-  // Fondos (tonos más oscuros manteniendo la paleta rosa/beige)
-  --bg-primary: #1e1515;
-  --bg-secondary: #2a1f1f;
-  --bg-tertiary: #362929;
-  --bg-inverse: #f8e9e5;
+  // ========== FONDOS ==========
+  --bg-primary: #181210;      // café oscuro profundo
+  --bg-secondary: #201815;
+  --bg-tertiary: #2A211E;
+  --bg-inverse: #F7EAD9;      // beige cálido claro
 
-  // Textos
-  --text-primary: #f8e9e5;
-  --text-secondary: #d4b8aa;
-  --text-muted: #a08988;
-  --text-inverse: #1e1515;
-  --text-on-accent: #1e1515;
+  // ========== TEXTO ==========
+  --text-primary: #F7EAD9;    // beige crema
+  --text-secondary: #D7C5B6;  // beige más suave
+  --text-muted: #A99689;      // marrón grisáceo suave
+  --text-inverse: #181210;    // texto sobre fondos claros
+  --text-on-accent: #181210;
 
-  // Acentos (más vibrantes en oscuro)
-  --accent-primary: #e48e95;
-  --accent-secondary: #d4a6a1;
-  --accent-success: #d58e99;
-  --accent-danger: #e67e80;
-  --accent-warning: #f4cd93;
-  --accent-info: #e9a3bd;
+  // ========== ACENTOS ==========
+  --accent-primary: #D9B99B;  // arena cálido
+  --accent-secondary: #F5D3D6; // rosa pastel suave
+  --accent-success: #8CA8FF;  // azul pastel medio
+  --accent-danger: #E28A86;   // coral suave
+  --accent-warning: #F2CDA1;  // beige-dorado
+  --accent-info: #C9C7FF;     // lavanda pastel
 
-  // Bordes
-  --border-color: #4a3a3a;
-  --border-light: #5c4a4a;
-  --border-dark: #362929;
+  // ========== BORDES ==========
+  --border-color: #3A2E2A;
+  --border-light: #4B3C37;
+  --border-dark: #241B18;
 
   // ========== EFECTOS ==========
-  --focus-ring: 0 0 0 3px rgba(228, 142, 149, 0.5);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --focus-ring: 0 0 0 3px rgba(217, 185, 155, 0.45);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.65);
   --shadow-intensity: 1.2;
 
   // ========== COMPONENTES ==========
-  --navbar-bg: #1e1515;
-  --card-bg: #2a1f1f;
-  --button-bg: #e48e95;
-  --button-text: #1e1515;
-  --button-hover-bg: #ce7179;
-  --input-bg: #2a1f1f;
-  --input-border: #4a3a3a;
-  --link-color: #e48e95;
+  --navbar-bg: #181210;
+  --card-bg: #201815;
+
+  --button-bg: #D9B99B;
+  --button-hover-bg: #C2A489;
+  --button-text: #181210;
+
+  --input-bg: #201815;
+  --input-border: #3A2E2A;
+
+  --link-color: #F5D3D6; // rosa pastel visible pero suave
 
   // ========== ACCESIBILIDAD ==========
-  --particles-opacity: 0.4;
-  --image-opacity: 0.9;
+  --particles-opacity: 0.35;
+  --image-opacity: 0.85;
 }

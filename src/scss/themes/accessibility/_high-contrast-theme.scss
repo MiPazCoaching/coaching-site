@@ -1,57 +1,47 @@
 // src/scss/themes/accessibility/_high-contrast-theme.scss
 [data-theme="high-contrast"] {
-  // ========== COLORES BASE ==========
-  // Solo blanco y negro con acentos amarillos
+  // ======== BASE ========
   --bg-primary: #000000;
-  --bg-secondary: #000000;
-  --bg-tertiary: #1a1a1a;
-  --bg-inverse: #ffffff;
+  --bg-secondary: #0D0D0D;  // fondo ligeramente diferente para orientación
+  --bg-tertiary: #1A1A1A;
+  --bg-inverse: #FFFFFF;
 
-  // Textos siempre blancos o negros
-  --text-primary: #ffffff;
-  --text-secondary: #ffffff;
-  --text-muted: #ffffff;
+  // ======== TEXTO ========
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --text-muted: #FFFFFF;
   --text-inverse: #000000;
   --text-on-accent: #000000;
 
-  // Acentos de alto contraste (colores puros)
-  --accent-primary: #ffff00;
-  --accent-secondary: #00ffff;
-  --accent-success: #00ff00;
-  --accent-danger: #ff0000;
-  --accent-warning: #ffff00;
-  --accent-info: #00ffff;
+  // ======== ACENTOS ========
+  --accent-primary: #FFFF00;   // amarillo puro
+  --accent-secondary: #00FF00; // verde puro (accesible)
+  --accent-success: #00FF00;
+  --accent-danger: #FF0000;
+  --accent-warning: #FFFF00;
+  --accent-info: #FFFF00;
 
-  // Bordes siempre visibles
-  --border-color: #ffffff;
-  --border-light: #ffffff;
-  --border-dark: #ffffff;
+  // ======== BORDES ========
+  --border-color: #FFFFFF;
+  --border-light: #FFFFFF;
+  --border-dark: #FFFFFF;
 
-  // ========== EFECTOS ==========
-  --focus-ring: 0 0 0 4px #ffff00;
-  --shadow-sm: 0 0 0 1px #ffffff;
-  --shadow-md: 0 0 0 2px #ffffff;
-  --shadow-lg: 0 0 0 3px #ffffff;
+  // ======== EFECTOS ========
+  --focus-ring: 0 0 0 4px #FFFF00;
+  --shadow-sm: 0 0 0 2px #FFFFFF;
+  --shadow-md: 0 0 0 3px #FFFFFF;
+  --shadow-lg: 0 0 0 4px #FFFFFF;
   --shadow-intensity: 0;
 
-  // ========== TIPOGRAFÍA ==========
-  --font-weight-normal: 600;
-  --font-weight-medium: 700;
-  --font-weight-bold: 800;
+  // ======== TIPOGRAFÍA ========
+  --font-weight-normal: 700;
+  --font-weight-medium: 800;
+  --font-weight-bold: 900;
   --letter-spacing-base: 0.05em;
 
-  // ========== COMPONENTES ==========
+  // ======== COMPONENTES ========
   --navbar-bg: #000000;
   --card-bg: #000000;
-  --button-bg: #ffff00;
+  --button-bg: #FFFF00;
   --button-text: #000000;
-  --button-hover-bg: #ffff00;
-  --input-bg: #000000;
-  --input-border: #ffffff;
-  --link-color: #ffff00;
-  --link-underline: underline;
-
-  // ========== ACCESIBILIDAD ==========
-  --particles-opacity: 0;
-  --image-opacity: 1;
 }

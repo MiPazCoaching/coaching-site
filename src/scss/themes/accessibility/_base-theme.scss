@@ -1,70 +1,75 @@
 // src/scss/themes/accessibility/_base-theme.scss
 :root {
-  // Colores base
-  --bg-primary: #fffaf7;
-  --bg-secondary: #f7f2ee;
-  --bg-tertiary: #f5f0ed;
-  --bg-inverse: #4a3a3a;
+  // ======== Fondos ========
+  --bg-primary: #F7EAD9;      // crema cálido
+  --bg-secondary: #F4E4D4;    // crema ligeramente más cálido
+  --bg-tertiary: #EFE0CC;     // para tarjetas y secciones suaves
+  --bg-inverse: #2F2622;      // café oscuro suave
 
-  --text-primary: #3a2d2d;
-  --text-secondary: #9f8686;
-  --text-muted: #a08988;
-  --text-inverse: #fffaf7;
-  --text-on-accent: #fffaf7; // Texto sobre fondos de acento
+  // ======== Texto ========
+  --text-primary: #4A3B33;    // café medio suave
+  --text-secondary: #7A6A5F;  // café grisáceo
+  --text-muted: #A89589;      // aún más suave
+  --text-inverse: #FFF7F0;    // texto sobre fondo oscuro
+  --text-on-accent: #FFF7F0;  // texto sobre botones/accentos
 
-  --accent-primary: #c05c78;
-  --accent-secondary: #e49ca3;
-  --accent-success: #cd7682;
-  --accent-danger: #e26d6d;
-  --accent-warning: #f4cd93;
-  --accent-info: #e9a3bd;
+  // ======== Acentos ========
+  --accent-primary: #D9B99B;  // beige arena cálido (acentos principales)
+  --accent-secondary: #F5D3D6; // rosa pastel suave
+  --accent-info: #C9C7FF;     // lavanda pastel
+  --accent-success: #8CA8FF;  // azul pastel medio
+  --accent-warning: #F2CDA1;  // crema cálido dorado
+  --accent-danger: #E28A86;   // coral suave
 
-  // Estados y bordes
-  --border-color: #d6c4bd;
-  --border-light: #e0d1cb;
-  --border-dark: #bca8a8;
-  
-  // Efectos
-  --focus-ring: 0 0 0 3px rgba(192, 92, 120, 0.25);
-  --shadow-sm: 0 1px 2px 0 rgba(74, 58, 58, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(74, 58, 58, 0.1), 0 2px 4px -1px rgba(74, 58, 58, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(74, 58, 58, 0.1), 0 4px 6px -2px rgba(74, 58, 58, 0.05);
-  
-  // Tipografía
-  --font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-family-heading: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  // ======== Bordes y estados ========
+  --border-color: #E0D1C2;
+  --border-light: #EBDED2;
+  --border-dark: #C6AE9C;
+
+  --focus-ring: 0 0 0 3px rgba(217, 185, 155, 0.35);
+
+  --shadow-sm: 0 1px 2px rgba(42, 35, 30, 0.06);
+  --shadow-md: 0 3px 6px rgba(42, 35, 30, 0.1);
+  --shadow-lg: 0 8px 15px rgba(42, 35, 30, 0.15);
+
+  // ======== Tipografía ========
+  --font-family-base: 'Segoe UI', system-ui, sans-serif;
+  --font-family-heading: 'Segoe UI', system-ui, sans-serif;
+
   --font-size-base: 1rem;
   --line-height-base: 1.6;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
 
-  // Componentes
-  --navbar-bg: #f7f2ee;
-  --card-bg: #ffffff;
-  --button-bg: #e48e95;
-  --button-text: #fffaf7;
-  --button-hover-bg: #ce7179;
-  --input-bg: #ffffff;
-  --input-border: #d6c4bd;
-  --link-color: #c05c78;
+  // ======== Componentes ========
+  --navbar-bg: #F4E4D4;       // beige claro
+  --card-bg: #FFFFFF;
+  --button-bg: #D9B99B;       // beige arena 
+  --button-hover-bg: #C5A48A; // un tono más oscuro
+  --button-text: #FFF7F0;
+
+  --input-bg: #FFFFFF;
+  --input-border: #D6C4B5;
+
+  --link-color: #D9A1A8;      // rosa cálido suave
   --link-underline: none;
 
-  // Transiciones base
+  // ======== Transiciones ========
   --transition-base: all 0.3s ease;
   --transition-fast: all 0.15s ease;
-  
-  // Partículas (serán sobrescritas por los temas de partículas)
-  --particles-opacity: 0.6;
-  --particles-count: 80;
+
+  // ======== Partículas / efectos ========
+  --particles-opacity: 0.45;  // acorde a tonos suaves
+  --particles-count: 60;
   --image-opacity: 1;
   --animation-speed: 1;
 
-  // Fotofobia (10 niveles)
-  --photophobia-intensity: 10; // Por defecto: normal (10/10)
+  // Fotofobia
+  --photophobia-intensity: 10;
 }
 
-// Clases de utilidad para temas específicos
+// Utilidades especiales
 .dyslexia-friendly {
   --font-family-base: 'OpenDyslexic', 'Comic Sans MS', sans-serif;
   --font-size-base: 1.1rem;

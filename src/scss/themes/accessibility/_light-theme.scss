@@ -1,37 +1,46 @@
 // src/scss/themes/accessibility/_light-theme.scss
 [data-theme="light"] {
-  // ========== COLORES BASE ==========
-  // Fondos claros (ya son los valores por defecto, pero los explicitamos)
-  --bg-primary: #fffaf7;
-  --bg-secondary: #f7f2ee;
-  --bg-tertiary: #f5f0ed;
-  --bg-inverse: #4a3a3a;
+  // ========== FONDOS ==========
+  --bg-primary: #F7EAD9;
+  --bg-secondary: #F4E4D4;
+  --bg-tertiary: #EFE0CC;
+  --bg-inverse: #4A3B33;
 
-  // Textos
-  --text-primary: #3a2d2d;
-  --text-secondary: #9f8686;
-  --text-muted: #a08988;
-  --text-inverse: #fffaf7;
+  // ========== TEXTOS ==========
+  --text-primary: #4A3B33;
+  --text-secondary: #7A6A5F;
+  --text-muted: #A89589;
+  --text-inverse: #FFF7F0;
 
-  // Acentos
-  --accent-primary: #c05c78;
-  --accent-secondary: #e49ca3;
+  // ========== ACENTOS ==========
+  --accent-primary: #D9B99B;
+  --accent-secondary: #F5D3D6;
+  --accent-info: #C9C7FF;
+  --accent-success: #8CA8FF;
+  --accent-warning: #F2CDA1;
+  --accent-danger: #E28A86;
 
-  // Bordes
-  --border-color: #d6c4bd;
-  --border-light: #e0d1cb;
+  // ========== BORDES ==========
+  --border-color: #E0D1C2;
+  --border-light: #EBDED2;
+  --border-dark: #C6AE9C;
 
   // ========== EFECTOS ==========
-  --focus-ring: 0 0 0 3px rgba(192, 92, 120, 0.25);
-  --shadow-sm: 0 1px 2px 0 rgba(74, 58, 58, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(74, 58, 58, 0.1), 0 2px 4px -1px rgba(74, 58, 58, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(74, 58, 58, 0.1), 0 4px 6px -2px rgba(74, 58, 58, 0.05);
+  --focus-ring: 0 0 0 3px rgba(217, 185, 155, 0.35);
+  --shadow-sm: 0 1px 2px rgba(42, 35, 30, 0.06);
+  --shadow-md: 0 3px 6px rgba(42, 35, 30, 0.1);
+  --shadow-lg: 0 8px 15px rgba(42, 35, 30, 0.15);
 
   // ========== COMPONENTES ==========
-  --navbar-bg: #f7f2ee;
-  --card-bg: #ffffff;
-  --button-bg: #e48e95;
-  --input-bg: #ffffff;
-  --input-border: #d6c4bd;
-  --link-color: #c05c78;
+  --navbar-bg: #F4E4D4;
+  --card-bg: #FFFFFF;
+
+  --button-bg: #D9B99B;
+  --button-hover-bg: #C5A48A;
+  --button-text: #FFF7F0;
+
+  --input-bg: #FFFFFF;
+  --input-border: #E0D1C2;
+
+  --link-color: #D9A1A8; // rosa cálido
 }
